@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist",
+      "sourceMap": true,
+      // Never set the "module" other than ESM because doing so will make webpack unable to tree-shake.
+      "module": "esnext",
+      "target": "es5",
+      "jsx": "react",
+      "moduleResolution": "node",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "noImplicitAny": true,
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": false,
+    },
+    "include": [
+      "src"
+    ]
+}
+  
