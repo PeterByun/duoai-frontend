@@ -1,11 +1,15 @@
 const path = require('path');
 
+const { DefinePlugin } = require('webpack')
+const dotenv = require("dotenv")
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = () => {
   return {
     mode: 'development',
-    entry: './src/index.ts',
+    entry: './src/index.tsx',
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
       alias: {
@@ -14,20 +18,28 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'DUO AI',
+        inject: true,
+        template: './public/index.html',
+      }),
+      new ESLintPlugin(),
+      new DefinePlugin({
+        'process.env': JSON.stringify(dotenv.config({path: './.env.development'}).parsed)
       })
     ],
     output: {
-      filename: '[name].[contenthash:8].js',
-      sourceMapFilename: '[name].[contenthash:8].map',
-      assetModuleFilename: 'assets/[hash][ext][query]',
-      path: path.resolve(__dirname, 'dist'),
+      filename: 'main.js',
+      sourceMapFilename: 'main.map',
       clean: true,
-      pathinfo: false,
+      publicPath: "/",
     },
     devtool: 'inline-source-map',
     devServer: {
-      static: './dist',
+      compress: true,
+      // Where to server static files.
+      static: './pulbic',
+      port: 9000,
+      hot: true,
+      historyApiFallback: true,
     },
     module: {
       rules: [

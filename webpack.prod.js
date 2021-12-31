@@ -1,13 +1,18 @@
 const path = require('path');
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const { DefinePlugin } = require('webpack')
+const dotenv = require("dotenv")
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const postcssNormalize = require('postcss-normalize')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = () => {
   return {
     mode: 'production',
-    entry: './src/index.ts',
+    entry: './src/index.tsx',
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
       alias: {
@@ -16,20 +21,41 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'DUO AI',
+        inject: true,
+        template: './public/index.html',
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true,
+        },
       }),
       new MiniCssExtractPlugin({
         filename: "[name].[contenthash].css",
         chunkFilename: "[id].[contenthash].css",
       }),
+      new ESLintPlugin(),
+      new webpack.DefinePlugin(env.stringified),
+      new DefinePlugin({
+        'process.env': JSON.stringify(dotenv.config({ path: './.env.production'}).parsed)
+      })
     ],
     output: {
       filename: '[name].[contenthash:8].js',
       sourceMapFilename: '[name].[contenthash:8].map',
       assetModuleFilename: 'assets/[hash][ext][query]',
+      // The dist folder.
       path: path.resolve(__dirname, 'dist'),
       clean: true,
       pathinfo: false,
+      // The base path for all urls of the bundle.
+      publicPath: "/",
     },
     devtool: 'source-map',
     module: {
@@ -46,7 +72,22 @@ module.exports = () => {
         },
         {
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
+          use: [
+            MiniCssExtractPlugin.loader, 
+            "css-loader",
+            {
+              loader: "postcss-loader",
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    require('postcss-flexbugs-fixes'),
+                    require('postcss-preset-env'),
+                    postcssNormalize(),
+                  ],
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,

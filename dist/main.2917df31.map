@@ -1,1 +1,0 @@
-{"version":3,"file":"main.xxxxxxxx.js","mappings":"gHACO,WACCA,QAAQC,IAAI,kBAKpBC,K","sources":["webpack://duoai-frontend/./src/index.ts"],"sourcesContent":["const index = {\n    log() {\n        console.log('hello webpack')\n    },\n    hi: ' 1234123123'\n}\n\nindex.log()\n\n\nexport default index"],"names":["console","log","index"],"sourceRoot":""}

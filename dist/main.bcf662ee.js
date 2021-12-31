@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkduoai_frontend=self.webpackChunkduoai_frontend||[]).push([[179],{607:function(){(function(){console.log("hello webpack")})()}},function(n){n(n.s=607)}]);
-//# sourceMappingURL=main.2917df31.map
