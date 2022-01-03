@@ -1,9 +1,9 @@
 import React, { KeyboardEventHandler, useState, useEffect, MouseEventHandler } from 'react'
 
-import MultiSearchResultCard, { SummonerSearchResult } from '../../components/MultiSearchResultCard'
+import MultiSearchResultCard, { SummonerSearchResult } from '../../components/MultiSearchResultCard/MultiSearchResultCard'
 import Grid from '../../components/Grid'
 import Button from '../../components/Button'
-import { StyledTextArea } from '../../components-styled/StyledTextArea.style'
+import { StyledTextArea } from '../../components/TextArea/StyledTextArea.style'
 
 import { getMatchSummary } from '../../utils/endpoints'
 

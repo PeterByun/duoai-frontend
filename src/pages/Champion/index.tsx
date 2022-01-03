@@ -1,14 +1,11 @@
 import React from 'react'
 import {
-    BrowserRouter,
-    Routes,
     Outlet,
 } from 'react-router-dom'
 
 import NavigationBar from '../../components/Navigator'
 
 import { Page } from '../../types/app-types'
-
 
 import { routes } from '../../constants/app-constants'
 const championInfoRoutes = routes.champion.children

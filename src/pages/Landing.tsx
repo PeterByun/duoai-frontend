@@ -5,7 +5,7 @@ import Slogan from '../components/Slogan'
 import Button from '../components/Button'
 import SearchBar from '../components/SearchBar'
 import Input from '../components/Input'
-import { FlexBoxStyle } from '../components-styled/StyledFlexBox.style'
+import { StyledFlexBox } from '../components/Container/StyledFlexBox.style'
 
 const Landing = () => {
     const navigate = useNavigate()
@@ -20,7 +20,7 @@ const Landing = () => {
     }
 
     return (
-        <FlexBoxStyle
+        <StyledFlexBox
             flexDirection="column"
             align="flex-start"
             height="100%"
@@ -45,7 +45,7 @@ const Landing = () => {
                     검색
                 </Button>
             </SearchBar>
-        </FlexBoxStyle>
+        </StyledFlexBox>
     )
 }
 

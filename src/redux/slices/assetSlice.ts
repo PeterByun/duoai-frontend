@@ -3,7 +3,7 @@ import type { RootState } from '../store'
 
 import { importChampionThumbnails, importItemIcons } from '../../utils/file-utils'
 
-interface AssetState {
+type AssetState = {
   championThumbnails: Map<string, string>
   itemIcons: Map<string, string>
 }
@@ -26,9 +26,10 @@ export const assetSlice = createSlice({
   },
 })
 
-// Export actions and selectors.
+// Actions
 export const { loadChampionThumbnails, loadItemIcons } = assetSlice.actions
 
+// Selectors
 export const selectChampionThumbnails = (state: RootState) => state.asset.championThumbnails
 
 export const selectItemIcons = (state: RootState) => state.asset.itemIcons

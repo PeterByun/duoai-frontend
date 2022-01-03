@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { StyledText } from '../../components-styled/StyledText.style'
-import { CardStyle } from '../../components-styled/StyledCard'
-import { FlexBoxStyle } from '../../components-styled/StyledFlexBox.style'
+import { StyledText } from '../../components/Text'
+import { CardStyle } from '../../components/Card/StyledCard'
+import { StyledFlexBox } from '../../components/Container/StyledFlexBox.style'
 import { Img } from '../../components/Img'
 
 import SearchBar from '../../components/SearchBar'
@@ -23,7 +23,7 @@ import {
 import { matchDataDummy } from '../../constants/match-constants'
 import { useChampionImages } from '../../hooks/use-champion-images'
 import Heading from '../../components/Heading'
-import { StyledSvg } from '../../components-styled/StyledSvg.style'
+import { StyledSvg } from '../../components/Svg/StyledSvg.style'
 import Strong from '../../components/Strong'
 
 // Merge participants with participants identities.
@@ -45,7 +45,6 @@ matchData.teams = matchData.teams.map(team => {
     team.participants = matchData.participants.filter(participant => participant.teamId === team.teamId)
     return team
 })
-
 
 type Summoner = {
     summonerId: string
@@ -89,11 +88,11 @@ const Stats = () => {
         return participants.find(participant => participant.summonerName === summonerName)
     }
 
-    const onSummonerCardClick = (summoner: Summoner) => {
+    const handleSummonerCardClick = (summoner: Summoner) => {
         getMatchList.setParams({summonerName: summoner.summonerName})
         .send<Match[]>().then(response => {
             const matchiListResponse = response.data.map(match => {
-                // Merge participant and participant identity
+                // Merge participant and participant identity.
                 match.participants = match.participants.map(participant => {
                     const identityMatchesParticipant = match.participantIdentities?.find(identity => identity.participantId === participant.participantId)    
 
@@ -105,7 +104,7 @@ const Stats = () => {
                     return participant
                 })
 
-                // Set the selcted summoner to each matchs
+                // Set the selcted summoner to each matchs.
                 const selectedSummonerInParticipants = getSelectedParticipant(
                     match.participants,
                     summoner.summonerName
@@ -113,7 +112,7 @@ const Stats = () => {
 
                 if (selectedSummonerInParticipants) match.selectedParticipant = selectedSummonerInParticipants
 
-                // Store a participant list's reference by team into each teams.
+                // Store a reference of participants to teams which they belong to.
                 match.teams = match.teams.map(team => {
                     team.participants = match.participants.filter(participant => participant.teamId === team.teamId)
                     return team
@@ -188,7 +187,7 @@ const Stats = () => {
                     {isSummonerSelected && selectedSommoner ? (
                         <>
                             
-                            <FlexBoxStyle 
+                            <StyledFlexBox 
                                 flexDirection='row'
                                 justify='center'
                             >
@@ -202,7 +201,7 @@ const Stats = () => {
                                     </Strong> 
                                     님의 최근 전적
                                 </Heading>
-                            </FlexBoxStyle>
+                            </StyledFlexBox>
 
                             <MatchTable
                                 matchList={matchList}
@@ -215,10 +214,10 @@ const Stats = () => {
                             <CardStyle
                                 key={summoner.summonerName + idx}
                                 onClick={() => {
-                                    onSummonerCardClick(summoner)
+                                 handleSummonerCardClick(summoner)
                                 }}
                             >
-                                <FlexBoxStyle flexDirection="column" gap="1rem">
+                                <StyledFlexBox flexDirection="column" gap="1rem">
                                     <StyledText
                                         fontSize="1.5rem"
                                         fontWeight="bold"
@@ -233,7 +232,7 @@ const Stats = () => {
                                         border='1px solid var(--white)'
                                         src={getChampionImage(summoner.championNameEng)}
                                     />
-                                </FlexBoxStyle>
+                                </StyledFlexBox>
                             </CardStyle>
                         ))
                     )}

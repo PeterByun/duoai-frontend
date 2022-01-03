@@ -25,7 +25,7 @@ import MultiSearchMain from './pages/MultiSearch/MultiSearchMain'
 import SummonerSearch from "./pages/Summoner/SummonerSearch"
 
 import { Page } from './types/app-types'
-import { GlobalStyle } from './components-styled/AppGlobalStyle'
+import { GlobalStyle } from './components/AppGlobalStyle'
 import { Global } from '@emotion/react'
 
 

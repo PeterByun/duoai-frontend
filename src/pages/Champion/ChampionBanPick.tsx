@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, ChangeEvent } from 'react'
 
-import { StyledText } from '../../components-styled/StyledText.style'
+import { StyledText } from '../../components/Text'
 
 import Strong from '../../components/Strong'
 import Container from '../../components/Container'
@@ -11,7 +11,7 @@ import Grid from '../../components/Grid'
 import Canvas from '../../components/Canvas'
 import ImgChampion from '../../components/ImgChampion'
 import SelectedChampion from '../../components/SelectedChampion'
-import { FlexBoxStyle } from '../../components-styled/StyledFlexBox.style'
+import { StyledFlexBox } from '../../components/Container/StyledFlexBox.style'
 
 import { analyzeBanPick } from '../../utils/endpoints'
 import { capitalize, toPercentage } from '../../utils/string-utils'
@@ -212,7 +212,7 @@ const Champs = () => {
                     zIndex="2"
                     sticky
                 >
-                    <FlexBoxStyle
+                    <StyledFlexBox
                         flexDirection="row"
                         width="90%"
                         padding="1rem"
@@ -236,7 +236,7 @@ const Champs = () => {
                             &nbsp; 챔피언을 선택해주세요.
                         </StyledText>
 
-                        <FlexBoxStyle
+                        <StyledFlexBox
                             flexDirection="column"
                             justify="space-evenly"
                             width="30%"
@@ -261,10 +261,10 @@ const Champs = () => {
                             >
                                 분석하기
                             </Button>
-                        </FlexBoxStyle>
-                    </FlexBoxStyle>
+                        </StyledFlexBox>
+                    </StyledFlexBox>
 
-                    <FlexBoxStyle
+                    <StyledFlexBox
                         flexDirection="row"
                         justify="space-between"
                         width="90%"
@@ -320,7 +320,7 @@ const Champs = () => {
                                 ))}
                             </Grid>
                         ) : null}
-                    </FlexBoxStyle>
+                    </StyledFlexBox>
 
                     <SearchBar
                         width="800px"
@@ -368,7 +368,7 @@ const Champs = () => {
                             flexDirection="column"
                             padding="1rem"
                         >
-                            <FlexBoxStyle
+                            <StyledFlexBox
                                 flexDirection="row"
                                 padding="1rem"
                                 justify="space-between"
@@ -412,16 +412,16 @@ const Champs = () => {
                                         )}
                                     </Grid>
                                 ) : null}
-                            </FlexBoxStyle>
+                            </StyledFlexBox>
 
-                            <FlexBoxStyle
+                            <StyledFlexBox
                                 flexDirection="row"
                                 justify="space-between"
                                 width="95%"
                                 margin="0"
                                 padding="1rem"
                             >
-                                <FlexBoxStyle
+                                <StyledFlexBox
                                     flexDirection="column"
                                     padding="1rem"
                                 >
@@ -434,7 +434,7 @@ const Champs = () => {
                                         </Strong>
                                         &nbsp;예상승률
                                     </StyledText>
-                                    <FlexBoxStyle
+                                    <StyledFlexBox
                                         flexDirection="row"
                                         align="center"
                                         justify="center"
@@ -463,10 +463,10 @@ const Champs = () => {
                                                 height: '200',
                                             }}
                                         />
-                                    </FlexBoxStyle>
-                                </FlexBoxStyle>
+                                    </StyledFlexBox>
+                                </StyledFlexBox>
 
-                                <FlexBoxStyle
+                                <StyledFlexBox
                                     flexDirection="column"
                                     padding="1rem"
                                 >
@@ -479,7 +479,7 @@ const Champs = () => {
                                         </Strong>
                                         &nbsp;예상승률
                                     </StyledText>
-                                    <FlexBoxStyle
+                                    <StyledFlexBox
                                         flexDirection="row"
                                         align="center"
                                         justify="center"
@@ -508,9 +508,9 @@ const Champs = () => {
                                                 height: '200',
                                             }}
                                         />
-                                    </FlexBoxStyle>
-                                </FlexBoxStyle>
-                            </FlexBoxStyle>
+                                    </StyledFlexBox>
+                                </StyledFlexBox>
+                            </StyledFlexBox>
                         </Container>
                     ))}
                 </Container>

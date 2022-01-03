@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import {
     SelectBarStyle,
     OptionStyle,
-} from '../../components-styled/StyledSelectBar.style'
+} from '../../components/SelectBar/StyledSelectBar.style'
 
 import Container from '../../components/Container'
 import SearchBar from '../../components/SearchBar'
