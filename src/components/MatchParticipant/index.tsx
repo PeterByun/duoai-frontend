@@ -1,20 +1,20 @@
 import React from 'react'
 import { DraggingStyle, NotDraggingStyle, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from 'react-beautiful-dnd'
 
-import { useChampionImages } from '../../hooks/use-champion-images'
+import { useChampionImages } from '@/hooks/use-champion-images'
 
-import Grid from './Grid'
-import ChampionSpells from './ChampionSpells'
-import ChampionKda from './ChampionKda'
-import ChampionItems from './ChampionItems'
+import Grid from '@/components/Grid'
+import ChampionSpells from '@/components/ChampionSpells'
+import ChampionKda from '@/components/ChampionKda'
+import ChampionItems from '@/components/ChampionItems'
 
-import { StyledText } from '../Text'
-import { StyledFlexBox } from '../Container/StyledFlexBox.style'
-import { ImgStyle } from '../Img/StyledImg.style'
+import { StyledText } from '@/components/Text'
+import { StyledFlexBox } from '@/components/FlexBox/StyledFlexBox.style'
+import { ImgStyle } from '@/components/Img/StyledImg.style'
 
 import {
     ParticipantWithIdentity,
-} from '../../types/match-types'
+} from '@/types/match-types'
 
 const getItemStyle = (isDragging: boolean, draggableStyle: DraggingStyle | NotDraggingStyle | undefined) => {
     if (draggableStyle) {

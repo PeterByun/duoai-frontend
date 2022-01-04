@@ -4,7 +4,7 @@ import {
     ContainerStyle, 
     ContainerCoverStyle, 
     ContainerCoverStyleProps 
-} from '../components-styled/StyledContainer.style'
+} from '@/components/Container/StyledContainer.style'
 
 type ContainerProps = ContainerCoverStyleProps & {
     children: any

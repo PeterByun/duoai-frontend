@@ -3,7 +3,7 @@ import React from 'react'
 import {
     ButtonStyle,
     ButtonStyleProps,
-} from '../components-styled/StyledButton'
+} from '@/components/Button/StyledButton'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void

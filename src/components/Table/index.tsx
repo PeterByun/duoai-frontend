@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TableStyle, TableStyleProps } from '../components-styled/StyledTable.style'
+import { TableStyle, TableStyleProps } from '@/components/Table/StyledTable.style'
 
 type TableHeadItem = {
     name: string, key:string

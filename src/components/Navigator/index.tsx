@@ -8,12 +8,12 @@ import {
     LinkStyle,
 } from './StyledNavigator.style'
 
-import { Anchor } from '../components/Anchor'
+import { Anchor } from '@/components/Anchor'
 
-import { Page } from '../../types/app-types'
+import { Page } from '@/types/app-types'
 
-import LogoImgSrc from '../../src/assets/images/logo_horizontal.svg'
-import { Img } from './Img'
+import LogoImgSrc from '@/assets/images/logo_horizontal.svg'
+import { Img } from '@/components/Img'
 
 type NavigationBarProps = {
     pages: Page[]

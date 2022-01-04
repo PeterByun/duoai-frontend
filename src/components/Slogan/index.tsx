@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyledText } from '../components-styled/StyledText.style'
+import { StyledText } from '@/components/Text'
 
 export default function Slogan () {
     return (

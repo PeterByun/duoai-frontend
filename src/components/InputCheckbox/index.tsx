@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { InputCheckboxStyleProps, InputCheckboxStyle } from '../components-styled/StyledInputCheckbox.style'
+import { InputCheckboxStyleProps, InputCheckboxStyle } from '@/components/InputCheckbox/StyledInputCheckbox.style'
 
 type InputCheckboxProps = {
     children: any

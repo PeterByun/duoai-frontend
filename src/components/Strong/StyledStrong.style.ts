@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { StyledText, StyledTextProps } from '../Text'
+import { StyledText, StyledTextProps } from '@/components/Text'
 
 export type StrongStyleProps = {
 } & StyledTextProps

@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { StyledText } from '../../components/Text'
-import { CardStyle } from '../../components/Card/StyledCard'
-import { StyledFlexBox } from '../../components/Container/StyledFlexBox.style'
-import { Img } from '../../components/Img'
+import { StyledText } from '@/components/Text'
+import { CardStyle } from '@/components/Card/StyledCard'
+import { StyledFlexBox } from '@/components/FlexBox/StyledFlexBox.style'
+import { Img } from '@/components/Img'
 
-import SearchBar from '../../components/SearchBar'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
-import Container from '../../components/Container'
-import Grid from '../../components/Grid'
-import MatchTable from '../../components/MatchTable'
+import SearchBar from '@/components/SearchBox'
+import Input from '@/components/Input'
+import Button from '@/components/Button'
+import Container from '@/components/Container'
+import Grid from '@/components/Grid'
+import MatchTable from '@/components/MatchTable'
 
 import { getMatchList, getProSummoners } from '../../utils/endpoints'
 
@@ -21,10 +21,10 @@ import {
 } from '../../types/match-types'
 
 import { matchDataDummy } from '../../constants/match-constants'
-import { useChampionImages } from '../../hooks/use-champion-images'
-import Heading from '../../components/Heading'
-import { StyledSvg } from '../../components/Svg/StyledSvg.style'
-import Strong from '../../components/Strong'
+import { useChampionImages } from '@/hooks/use-champion-images'
+import Heading from '@/components/Heading'
+import { StyledSvg } from '@/components/Svg/StyledSvg.style'
+import Strong from '@/components/Strong'
 
 // Merge participants with participants identities.
 matchDataDummy.participants = matchDataDummy.participants.map(

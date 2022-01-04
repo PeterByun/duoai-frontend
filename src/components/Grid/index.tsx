@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { GridStyleProps, GridStyle } from '../components-styled/StyledGrid.style'
+import { GridStyleProps, GridStyle } from '@/components/Grid/StyledGrid.style'
 
 export type GridProps = GridStyleProps & {
     id?: string

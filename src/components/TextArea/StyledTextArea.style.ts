@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from '@emotion/styled'
 
-import { BaseStyle, BaseStyleProps } from "../components/AppBaseStyle";
+import { BaseStyle, BaseStyleProps } from "@/components/App/AppBaseStyle";
 
 export type StyledTextAreaProps = {
 } & BaseStyleProps

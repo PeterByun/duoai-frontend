@@ -3,10 +3,10 @@ import React from 'react'
 import {
     ImgStyle,
     ImgStyleProps
-} from '../components-styled/StyledImg.style'
+} from '@/components/Img/StyledImg.style'
 
-import { StyledText } from '../components-styled/StyledText.style'
-import { StyledFlexBox } from '../components-styled/StyledFlexBox.style'
+import { StyledText } from '@/components/Text'
+import { StyledFlexBox } from '@/components/FlexBox/StyledFlexBox.style'
 
 type ImgChampionProps = {
     image: {

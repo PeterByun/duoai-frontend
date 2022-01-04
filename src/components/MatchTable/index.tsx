@@ -1,34 +1,34 @@
 import React, { useState } from 'react'
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableLocation } from 'react-beautiful-dnd';
 
-import ChampionSpells from './ChampionSpells'
-import ChampionKda from './ChampionKda'
-import ChampionItems from './ChampionItems'
-import ImgChampion from './ImgChampion';
+import ChampionSpells from '@/components/ChampionSpells'
+import ChampionKda from '@/components/ChampionKda'
+import ChampionItems from '@/components/ChampionItems'
+import ImgChampion from '@/components/ImgChampion';
 import {
     MatchSummaryStyle,
     MatchSummaryWrapperStyle,
-} from './StyledMatchSummary.style'
-import Button from './Button'
-import Heading from './Heading'
+} from '@/components/MatchTable/StyledMatchSummary.style'
+import Button from '@/components/Button'
+import Heading from '@/components/Heading'
 import Alert, { AlertData } from '../Alert'
 
-import { StyledText } from '../Text'
-import { StyledFlexBox } from '../Container/StyledFlexBox.style'
-import { ImgStyle } from '../Img/StyledImg.style'
+import { StyledText } from '@/components/Text'
+import { StyledFlexBox } from '@/components/FlexBox/StyledFlexBox.style'
+import { ImgStyle } from '@/components/Img/StyledImg.style'
 // We need cloned matchParticipantElement to implement drag and drop.
-import { getMatchParticipantClone, MatchParticipant } from '../MatchParticipant'
+import { getMatchParticipantClone, MatchParticipant } from '@/components/MatchParticipant'
 
 import {
     Match,
     MatchList,
     ParticipantsEntity,
     ParticipantWithIdentity,
-} from '../../types/match-types'
+} from '@/types/match-types'
 
-import { analyzeSwappedMatch } from '../../utils/endpoints' 
-import { useChampionImages, } from '../../hooks/use-champion-images';
-import { toPercentage, getHowOldFromNow } from '../../utils/string-utils';
+import { analyzeSwappedMatch } from '@/utils/endpoints' 
+import { useChampionImages, } from '@/hooks/use-champion-images';
+import { toPercentage, getHowOldFromNow } from '@/utils/string-utils';
 
 type MatchTableProps = {
     matchList: MatchList

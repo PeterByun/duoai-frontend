@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { BaseFlexBoxStyle, BaseFlexBoxStyleProps } from './AppBaseFlexBoxStyle'
+import { BaseFlexBoxStyle, BaseFlexBoxStyleProps } from '@/components/App/AppBaseFlexBoxStyle'
 
 type MatchSummaryStyleProps = {
     win?: boolean

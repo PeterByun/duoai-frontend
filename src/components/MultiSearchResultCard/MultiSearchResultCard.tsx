@@ -1,17 +1,17 @@
 import React from 'react'
 
-import Heading from '../components/Heading'
+import Heading from '@/components/Heading'
 
-import { StyledText } from '../Text'
-import { StyledFlexBox } from '../Container/StyledFlexBox.style'
-import { StyledHr } from '../Hr/StyledHr.style'
-import ImgChampion from './ImgChampion';
-import Strong from '../Strong'
-import Container from '../components/Container'
+import { StyledText } from '@/components/Text'
+import { StyledFlexBox } from '@/components/FlexBox/StyledFlexBox.style'
+import { StyledHr } from '@/components/Hr/StyledHr.style'
+import ImgChampion from '@/components/ImgChampion';
+import Strong from '@/components/Strong'
+import Container from '@/components/Container'
 
-import { useChampionImages, } from '../../hooks/use-champion-images';
+import { useChampionImages, } from '@/hooks/use-champion-images';
 
-import { toPercentage, formatKda, getHowOldFromNow, getStreakMessage } from '../../utils/string-utils'
+import { toPercentage, formatKda, getHowOldFromNow, getStreakMessage } from '@/utils/string-utils'
 
 export type SummonerSearchResult = {
     summonerName: string,

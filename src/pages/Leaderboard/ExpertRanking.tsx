@@ -3,13 +3,13 @@ import React, { useEffect } from 'react'
 import {
     SelectBarStyle,
     OptionStyle,
-} from '../../components/SelectBar/StyledSelectBar.style'
+} from '@/components/SelectBar/StyledSelectBar.style'
 
-import Container from '../../components/Container'
-import SearchBar from '../../components/SearchBar'
-import Button from '../../components/Button'
-import Input from '../../components/Input'
-import Table from '../../components/Table'
+import Container from '@/components/Container'
+import SearchBar from '@/components/SearchBox'
+import Button from '@/components/Button'
+import Input from '@/components/Input'
+import Table from '@/components/Table'
 
 import { SummonerRank } from '../../types/rank-types'
 

@@ -1,6 +1,6 @@
 import { ChampionDataList, ChampionImg } from '../types/champion-types'
 
-import { pathToName } from '../utils/string-utils'
+import { pathToName } from '@/utils/string-utils'
 
 import championNameAndKeyPair from '../assets/js/champion-name-key-pair'
 import championDataJson from './../assets/json/champion-info.json'

@@ -1,9 +1,9 @@
 import React from "react"
 
-import { ImgStyleProps } from '../Img/StyledImg.style'
-import ImgChampion from '../components/ImgChampion'
+import { ImgStyleProps } from '@/components/Img/StyledImg.style'
+import ImgChampion from '@/components/ImgChampion'
 
-import { ChampionImg } from '../../types/champion-types'
+import { ChampionImg } from '@/types/champion-types'
 
 const SelectedChampion = (props: { champion: ChampionImg } & ImgStyleProps) => {
     return (

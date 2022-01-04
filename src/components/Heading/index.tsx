@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { HeadingStyle, HeadingStyleProps } from '../components-styled/StyledHeading.style'
-import { StyledTextProps } from '../components-styled/StyledText.style'
+import { HeadingStyle, HeadingStyleProps } from '@/components/Heading/StyledHeading.style'
+import { StyledTextProps } from '@/components/Text'
 
 type HeadingProps = {
     children?: React.ReactNode

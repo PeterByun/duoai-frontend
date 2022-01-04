@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react'
 import {
     InputStyle,
     InputWrapperStyle,
-} from '../components-styled/StyledInput.style'
+} from '@/components/Input/StyledInput.style'
 
 type InputProps = {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void

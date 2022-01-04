@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from '@emotion/styled'
 
-import { BaseFlexBoxStyle, BaseFlexBoxStyleProps } from './AppBaseFlexBoxStyle'
+import { BaseFlexBoxStyle, BaseFlexBoxStyleProps } from '@/components/App/AppBaseFlexBoxStyle'
 
 export type StyledModalProps = {
     isOpen:boolean

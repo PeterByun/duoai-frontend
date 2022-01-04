@@ -1,5 +1,7 @@
-import styled, { css } from 'styled-components'
-import { BaseStyle, BaseStyleProps } from '../components/AppBaseStyle'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
+
+import { BaseStyle, BaseStyleProps } from '@/components/App/AppBaseStyle'
 
 export type StyledTextProps  = {
     color?: string
@@ -17,34 +19,34 @@ export type StyledTextProps  = {
     clipBackground?: boolean
 } & BaseStyleProps
 
-export const TextStyle = css<StyledTextProps>`
-    ${BaseStyle}
+export const TextStyle = (props: StyledTextProps) => {
+    return css`
 
-    background: ${({background}) => background ? background : null};
+    ${BaseStyle(props)}
 
-    -webkit-background-clip: ${({clipBackground}) => clipBackground ? 'text' : null};
-    -webkit-text-fill-color: ${({clipBackground}) => clipBackground ? 'transparent' : null};
+    background: ${props.background};
 
-    background-color: ${ ({highlighted, backgroundColor, background}) => {
-        if(background) return null
-        if(highlighted) 'var(--blue)'
-        return backgroundColor ? `var(--${backgroundColor})` : null
-    }};
-    color: ${({color, highlighted}) => {
-        if(highlighted) return 'var(--white)'
-        return color ? `var(--${color})` : `var(--black)`
-    }};
+    -webkit-background-clip: ${props.clipBackground ? 'text' : null};
+    -webkit-text-fill-color: ${props.clipBackground ? 'transparent' : null};
 
-    width: ${({highlighted})=> highlighted ? 'fit-content' : null};
+    background-color: ${
+        !props.background ? 'initial' : props.highlighted ? 'var(--blue)' : props.backgroundColor ? 'var(--${backgroundColor})' : 'initial'
+    }
+    color: ${
+        props.highlighted ? 'var(--white)' : props.color ? `var(--${props.color})` : `var(--black)`        
+    };
 
-    font-size: ${({fontSize}) => fontSize ? fontSize : '1rem'};
-    font-weight: ${({fontWeight}) => fontWeight ? fontWeight : '1rem'};
+    width: ${props.highlighted ? 'fit-content' : 'inintial' };
 
-    margin: ${({margin}) => margin ? margin : null};
+    font-size: ${props.fontSize ?? '1rem' };
+    font-weight: ${props.fontWeight ?? '1rem' };
 
-    text-align: ${({textAlign}) => textAlign ? textAlign : 'center'};
-    white-space: ${({whiteSpace}) => whiteSpace ? whiteSpace : 'nowrap'};
-`
+    margin: ${props.margin ?? 'inintial'};
+
+    text-align: ${props.textAlign ?? 'center' };
+    white-space: ${props.whiteSpace ?? 'nowrap' };
+    `
+}
 
 export const StyledText = styled.p<StyledTextProps>`
     ${TextStyle}

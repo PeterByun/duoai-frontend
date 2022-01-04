@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { StyledTextProps, TextStyle } from './StyledText.style'
+import styled from '@emotion/styled'
+import { StyledTextProps, TextStyle } from '@/components/Text
 
 export type HeadingStyleProps = {
     level: 1|2|3

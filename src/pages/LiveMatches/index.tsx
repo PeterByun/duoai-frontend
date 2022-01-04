@@ -3,7 +3,7 @@ import {
     Outlet
 } from 'react-router-dom'
 
-import NavigationBar from '../../components/Navigator'
+import NavigationBar from '@/components/Navigator'
 
 import { Page } from '../../types/app-types'
 

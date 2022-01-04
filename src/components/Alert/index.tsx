@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-import { StyledFlexBox } from "../Container/StyledFlexBox.style"
+import { StyledFlexBox } from "../FlexBox/StyledFlexBox.style"
 import { StyledModal } from "../Modal/StyledModal.style"
 import { StyledText } from '../Text'
 

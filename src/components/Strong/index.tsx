@@ -1,6 +1,6 @@
 import React from "react"
 
-import { StyledStrong, StrongStyleProps } from "../components-styled/StyledStrong.style"
+import { StyledStrong, StrongStyleProps } from "@/components/Strong/StyledStrong.style"
 
 export interface StrongProps extends React.ParamHTMLAttributes<HTMLParagraphElement> { 
     children?: React.ReactNode

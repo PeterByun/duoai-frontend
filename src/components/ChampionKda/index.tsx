@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { StyledFlexBox, FlexBoxStyleProps } from '../components-styled/StyledFlexBox.style'
-import { StyledText } from '../components-styled/StyledText.style'
+import { StyledFlexBox, FlexBoxStyleProps } from '@/components/FlexBox/StyledFlexBox.style'
+import { StyledText } from '@/components/Text/index'
 
-import { formatKda } from '../utils/string-utils'
+import { formatKda } from '@/utils/string-utils'
 
 type ChampionKdaProps = FlexBoxStyleProps & {
     kills: number | undefined

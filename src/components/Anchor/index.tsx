@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyledText, StyledTextProps } from "../components-styled/StyledText.style";
+import { StyledText, StyledTextProps } from '@/components/Text'
 
 type AnchorProps = {
     children: React.ReactNode

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { useItemImages } from '../hooks/use-item-images';
+import { useItemImages } from '@/hooks/use-item-images';
 
-import Grid, { GridProps } from './Grid'
-import { ImgStyle } from '../components-styled/StyledImg.style'
+import Grid, { GridProps } from '@/components/Grid'
+import { ImgStyle } from '@/components/Img/StyledImg.style'
 
 type Item = { itemId?: number }
 
