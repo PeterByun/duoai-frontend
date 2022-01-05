@@ -6,7 +6,7 @@
         "@/*": ["src/*"]
       },
       "sourceMap": true,
-      // Never set the "module" other than ESM because doing so will make webpack unable to tree-shake.
+      // Never set the "module" to somthing other than ESM because doing so will make webpack unable to tree-shake.
       "module": "esnext",
       "target": "es5",
       "jsx": "react",

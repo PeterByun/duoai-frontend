@@ -9,7 +9,10 @@ const postcssNormalize = require('postcss-normalize')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
-module.exports = () => {
+module.exports = (env) => {
+  let dotEnvFilePath = './.env.production'
+  if(env.staging) dotEnvFilePath = './.env.staging'
+
   return {
     mode: 'production',
     entry: './src/index.tsx',
@@ -42,7 +45,7 @@ module.exports = () => {
       }),
       new ESLintPlugin(),
       new DefinePlugin({
-        'process.env': JSON.stringify(dotenv.config({ path: './.env.production'}).parsed)
+        'process.env': JSON.stringify(dotenv.config({ path: dotEnvFilePath}).parsed)
       })
     ],
     output: {
