@@ -40,6 +40,9 @@ module.exports = () => {
       port: 9000,
       hot: true,
       historyApiFallback: true,
+      proxy: {
+        '/' : "http://3.36.87.226:9099/",
+      }
     },
     module: {
       rules: [
