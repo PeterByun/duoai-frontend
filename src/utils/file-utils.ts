@@ -6,29 +6,36 @@ import championNameAndKeyPair from '../assets/js/champion-name-key-pair'
 import championDataJson from './../assets/json/champion-info.json'
 const championDataList: ChampionDataList = JSON.parse(championDataJson)
 
-export const importAll = (webpackContext: __WebpackModuleApi.RequireContext) => {  
-  return webpackContext.keys().map((fileUrl): [string, string] => {
-    const body = webpackContext(fileUrl);
-    
-    return [
-      pathToName(fileUrl),
-      body.default
-    ]
-  });
+export type ImportedFiles = {
+  [ key: string] : string
 }
 
-export const addInfoToChampionImg = (imagesSrcList: [string, string][]): ChampionImg[] => {
-  return imagesSrcList.map(([fileName, path]) => {
+export const importAll = (webpackContext: __WebpackModuleApi.RequireContext) => {  
+  const files: ImportedFiles = {}
+  for(const fileUrl of webpackContext.keys()) {
+    const body = webpackContext(fileUrl);
+    
+    files[pathToName(fileUrl)] = body.default
+  }
 
-      const championData = championDataList[fileName.toLowerCase()]
+  return files
+}
+
+export const addInfoToChampionImg = (imagesSrcList: ImportedFiles): ChampionImg[] => {
+  let championImg = []
+
+  for(const [fileName, path] of Object.entries(imagesSrcList)) {
+    const championData = championDataList[fileName.toLowerCase()]
       
-      return {
-        name: championData?.name,
-        src: path,
-        key: championNameAndKeyPair[fileName],
-        consonants: championData?.consonants,
-      }
-  })
+    championImg.push({
+      name: championData?.name,
+      src: path,
+      key: championNameAndKeyPair[fileName],
+      consonants: championData?.consonants,
+    }) 
+  }
+  
+  return championImg
 }
 
 export const importChampionThumbnails = () => {

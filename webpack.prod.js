@@ -41,7 +41,6 @@ module.exports = () => {
         chunkFilename: "[id].[contenthash].css",
       }),
       new ESLintPlugin(),
-      new webpack.DefinePlugin(env.stringified),
       new DefinePlugin({
         'process.env': JSON.stringify(dotenv.config({ path: './.env.production'}).parsed)
       })

@@ -22,16 +22,16 @@ export const routes = Object.freeze({
         children: {
             info: {
                 name: '정보',
-                path: '/champion/info',
+                path: 'info',
             },
             stats: {
                 name: '통계',
-                path: '/champion/stats',
+                path: 'stats',
                 disabled: true,
             },
             banPick: {
                 name: '가상밴픽',
-                path: '/champion/ban-pick',
+                path: 'ban-pick',
             },
         },
     },
@@ -41,7 +41,7 @@ export const routes = Object.freeze({
         children: {
             analysis: {
                 name: '분석',
-                path: '/live-matches/analysis',
+                path: 'analysis',
             },
         },
     },
@@ -51,7 +51,7 @@ export const routes = Object.freeze({
         children: {
             multiSearchMain: {
                 name: '메인',
-                path: '/multi-search/main',
+                path: 'main',
             }
         }
     },
@@ -62,19 +62,19 @@ export const routes = Object.freeze({
         children: {
             champRanking: {
                 name: '챔피언 랭킹',
-                path: '/leaderboard/champ',
+                path: 'champ',
             },
             summonerRanking: {
                 name: '소환사 랭킹',
-                path: '/leaderboard/summoner',
+                path: 'summoner',
             },
             expertRanking: {
                 name: '장인 랭킹',
-                path: '/leaderboard/expert',
+                path: 'expert',
             },
             summonerStats: {
                 name: '소환사 통계',
-                path: '/leaderboard/summoner-stats',
+                path: 'summoner-stats',
             },
         },
     },

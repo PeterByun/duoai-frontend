@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
-import { importChampionThumbnails, importItemIcons } from '../../utils/file-utils'
+import { importChampionThumbnails, importItemIcons, ImportedFiles } from '../../utils/file-utils'
 
 type AssetState = {
-  championThumbnails: Map<string, string>
-  itemIcons: Map<string, string>
+  championThumbnails: ImportedFiles
+  itemIcons: ImportedFiles
 }
 
 const initialState: AssetState = {
-  championThumbnails: new Map<string, string>(),
-  itemIcons: new Map<string, string>()
+  championThumbnails: {},
+  itemIcons: {}
 }
 
 export const assetSlice = createSlice({
@@ -18,10 +18,10 @@ export const assetSlice = createSlice({
   initialState,
   reducers: {
     loadChampionThumbnails: (state) => {
-      state.championThumbnails = new Map(importChampionThumbnails())
+      state.championThumbnails = importChampionThumbnails()
     },
     loadItemIcons: (state) => {
-      state.itemIcons = new Map(importItemIcons())
+      state.itemIcons = importItemIcons()
     }
   },
 })
