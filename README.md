@@ -1,7 +1,9 @@
 # League-Frontend
 The front-end application of DUO AI.
 
-# How to start the development server.
+---
+
+# To start the dev server
 
 1. Install Node.js on your machine. [Download link](https://nodejs.org/en/)
 
@@ -10,6 +12,8 @@ The front-end application of DUO AI.
 npm install
 npm run start
 ```
+
+---
 
 # Project structure
 ```
@@ -29,18 +33,23 @@ npm run start
 /helpers: Files that are not used in runtime.
 
 ```
+
+---
+
 # CLI
-- npm install
-    Intalls libraries specified in a package.json.
-- start:
-    Starts a local development server.
-- test:unit
-- test:e2e
-- build
-    Build the application bundle.
+**npm install** - Intalls libraries specified in a package.json.
+<br>
+**start** - Starts a local development server.
+<br>
+**test:unit**
+<br>
+**test:e2e**
+<br>
+**build** - Build the application bundle.
+
+---
 
 # Components
-
 ## Structure
 
 1. Import Components
