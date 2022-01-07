@@ -59,7 +59,7 @@ const NavigationBar = (props: NavigationBarProps) => {
                                 } : {}
                             )}
                         >
-                            {page.name}
+                            {page.name}, {page.path}
                         </NavLink>
                     </LinkStyle>
                 ))}

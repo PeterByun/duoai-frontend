@@ -28,10 +28,11 @@ import { Page } from './types/app-types'
 import { GlobalStyle } from './components/App/AppGlobalStyle'
 import { Global } from '@emotion/react'
 
-
 import { routes } from './constants/app-constants'
 const championInfoRoutes = routes.champion.children
 const leaderboardRoutes = routes.leaderboard.children
+const liveMatchesRoutes = routes.liveMatches.children
+const multiSearchRoutes = routes.multiSearch.children
 
 import { loadChampionThumbnails, loadItemIcons } from './redux/slices/assetSlice'
 import Summoner from './pages/Summoner'
@@ -72,11 +73,11 @@ function App() {
                     </Route>
 
                     <Route path={routes.liveMatches.path} element={<LiveMatches />}>
-                        <Route path='*' element={<LiveMatchesAnalysis />} />
+                        <Route path={liveMatchesRoutes.analysis.path} element={<LiveMatchesAnalysis />} />
                     </Route>
 
                     <Route path={routes.multiSearch.path} element={<MultiSearch />} >
-                        <Route path='*' element={<MultiSearchMain />} />
+                        <Route path={multiSearchRoutes.multiSearchMain.path} element={<MultiSearchMain />} />
                     </Route>
 
                     <Route path={routes.leaderboard.path} element={<Leaderboard />}>
