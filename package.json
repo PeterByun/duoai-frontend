@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
     "analyze" : "webpack --analyze --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.dev.js",
     "build:stg": "webpack --config webpack.prod.js --env staging",
     "build:prd": "webpack --config webpack.prod.js"
   },

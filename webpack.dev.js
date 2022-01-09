@@ -29,19 +29,20 @@ module.exports = () => {
     output: {
       filename: 'main.js',
       sourceMapFilename: 'main.map',
+      path: path.resolve(__dirname, 'dist'),
       clean: true,
       publicPath: "/",
     },
     devtool: 'inline-source-map',
     devServer: {
       compress: true,
-      // Where to server static files.
+      // Where to files which have not gone through webpack compilation.
       static: './pulbic',
       port: 9000,
       hot: true,
       historyApiFallback: true,
       proxy: {
-        '/' : "http://3.36.87.226:9099/",
+        '/duoai' : "http://3.36.87.226:9099/",
       }
     },
     module: {
