@@ -12,7 +12,7 @@ build-job:
     - npm run build:prd
     - echo "Compile complete."
     - echo "Copying the public folder..."
-    - mv public dist/
+    - mv public/* dist
   artifacts:
     paths:
       - dist/

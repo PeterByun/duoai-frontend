@@ -6,6 +6,8 @@ const dotenv = require('dotenv')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+
 module.exports = () => {
   return {
     mode: 'development',
@@ -27,6 +29,7 @@ module.exports = () => {
           dotenv.config({ path: './.env.development' }).parsed
         ),
       }),
+      new ReactRefreshWebpackPlugin(),
     ],
     output: {
       filename: 'main.js',
@@ -54,8 +57,15 @@ module.exports = () => {
       rules: [
         {
           test: /\.m?jsx?$/,
-          use: 'babel-loader',
           exclude: /node_modules/,
+          use: [
+            {
+              loader: require.resolve('babel-loader'),
+              options: {
+                plugins: [require.resolve('react-refresh/babel')],
+              },
+            },
+          ],
         },
         {
           test: /\.tsx?$/,

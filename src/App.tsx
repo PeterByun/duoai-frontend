@@ -1,28 +1,35 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import NavigationBar from './components/Navigator'
+import Loading from './components/Loading'
 
-import Champion from './pages/Champion'
-import LiveMatches from './pages/LiveMatches/index'
-import Leaderboard from './pages/Leaderboard/index'
-import Landing from './pages/Landing'
-import MultiSearch from './pages/MultiSearch'
+const Landing = lazy(() => import('./pages/Landing'))
+const Champion = lazy(() => import('./pages/Champion'))
+const LiveMatches = lazy(() => import('./pages/LiveMatches'))
+const Leaderboard = lazy(() => import('./pages/Leaderboard'))
+const MultiSearch = lazy(() => import('./pages/MultiSearch'))
 
-import ChampionInfo from './pages/Champion/ChampionInfo'
-import ChampionStats from './pages/Champion/ChampionStats'
-import ChampionBanPick from './pages/Champion/ChampionBanPick'
+const ChampionInfo = lazy(() => import('./pages/Champion/ChampionInfo'))
+const ChampionStats = lazy(() => import('./pages/Champion/ChampionStats'))
+const ChampionBanPick = lazy(() => import('./pages/Champion/ChampionBanPick'))
 
-import SummonerRanking from './pages/Leaderboard/SummonerRanking'
-import ExpertRanking from './pages/Leaderboard/ExpertRanking'
-import SummonerStats from './pages/Leaderboard/SummonerStats'
+const SummonerRanking = lazy(
+  () => import('./pages/Leaderboard/SummonerRanking')
+)
+const ExpertRanking = lazy(() => import('./pages/Leaderboard/ExpertRanking'))
+const SummonerStats = lazy(() => import('./pages/Leaderboard/SummonerStats'))
 
-import LiveMatchesAnalysis from './pages/LiveMatches/LiveMatchesAnalysis'
+const LiveMatchesAnalysis = lazy(
+  () => import('./pages/LiveMatches/LiveMatchesAnalysis')
+)
 
-import MultiSearchMain from './pages/MultiSearch/MultiSearchMain'
+const MultiSearchMain = lazy(
+  () => import('./pages/MultiSearch/MultiSearchMain')
+)
 
-import SummonerSearch from './pages/Summoner/SummonerSearch'
+const SummonerSearch = lazy(() => import('./pages/Summoner/SummonerSearch'))
 
 import { Page } from './types/app-types'
 import { GlobalStyle } from './components/App/AppGlobalStyle'
@@ -69,57 +76,75 @@ function App() {
         <NavigationBar pages={pages} nested={false} depth={0} />
 
         <Routes>
-          <Route path={routes.champion.path} element={<Champion />}>
+          <Route
+            path={routes.champion.path}
+            element={<Loading resultComponent={<Champion />} />}
+          >
             <Route
               path={championInfoRoutes.info.path}
-              element={<ChampionInfo />}
+              element={<Loading resultComponent={<ChampionInfo />} />}
             />
             <Route
               path={championInfoRoutes.stats.path}
-              element={<ChampionStats />}
+              element={<Loading resultComponent={<ChampionStats />} />}
             />
             <Route
               path={championInfoRoutes.banPick.path}
-              element={<ChampionBanPick />}
+              element={<Loading resultComponent={<ChampionBanPick />} />}
             />
           </Route>
 
-          <Route path={routes.liveMatches.path} element={<LiveMatches />}>
+          <Route
+            path={routes.liveMatches.path}
+            element={<Loading resultComponent={<LiveMatches />} />}
+          >
             <Route
               path={liveMatchesRoutes.analysis.path}
-              element={<LiveMatchesAnalysis />}
+              element={<Loading resultComponent={<LiveMatchesAnalysis />} />}
             />
           </Route>
 
-          <Route path={routes.multiSearch.path} element={<MultiSearch />}>
+          <Route
+            path={routes.multiSearch.path}
+            element={<Loading resultComponent={<MultiSearch />} />}
+          >
             <Route
               path={multiSearchRoutes.multiSearchMain.path}
-              element={<MultiSearchMain />}
+              element={<Loading resultComponent={<MultiSearchMain />} />}
             />
           </Route>
 
-          <Route path={routes.leaderboard.path} element={<Leaderboard />}>
+          <Route
+            path={routes.leaderboard.path}
+            element={<Loading resultComponent={<Leaderboard />} />}
+          >
             <Route
               path={leaderboardRoutes.summonerRanking.path}
-              element={<SummonerRanking />}
+              element={<Loading resultComponent={<SummonerRanking />} />}
             />
 
             <Route
               path={leaderboardRoutes.expertRanking.path}
-              element={<ExpertRanking />}
+              element={<Loading resultComponent={<ExpertRanking />} />}
             />
 
             <Route
               path={leaderboardRoutes.summonerStats.path}
-              element={<SummonerStats />}
+              element={<Loading resultComponent={<SummonerStats />} />}
             />
           </Route>
 
-          <Route path={routes.summoner.path} element={<Summoner />}>
-            <Route path="*" element={<SummonerSearch />} />
+          <Route
+            path={routes.summoner.path}
+            element={<Loading resultComponent={<Summoner />} />}
+          >
+            <Route
+              path="*"
+              element={<Loading resultComponent={<SummonerSearch />} />}
+            />
           </Route>
 
-          <Route path="*" element={<Landing />} />
+          <Route path="*" element={<Loading resultComponent={<Landing />} />} />
         </Routes>
       </BrowserRouter>
     </>
