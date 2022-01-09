@@ -15,7 +15,7 @@ export const importAll = (webpackContext: __WebpackModuleApi.RequireContext) => 
   for(const fileUrl of webpackContext.keys()) {
     const body = webpackContext(fileUrl);
     
-    files[pathToName(fileUrl)] = body.default
+    files[pathToName(fileUrl)] = body
   }
 
   return files

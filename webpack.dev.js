@@ -42,7 +42,10 @@ module.exports = () => {
       hot: true,
       historyApiFallback: true,
       proxy: {
-        '/duoai' : "http://3.36.87.226:9099/",
+        '/duoai': {
+          target: 'http://3.36.87.226:9099/',
+          pathRewrite: { '^/duoai': '' },
+        },
       }
     },
     module: {
