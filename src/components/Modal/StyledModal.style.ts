@@ -1,22 +1,25 @@
 import styled from '@emotion/styled'
 
-import { BaseFlexBoxStyle, BaseFlexBoxStyleProps } from '@/components/App/AppBaseFlexBoxStyle'
+import {
+  BaseFlexBoxStyle,
+  BaseFlexBoxStyleProps,
+} from '@/components/App/AppBaseFlexBoxStyle'
 
 export type StyledModalProps = {
-    isOpen:boolean
+  isOpen: boolean
 } & BaseFlexBoxStyleProps
 
 export const StyledModal = styled.div<StyledModalProps>`
-    ${BaseFlexBoxStyle}
-    
-    display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
-    background: #2c2c2cc4;
+  ${BaseFlexBoxStyle}
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  background: #2c2c2cc4;
 
-    width: 100vw;
-    height: 200vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  width: 100vw;
+  height: 200vh;
 `

@@ -4,7 +4,7 @@ import asssetReducer from './slices/assetSlice'
 
 export const store = configureStore({
   reducer: {
-    asset: asssetReducer
+    asset: asssetReducer,
   },
 })
 

@@ -1,10 +1,10 @@
-const path = require('path');
+const path = require('path')
 
 const { DefinePlugin } = require('webpack')
-const dotenv = require("dotenv")
+const dotenv = require('dotenv')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = () => {
   return {
@@ -23,15 +23,17 @@ module.exports = () => {
       }),
       new ESLintPlugin(),
       new DefinePlugin({
-        'process.env': JSON.stringify(dotenv.config({path: './.env.development'}).parsed)
-      })
+        'process.env': JSON.stringify(
+          dotenv.config({ path: './.env.development' }).parsed
+        ),
+      }),
     ],
     output: {
       filename: 'main.js',
       sourceMapFilename: 'main.map',
       path: path.resolve(__dirname, 'dist'),
       clean: true,
-      publicPath: "/",
+      publicPath: '/',
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -46,7 +48,7 @@ module.exports = () => {
           target: 'http://3.36.87.226:9099/',
           pathRewrite: { '^/duoai': '' },
         },
-      }
+      },
     },
     module: {
       rules: [
@@ -70,18 +72,18 @@ module.exports = () => {
           include: path.resolve(__dirname, 'src/assets'),
           type: 'asset/resource',
           generator: {
-            filename: 'assets/images/[hash][ext][query]'
-          }
+            filename: 'assets/images/[hash][ext][query]',
+          },
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           include: path.resolve(__dirname, 'src/assets'),
           type: 'asset/resource',
           generator: {
-            filename: 'assets/fonts/[hash][ext][query]'
-          }
-        }
-      ]
-    }
+            filename: 'assets/fonts/[hash][ext][query]',
+          },
+        },
+      ],
+    },
   }
 }

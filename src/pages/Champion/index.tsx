@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-    Outlet,
-} from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import NavigationBar from '@/components/Navigator'
 
@@ -12,16 +10,12 @@ const championInfoRoutes = routes.champion.children
 const pages: Page[] = [...Object.values(championInfoRoutes)]
 
 const Champion = () => {
-    return (
-        <>
-            <NavigationBar
-                pages={pages}
-                nested={true}
-                depth={1}
-            />
-            <Outlet/>
-        </>
-    )
+  return (
+    <>
+      <NavigationBar pages={pages} nested={true} depth={1} />
+      <Outlet />
+    </>
+  )
 }
 
 export default Champion

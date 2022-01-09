@@ -1,15 +1,15 @@
 export type ChampionData = {
-    name: string
-    consonants: string
+  name: string
+  consonants: string
 }
 
 export type ChampionDataList = {
-    [key: string]: ChampionData
+  [key: string]: ChampionData
 }
 
 export type ChampionImg = {
-    name: string
-    src: string
-    key: number
-    consonants: string
+  name: string
+  src: string
+  key: number
+  consonants: string
 }

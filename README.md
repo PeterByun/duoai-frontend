@@ -28,9 +28,8 @@ npm run start
 
     /tests: Unit Test files to ensure that components and utility moduels work as intended.
 
-/db.json: A json-server creates a fake REST API based on this file.
+/db.json: The json-server creates a fake REST API based on this file.
 
-/helpers: Files that are not used in runtime.
 
 ```
 

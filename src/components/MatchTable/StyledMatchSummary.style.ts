@@ -1,22 +1,25 @@
 import styled from '@emotion/styled'
 
-import { BaseFlexBoxStyle, BaseFlexBoxStyleProps } from '@/components/App/AppBaseFlexBoxStyle'
+import {
+  BaseFlexBoxStyle,
+  BaseFlexBoxStyleProps,
+} from '@/components/App/AppBaseFlexBoxStyle'
 
 type MatchSummaryStyleProps = {
-    win?: boolean
+  win?: boolean
 } & BaseFlexBoxStyleProps
 
-type MatchSummaryWrapperStyleProps = {
-} & BaseFlexBoxStyleProps
+type MatchSummaryWrapperStyleProps = {} & BaseFlexBoxStyleProps
 
 export const MatchSummaryWrapperStyle = styled.article<MatchSummaryWrapperStyleProps>`
-    ${BaseFlexBoxStyle}
+  ${BaseFlexBoxStyle}
 `
 
 export const MatchSummaryStyle = styled.div<MatchSummaryStyleProps>`
-    ${BaseFlexBoxStyle}
+  ${BaseFlexBoxStyle}
 
-    padding: 1rem;
-    border: ${({win}) => win ? '0.5rem solid var(--win)' : '0.5rem solid var(--lose-dark)' };
-    border-radius: 5px;
+  padding: 1rem;
+  border: ${({ win }) =>
+    win ? '0.5rem solid var(--win)' : '0.5rem solid var(--lose-dark)'};
+  border-radius: 5px;
 `

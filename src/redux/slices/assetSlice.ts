@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
-import { importChampionThumbnails, importItemIcons, ImportedFiles } from '../../utils/file-utils'
+import {
+  importChampionThumbnails,
+  importItemIcons,
+  ImportedFiles,
+} from '../../utils/file-utils'
 
 type AssetState = {
   championThumbnails: ImportedFiles
@@ -10,7 +14,7 @@ type AssetState = {
 
 const initialState: AssetState = {
   championThumbnails: {},
-  itemIcons: {}
+  itemIcons: {},
 }
 
 export const assetSlice = createSlice({
@@ -22,7 +26,7 @@ export const assetSlice = createSlice({
     },
     loadItemIcons: (state) => {
       state.itemIcons = importItemIcons()
-    }
+    },
   },
 })
 
@@ -30,9 +34,9 @@ export const assetSlice = createSlice({
 export const { loadChampionThumbnails, loadItemIcons } = assetSlice.actions
 
 // Selectors
-export const selectChampionThumbnails = (state: RootState) => state.asset.championThumbnails
+export const selectChampionThumbnails = (state: RootState) =>
+  state.asset.championThumbnails
 
 export const selectItemIcons = (state: RootState) => state.asset.itemIcons
 
 export default assetSlice.reducer
-

@@ -1,25 +1,27 @@
 import React, { useRef, useEffect } from 'react'
 
-export type CanvasProps = { draw: (context: CanvasRenderingContext2D, frameCount:number) => boolean, rest?: any}
-
+export type CanvasProps = {
+  draw: (context: CanvasRenderingContext2D, frameCount: number) => boolean
+  rest?: any
+}
 
 const Canvas = ({ draw, rest }: CanvasProps) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  
   useEffect(() => {
     let frameCount = 0
-    let animationFrameId:number
+    let animationFrameId: number
 
-    if(canvasRef.current) {
+    if (canvasRef.current) {
       const canvas = canvasRef.current as HTMLCanvasElement
       const context = canvas.getContext('2d')
-      
-      if(context) {
+
+      if (context) {
         const render = () => {
-            frameCount++
-            const continueAnimation = draw(context, frameCount)
-            if(continueAnimation) animationFrameId = window.requestAnimationFrame(render)
+          frameCount++
+          const continueAnimation = draw(context, frameCount)
+          if (continueAnimation)
+            animationFrameId = window.requestAnimationFrame(render)
         }
         render()
       }
@@ -27,10 +29,9 @@ const Canvas = ({ draw, rest }: CanvasProps) => {
     return () => {
       window.cancelAnimationFrame(animationFrameId)
     }
-    
   }, [draw])
-  
-  return <canvas ref={canvasRef} {...rest}/>
+
+  return <canvas ref={canvasRef} {...rest} />
 }
 
 export default Canvas

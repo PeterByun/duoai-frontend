@@ -1,12 +1,12 @@
-import React from "react"
-import {
-    Outlet
-} from 'react-router-dom'
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 const Summoner = () => {
-    return <>
-        <Outlet/>
+  return (
+    <>
+      <Outlet />
     </>
+  )
 }
 
 export default Summoner

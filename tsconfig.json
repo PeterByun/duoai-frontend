@@ -1,35 +1,28 @@
 {
-    "compilerOptions": {
-      "outDir": "./dist",
-      "baseUrl": "./",
-      "paths": {
-        "@/*": ["src/*"]
-      },
-      "sourceMap": true,
-      // Never set the "module" to somthing other than ESM because doing so will make webpack unable to tree-shake.
-      "module": "esnext",
-      "target": "es5",
-      "jsx": "react",
-      "moduleResolution": "node",
-      "lib": [
-        "dom",
-        "dom.iterable",
-        "esnext"
-      ],
-      "noImplicitAny": true,
-      "allowJs": true,
-      "skipLibCheck": true,
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "strict": true,
-      "forceConsistentCasingInFileNames": true,
-      "noFallthroughCasesInSwitch": true,
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "noEmit": false,
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
     },
-    "include": [
-      "src"
-    ]
+    "sourceMap": true,
+    // Never set the "module" to somthing other than ESM because doing so will make webpack unable to tree-shake.
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noImplicitAny": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false
+  },
+  "include": ["src"]
 }
-  

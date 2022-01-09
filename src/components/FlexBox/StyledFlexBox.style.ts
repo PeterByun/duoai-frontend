@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 
-import { BaseFlexBoxStyle, BaseFlexBoxStyleProps } from '@/components/App/AppBaseFlexBoxStyle'
+import {
+  BaseFlexBoxStyle,
+  BaseFlexBoxStyleProps,
+} from '@/components/App/AppBaseFlexBoxStyle'
 
 export type FlexBoxStyleProps = {
   disabled?: boolean
@@ -9,10 +12,10 @@ export type FlexBoxStyleProps = {
 export const StyledFlexBox = styled.div<FlexBoxStyleProps>`
   ${BaseFlexBoxStyle}
 
-  filter: ${({disabled}) => disabled ? 'grayscale(1)' : null };
-  cursor: ${({disabled}) => disabled ? 'not-allowed' : null };
+  filter: ${({ disabled }) => (disabled ? 'grayscale(1)' : null)};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : null)};
 
   > * {
-    pointer-events: ${({disabled}) => disabled ? 'none !important' : null };
+    pointer-events: ${({ disabled }) => (disabled ? 'none !important' : null)};
   }
 `

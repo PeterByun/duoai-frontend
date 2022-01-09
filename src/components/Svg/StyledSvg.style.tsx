@@ -1,17 +1,17 @@
 import styled from '@emotion/styled'
 
-import { BaseStyle, BaseStyleProps } from "@/components/App/AppBaseStyle";
+import { BaseStyle, BaseStyleProps } from '@/components/App/AppBaseStyle'
 
 export type StyledSvgProps = {
-    isButton?: boolean
+  isButton?: boolean
 } & BaseStyleProps
 
 export const StyledSvg = styled.svg<StyledSvgProps>`
-    ${BaseStyle}
+  ${BaseStyle}
 
-    cursor: ${({isButton}) => isButton ? 'pointer' : null};
+  cursor: ${({ isButton }) => (isButton ? 'pointer' : null)};
 
-    :hover {
-        opacity: ${({isButton}) => isButton ? '0.8' : null};
-    }
+  :hover {
+    opacity: ${({ isButton }) => (isButton ? '0.8' : null)};
+  }
 `

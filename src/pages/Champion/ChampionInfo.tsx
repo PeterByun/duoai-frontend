@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ChampionInfo = () => {
-    return <div></div>
+  return <div></div>
 }
 
 export default ChampionInfo

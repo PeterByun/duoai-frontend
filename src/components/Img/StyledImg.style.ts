@@ -9,14 +9,14 @@ export type ImgStyleProps = {
 export const ImgStyle = styled.img<ImgStyleProps>`
   ${BaseStyle}
 
-  cursor: ${({disabled, onClick}) => {
-    if(disabled) return null
+  cursor: ${({ disabled, onClick }) => {
+    if (disabled) return null
     return onClick ? 'pointer' : null
   }};
 
   :hover {
-    opacity: ${({disabled, onClick}) => {
-      if(disabled) return null
+    opacity: ${({ disabled, onClick }) => {
+      if (disabled) return null
       return onClick ? '0.8' : null
     }};
   }

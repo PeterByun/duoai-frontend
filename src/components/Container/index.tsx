@@ -1,25 +1,20 @@
 import React from 'react'
 
-import { 
-    ContainerStyle, 
-    ContainerCoverStyle, 
-    ContainerCoverStyleProps 
+import {
+  ContainerStyle,
+  ContainerCoverStyle,
+  ContainerCoverStyleProps,
 } from '@/components/Container/StyledContainer.style'
 
 type ContainerProps = ContainerCoverStyleProps & {
-    children: any
+  children: any
 }
 
 // TODO: a container should take two props. One for the wrapper, and the other for the container.
 export default function Container(props: ContainerProps) {
-    return (
-    <ContainerCoverStyle
-        {...props}
-    >
-        <ContainerStyle
-        >
-            {props.children}
-        </ContainerStyle>
-      </ContainerCoverStyle>
-    )
+  return (
+    <ContainerCoverStyle {...props}>
+      <ContainerStyle>{props.children}</ContainerStyle>
+    </ContainerCoverStyle>
+  )
 }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
-    "analyze" : "webpack --analyze --config webpack.prod.js",
+    "analyze": "webpack --analyze --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:stg": "webpack --config webpack.prod.js --env staging",
     "build:prd": "webpack --config webpack.prod.js"
@@ -28,6 +28,7 @@
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.3.1",
     "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-webpack-plugin": "^3.1.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",
@@ -36,6 +37,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.1.0",
+    "prettier": "2.5.1",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.4",
