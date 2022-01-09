@@ -39,7 +39,7 @@ module.exports = () => {
     devServer: {
       compress: true,
       // Where to files which have not gone through webpack compilation.
-      static: './pulbic',
+      static: path.join(__dirname, 'public'),
       port: 9000,
       hot: true,
       historyApiFallback: true,

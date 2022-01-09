@@ -9,8 +9,6 @@ import { routes } from '../../constants/app-constants'
 const multiSearchRoutes = routes.multiSearch.children
 const pages: Page[] = [...Object.values(multiSearchRoutes)]
 
-console.log(pages)
-
 const MultiSearch = () => {
   return (
     <>

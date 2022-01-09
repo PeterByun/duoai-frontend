@@ -20,32 +20,10 @@ import {
   MatchList,
 } from '../../types/match-types'
 
-import { matchDataDummy } from '../../constants/match-constants'
 import { useChampionImages } from '@/hooks/use-champion-images'
 import Heading from '@/components/Heading'
 import { StyledSvg } from '@/components/Svg/StyledSvg.style'
 import Strong from '@/components/Strong'
-
-// Merge participants with participants identities.
-matchDataDummy.participants = matchDataDummy.participants.map(
-  (participant: any) => {
-    return {
-      ...participant,
-      ...matchDataDummy.participantIdentities.find(
-        (identity: any) => participant.participantId === identity.participantId
-      ),
-    }
-  }
-)
-
-const matchData: Match = { ...matchDataDummy }
-
-matchData.teams = matchData.teams.map((team) => {
-  team.participants = matchData.participants.filter(
-    (participant) => participant.teamId === team.teamId
-  )
-  return team
-})
 
 type Summoner = {
   summonerId: string
@@ -81,7 +59,7 @@ const Stats = () => {
   const [selectedSommoner, setSelectedSommoner] =
     React.useState<Summoner | null>(null)
 
-  const [matchList, setMatchList] = React.useState<MatchList>([matchData])
+  const [matchList, setMatchList] = React.useState<MatchList>([])
 
   const getSelectedParticipant = (
     participants: Array<ParticipantWithIdentity>,
@@ -139,12 +117,7 @@ const Stats = () => {
         setSelectedSommoner(summoner)
       })
       .catch((error) => {
-        // for dev
         console.error('Could not fetch a match list from the server.')
-        matchData.selectedParticipant = matchData.participants[0]
-
-        setIsSummonerSelected(true)
-        setSelectedSommoner(summoner)
       })
   }
 
