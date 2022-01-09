@@ -4,7 +4,7 @@ stages:
 
 build-job:
   stage: build
-  image: node:10
+  image: node:14
   script:
     - echo "Installing NPM modules..."
     - npm install
