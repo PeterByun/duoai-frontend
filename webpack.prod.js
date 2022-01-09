@@ -1,17 +1,17 @@
-const path = require('path');
+const path = require('path')
 
 const { DefinePlugin } = require('webpack')
-const dotenv = require("dotenv")
+const dotenv = require('dotenv')
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const postcssNormalize = require('postcss-normalize')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = (env) => {
   let dotEnvFilePath = './.env.production'
-  if(env.staging) dotEnvFilePath = './.env.staging'
+  if (env.staging) dotEnvFilePath = './.env.staging'
 
   return {
     mode: 'production',
@@ -25,7 +25,7 @@ module.exports = (env) => {
     plugins: [
       new HtmlWebpackPlugin({
         inject: true,
-        template: './public/index.html',
+        template: './templates/index.html',
         minify: {
           removeComments: true,
           collapseWhitespace: true,
@@ -40,13 +40,15 @@ module.exports = (env) => {
         },
       }),
       new MiniCssExtractPlugin({
-        filename: "[name].[contenthash].css",
-        chunkFilename: "[id].[contenthash].css",
+        filename: '[name].[contenthash].css',
+        chunkFilename: '[id].[contenthash].css',
       }),
       new ESLintPlugin(),
       new DefinePlugin({
-        'process.env': JSON.stringify(dotenv.config({ path: dotEnvFilePath}).parsed)
-      })
+        'process.env': JSON.stringify(
+          dotenv.config({ path: dotEnvFilePath }).parsed
+        ),
+      }),
     ],
     output: {
       filename: '[name].[contenthash:8].js',
@@ -57,7 +59,7 @@ module.exports = (env) => {
       clean: true,
       pathinfo: false,
       // The base path for all urls of the bundle.
-      publicPath: "/",
+      publicPath: '/',
     },
     devtool: 'source-map',
     module: {
@@ -75,10 +77,10 @@ module.exports = (env) => {
         {
           test: /\.css$/,
           use: [
-            MiniCssExtractPlugin.loader, 
-            "css-loader",
+            MiniCssExtractPlugin.loader,
+            'css-loader',
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: {
                 postcssOptions: {
                   plugins: [
@@ -96,31 +98,28 @@ module.exports = (env) => {
           include: path.resolve(__dirname, 'src/assets'),
           type: 'asset/resource',
           generator: {
-            filename: 'assets/images/[hash][ext][query]'
-          }
+            filename: 'assets/images/[hash][ext][query]',
+          },
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           include: path.resolve(__dirname, 'src/assets'),
           type: 'asset/resource',
           generator: {
-            filename: 'assets/fonts/[hash][ext][query]'
-          }
+            filename: 'assets/fonts/[hash][ext][query]',
+          },
         },
       ],
     },
     optimization: {
       minimize: true,
-      minimizer: [
-          `...`,
-          new CssMinimizerPlugin(),
-        ],
+      minimizer: [`...`, new CssMinimizerPlugin()],
       splitChunks: {
         chunks: 'all',
       },
       runtimeChunk: {
-        name: entrypoint => `runtime-${entrypoint.name}`,
+        name: (entrypoint) => `runtime-${entrypoint.name}`,
       },
-    }
+    },
   }
 }

@@ -21,7 +21,7 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         inject: true,
-        template: './public/index.html',
+        template: './templates/index.html',
       }),
       new ESLintPlugin(),
       new DefinePlugin({
