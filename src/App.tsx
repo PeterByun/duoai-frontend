@@ -2,37 +2,37 @@ import React, { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import NavigationBar from './components/Navigator'
-import Loading from './components/Loading'
+import NavigationBar from './components/navigator/Navigator'
+import Loading from './components/loading/Loading'
 
 const Landing = lazy(() => import('./pages/Landing'))
-const Champion = lazy(() => import('./pages/Champion'))
-const LiveMatches = lazy(() => import('./pages/LiveMatches'))
-const Leaderboard = lazy(() => import('./pages/Leaderboard'))
-const MultiSearch = lazy(() => import('./pages/MultiSearch'))
+const Champion = lazy(() => import('./pages/champion/Champion'))
+const LiveMatches = lazy(() => import('./pages/liveMatches/LiveMatches'))
+const Leaderboard = lazy(() => import('./pages/leaderboard/Leaderboard'))
+const MultiSearch = lazy(() => import('./pages/multiSearch/MultiSearch'))
 
-const ChampionInfo = lazy(() => import('./pages/Champion/ChampionInfo'))
-const ChampionStats = lazy(() => import('./pages/Champion/ChampionStats'))
-const ChampionBanPick = lazy(() => import('./pages/Champion/ChampionBanPick'))
+const ChampionInfo = lazy(() => import('./pages/champion/ChampionInfo'))
+const ChampionStats = lazy(() => import('./pages/champion/ChampionStats'))
+const ChampionBanPick = lazy(() => import('./pages/champion/ChampionBanPick'))
 
 const SummonerRanking = lazy(
-  () => import('./pages/Leaderboard/SummonerRanking')
+  () => import('./pages/leaderboard/SummonerRanking')
 )
-const ExpertRanking = lazy(() => import('./pages/Leaderboard/ExpertRanking'))
-const SummonerStats = lazy(() => import('./pages/Leaderboard/SummonerStats'))
+const ExpertRanking = lazy(() => import('./pages/leaderboard/ExpertRanking'))
+const SummonerStats = lazy(() => import('./pages/leaderboard/SummonerStats'))
 
 const LiveMatchesAnalysis = lazy(
-  () => import('./pages/LiveMatches/LiveMatchesAnalysis')
+  () => import('./pages/liveMatches/LiveMatchesAnalysis')
 )
 
 const MultiSearchMain = lazy(
-  () => import('./pages/MultiSearch/MultiSearchMain')
+  () => import('./pages/multiSearch/MultiSearchMain')
 )
 
-const SummonerSearch = lazy(() => import('./pages/Summoner/SummonerSearch'))
+const SummonerSearch = lazy(() => import('./pages/summoner/SummonerSearch'))
 
 import { Page } from './types/app-types'
-import { GlobalStyle } from './components/App/AppGlobalStyle'
+import { GlobalStyle } from './components/app/AppGlobalStyle'
 import { Global } from '@emotion/react'
 
 import { routes } from './constants/app-constants'
@@ -45,7 +45,7 @@ import {
   loadChampionThumbnails,
   loadItemIcons,
 } from './redux/slices/assetSlice'
-import Summoner from './pages/Summoner'
+import Summoner from './pages/summoner/Summoner'
 
 const getChildrenPath = (page: Page): string => {
   if (page.children) {

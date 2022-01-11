@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import Slogan from '@/components/Slogan'
-import Button from '@/components/Button'
-import SearchBar from '@/components/SearchBox'
-import Input from '@/components/Input'
-import { StyledFlexBox } from '@/components/FlexBox/StyledFlexBox.style'
+import Slogan from '@/components/slogan/Slogan'
+import Button from '@/components/button/Button'
+import SearchBar from '@/components/searchBox/SearchBox'
+import Input from '@/components/input/Input'
+import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
 
 const Landing = () => {
   const navigate = useNavigate()
