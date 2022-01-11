@@ -5,9 +5,17 @@ export type Method = 'get' | 'post' | 'put' | 'patch' | 'delete'
 export type Page = {
   name: string
   path: string
-  children?: {
-    [key: string]: Page
-  }
   disabled?: boolean
   invisible?: boolean
+  index?: boolean
+}
+
+export type PageLeaf = Exclude<Page, 'children'>
+
+export type PageTree<C> = {
+  [key: string]: Page & {
+    children: {
+      [key: string]: C
+    }
+  }
 }

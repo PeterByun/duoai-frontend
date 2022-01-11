@@ -80,4 +80,8 @@ export const GlobalStyle = css`
     align-items: center;
     justify-content: flex-start;
   }
+
+  #root > nav:last-of-type {
+    margin-bottom: 3rem;
+  }
 `

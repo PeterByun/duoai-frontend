@@ -7,12 +7,13 @@ import { Page } from '../../types/app-types'
 
 import { routes } from '../../constants/app-constants'
 const multiSearchRoutes = routes.multiSearch.children
+
 const pages: Page[] = [...Object.values(multiSearchRoutes)]
 
 const MultiSearch = () => {
   return (
     <>
-      <NavigationBar pages={pages} nested={true} depth={1} />
+      <NavigationBar pages={pages ?? []} nested={true} depth={1} />
       <Outlet />
     </>
   )

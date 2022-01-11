@@ -1,4 +1,4 @@
-import { Method } from '@/types/app-types'
+import { Method, PageTree, Page, PageLeaf } from '@/types/app-types'
 
 export const colors: { [key: string]: string } = {
   blue: '#1aace5',
@@ -15,12 +15,13 @@ export const httpMethods: {
   delete: 'delete',
 }
 
-export const routes = Object.freeze({
+export const routes: PageTree<PageLeaf> = Object.freeze({
   champion: {
     name: '챔피언',
     path: '/champion',
     children: {
       info: {
+        index: true,
         name: '정보',
         path: 'info',
       },
@@ -40,6 +41,7 @@ export const routes = Object.freeze({
     path: '/live-matches',
     children: {
       analysis: {
+        index: true,
         name: '분석',
         path: 'analysis',
       },
@@ -50,6 +52,7 @@ export const routes = Object.freeze({
     path: '/multi-search',
     children: {
       multiSearchMain: {
+        index: true,
         name: '메인',
         path: 'main',
       },
@@ -61,6 +64,7 @@ export const routes = Object.freeze({
     disabled: true,
     children: {
       champRanking: {
+        index: true,
         name: '챔피언 랭킹',
         path: 'champ',
       },
@@ -79,8 +83,16 @@ export const routes = Object.freeze({
     },
   },
   summoner: {
+    index: true,
     name: '소환사',
     path: '/summoner',
     invisible: true,
+    children: {
+      summonerSearch: {
+        index: true,
+        name: '소환사 검색',
+        path: 'search',
+      },
+    },
   },
 })

@@ -20,8 +20,6 @@ export const NavContainerStyle = styled.nav<NavContainerStyleProps>`
   text-align: center;
 
   box-shadow: 0px 1px 1px 0px var(--light-gray);
-
-  margin-bottom: ${({ depth }) => (depth ? '3rem' : null)};
 `
 
 export const LinkWrapperStyle = styled.section`

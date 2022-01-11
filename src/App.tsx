@@ -38,8 +38,6 @@ import { Global } from '@emotion/react'
 import { routes } from './constants/app-constants'
 const championInfoRoutes = routes.champion.children
 const leaderboardRoutes = routes.leaderboard.children
-const liveMatchesRoutes = routes.liveMatches.children
-const multiSearchRoutes = routes.multiSearch.children
 
 import {
   loadChampionThumbnails,
@@ -47,21 +45,7 @@ import {
 } from './redux/slices/assetSlice'
 import Summoner from './pages/summoner/Summoner'
 
-const getChildrenPath = (page: Page): string => {
-  if (page.children) {
-    const child = Object.values(page.children)[0]
-    child.path = page.path + child.path
-    return getChildrenPath(child)
-  } else {
-    return page.path
-  }
-}
-
-let pages: Page[] = [...Object.values(routes)]
-pages = pages.map((page) => {
-  page.path = getChildrenPath(page)
-  return page
-})
+const pages: Page[] = [...Object.values(routes)]
 
 function App() {
   const dispatch = useDispatch()
@@ -81,7 +65,7 @@ function App() {
             element={<Loading resultComponent={<Champion />} />}
           >
             <Route
-              path={championInfoRoutes.info.path}
+              index
               element={<Loading resultComponent={<ChampionInfo />} />}
             />
             <Route
@@ -99,7 +83,7 @@ function App() {
             element={<Loading resultComponent={<LiveMatches />} />}
           >
             <Route
-              path={liveMatchesRoutes.analysis.path}
+              index
               element={<Loading resultComponent={<LiveMatchesAnalysis />} />}
             />
           </Route>
@@ -109,7 +93,7 @@ function App() {
             element={<Loading resultComponent={<MultiSearch />} />}
           >
             <Route
-              path={multiSearchRoutes.multiSearchMain.path}
+              index
               element={<Loading resultComponent={<MultiSearchMain />} />}
             />
           </Route>
@@ -119,7 +103,7 @@ function App() {
             element={<Loading resultComponent={<Leaderboard />} />}
           >
             <Route
-              path={leaderboardRoutes.summonerRanking.path}
+              index
               element={<Loading resultComponent={<SummonerRanking />} />}
             />
 
@@ -139,7 +123,7 @@ function App() {
             element={<Loading resultComponent={<Summoner />} />}
           >
             <Route
-              path="*"
+              index
               element={<Loading resultComponent={<SummonerSearch />} />}
             />
           </Route>

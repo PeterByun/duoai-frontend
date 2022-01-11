@@ -7,6 +7,7 @@ import { Page } from '../../types/app-types'
 
 import { routes } from '../../constants/app-constants'
 const leaderboardRoutes = routes.leaderboard.children
+
 const pages: Page[] = [...Object.values(leaderboardRoutes)]
 
 const Leaderboard = () => {
