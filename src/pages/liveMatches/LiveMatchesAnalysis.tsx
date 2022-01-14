@@ -164,12 +164,12 @@ const Stats = () => {
   return (
     <>
       {(!isSummonerSelected || !selectedSommoner) && (
-        <SearchBar width="30rem" height="6rem">
+        <SearchBar width="28rem" height="6rem">
           <Input
             label="소환사 검색"
             onInput={handleSummonerNameToSearchInput}
           />
-          <Button width="80px" height="40px" onClick={handleSearchClick}>
+          <Button width="5rem" height="3rem" onClick={handleSearchClick}>
             검색
           </Button>
         </SearchBar>
@@ -177,7 +177,10 @@ const Stats = () => {
 
       <Container flexDirection="column">
         <Grid
-          gridTemplateColumns={isSummonerSelected ? '1fr' : 'repeat(5, 1fr)'}
+          gridTemplateColumns={
+            isSummonerSelected ? '1fr' : 'repeat(auto-fit, minmax(8rem, 1fr))'
+          }
+          width="100%"
           padding="1rem"
           isChildrenClickable
         >
@@ -223,8 +226,8 @@ const Stats = () => {
                   </StyledText>
                   <StyledText>{summoner.championNameKor}</StyledText>
                   <Img
-                    width="100px"
-                    height="100px"
+                    width="5rem"
+                    height="5rem"
                     borderRadius="100%"
                     border="1px solid var(--white)"
                     src={getChampionImage(summoner.championNameEng)}

@@ -48,32 +48,30 @@ const NavigationBar = (props: NavigationBarProps) => {
             />
           )}
 
-          <LinkWrapperStyle>
-            {visiblePages.map((page) => (
-              <LinkStyle disabled={page.disabled} key={page.name}>
-                <NavLink
-                  to={page.path}
-                  style={({ isActive }) =>
-                    isActive
-                      ? {
-                          fontSize: '1.1rem',
-                          fontWeight: 'bold',
-                          borderBottom: '2px solid var(--black)',
-                        }
-                      : {}
-                  }
-                >
-                  {page.name}
-                </NavLink>
-              </LinkStyle>
-            ))}
-          </LinkWrapperStyle>
+          {visiblePages.map((page) => (
+            <LinkStyle disabled={page.disabled} key={page.name}>
+              <NavLink
+                to={page.path}
+                style={({ isActive }) =>
+                  isActive
+                    ? {
+                        fontSize: '1.1rem',
+                        fontWeight: 'bold',
+                        borderBottom: '2px solid var(--black)',
+                      }
+                    : {}
+                }
+              >
+                {page.name} {page.disabled ? '⚒' : null}
+              </NavLink>
+            </LinkStyle>
+          ))}
 
           {props.nested ? (
             <div></div>
           ) : (
             <Anchor color="disabled" margin="0 3rem" cursor="not-allowed">
-              로그인 <br />⚒
+              로그인 ⚒
             </Anchor>
           )}
         </NavContainerStyle>

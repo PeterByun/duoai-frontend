@@ -21,7 +21,6 @@ export type StyledTextProps = {
 
 export const TextStyle = (props: StyledTextProps) => {
   return css`
-
     ${BaseStyle(props)}
 
     background: ${props.background};
@@ -29,22 +28,18 @@ export const TextStyle = (props: StyledTextProps) => {
     -webkit-background-clip: ${props.clipBackground ? 'text' : null};
     -webkit-text-fill-color: ${props.clipBackground ? 'transparent' : null};
 
-    background-color: ${
-      !props.background
-        ? 'initial'
-        : props.highlighted
-        ? 'var(--blue)'
-        : props.backgroundColor
-        ? 'var(--${backgroundColor})'
-        : 'initial'
-    }
-    color: ${
-      props.highlighted
-        ? 'var(--white)'
-        : props.color
-        ? `var(--${props.color})`
-        : `var(--black)`
-    };
+    background-color: ${!props.background
+      ? null
+      : props.highlighted
+      ? 'var(--blue)'
+      : props.backgroundColor
+      ? 'var(--${backgroundColor})'
+      : null};
+    color: ${props.highlighted
+      ? 'var(--white)'
+      : props.color
+      ? `var(--${props.color})`
+      : `var(--black)`};
 
     width: ${props.highlighted ? 'fit-content' : 'inintial'};
 
@@ -55,7 +50,7 @@ export const TextStyle = (props: StyledTextProps) => {
 
     text-align: ${props.textAlign ?? 'center'};
     white-space: ${props.whiteSpace ?? 'nowrap'};
-    `
+  `
 }
 
 export const StyledText = styled.p<StyledTextProps>`

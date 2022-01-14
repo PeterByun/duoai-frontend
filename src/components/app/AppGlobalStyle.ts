@@ -1,5 +1,18 @@
 import { css } from '@emotion/react'
 
+const breakpoints: { [index: string]: number } = {
+  sm: 350,
+  md: 768,
+  lg: 1200,
+}
+
+export const mq = Object.keys(breakpoints)
+  .map((key) => [key, breakpoints[key]] as [string, number])
+  .reduce((prev, [key, breakpoint]) => {
+    prev[key] = `@media (min-width: ${breakpoint}px)`
+    return prev
+  }, {} as { [index: string]: string })
+
 export const GlobalStyle = css`
   @font-face {
     font-family: 'NEXON Lv1 Gothic OTF';
@@ -9,6 +22,16 @@ export const GlobalStyle = css`
     font-style: normal;
   }
   :root {
+    ${mq['sm']} {
+      font-size: 10px;
+    }
+    ${mq['md']} {
+      font-size: 11px;
+    }
+    ${mq['lg']} {
+      font-size: 12px;
+    }
+
     font-family: 'NEXON Lv1 Gothic OTF';
 
     // Colors
@@ -61,7 +84,7 @@ export const GlobalStyle = css`
   }
   html {
     background-color: var(--main-bg-color);
-    width: 100%;
+    width: 100vw;
     height: auto;
   }
   body,

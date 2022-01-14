@@ -10,7 +10,8 @@ export const NavContainerStyle = styled.nav<NavContainerStyleProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
 
   width: 100%;
   height: 5%;
@@ -30,9 +31,6 @@ export const LinkWrapperStyle = styled.section`
   justify-content: center;
 
   max-width: 100%;
-
-  border-radius: 0rem;
-  text-align: center;
 `
 
 type LinkStyleProps = {
@@ -42,6 +40,7 @@ type LinkStyleProps = {
 export const LinkStyle = styled.div<LinkStyleProps>`
   background: 'transparent';
   color: var(--black);
+  text-align: center;
 
   display: flex;
   align-items: center;
@@ -52,6 +51,8 @@ export const LinkStyle = styled.div<LinkStyleProps>`
   min-width: 80px;
 
   padding: 3px 5px;
+
+  border-radius: 0rem;
 
   white-space: nowrap;
 
@@ -77,12 +78,6 @@ export const LinkStyle = styled.div<LinkStyleProps>`
     height: 100%;
 
     text-decoration: none;
-
-    ::after {
-      position: absolute;
-      margin-top: 2rem;
-      content: '⚒';
-      display: ${({ disabled }) => (disabled ? 'inline' : 'none')};
-    }
+    white-space: pre-line;
   }
 `

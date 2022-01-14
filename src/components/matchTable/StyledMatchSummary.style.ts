@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 
+import { mq } from '@/components/app/AppGlobalStyle'
 import {
   BaseFlexBoxStyle,
   BaseFlexBoxStyleProps,
@@ -22,4 +23,8 @@ export const MatchSummaryStyle = styled.div<MatchSummaryStyleProps>`
   border: ${({ win }) =>
     win ? '0.5rem solid var(--win)' : '0.5rem solid var(--lose-dark)'};
   border-radius: 5px;
+
+  ${mq['sm']} {
+    flex-flow: column;
+  }
 `
