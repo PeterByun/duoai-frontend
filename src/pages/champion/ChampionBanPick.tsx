@@ -1,7 +1,5 @@
 import React, { useRef, useEffect, ChangeEvent } from 'react'
 
-import { StyledText } from '@/components/text/Text'
-
 import Strong from '@/components/strong/Strong'
 import Container from '@/components/container/Container'
 import SearchBar from '@/components/searchBox/SearchBox'
@@ -12,6 +10,7 @@ import Canvas from '@/components/canvas/Canvas'
 import ImgChampion from '@/components/imgChampion/ImgChampion'
 import SelectedChampion from '@/components/selectedChampion/SelectedChampion'
 import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
+import { StyledText } from '@/components/text/Text'
 
 import { analyzeBanPick } from '../../utils/endpoints'
 import { capitalize, toPercentage } from '../../utils/string-utils'
@@ -208,51 +207,58 @@ const Champs = () => {
       <Container flexDirection="column">
         <Container
           flexDirection="column"
-          width="90%"
+          width="100%"
           padding="1rem"
           opacity="0.5"
           zIndex="2"
           sticky
+          margin="0"
         >
           <StyledFlexBox
             flexDirection="row"
             width="90%"
             padding="1rem"
             margin="1rem"
+            flowColumnOnMdScreen
           >
             <Strong
               color="white"
               backgroundColor={`team-${selectedTeam}`}
-              fontSize="3.5rem"
+              fontSize="clamp(16px, 3.5rem, 4vw)"
               fontWeight="bold"
               textAlign="left"
             >
               {capitalize(selectedTeam)}팀
             </Strong>
 
-            <StyledText fontSize="3.5rem" fontWeight="bold" textAlign="left">
+            <StyledText
+              fontSize="clamp(16px, 3.5rem, 4vw)"
+              fontWeight="bold"
+              textAlign="left"
+            >
               &nbsp; 챔피언을 선택해주세요.
             </StyledText>
 
             <StyledFlexBox
               flexDirection="column"
               justify="space-evenly"
-              width="30%"
-              height="10rem"
+              width="28rem"
+              height="12rem"
               padding="0"
               margin="0"
+              gap="1rem"
             >
               <Button
-                width="160px"
-                height="60px"
+                width="10rem"
+                height="5rem"
                 fontSize="1.5rem"
                 onClick={onSwitchTeamClick}
               >
                 팀 변경
               </Button>
               <Button
-                width="160px"
-                height="60px"
+                width="10rem"
+                height="5rem"
                 fontSize="1.5rem"
                 backgroundColor="blue"
                 onClick={onAnalyze}
@@ -268,6 +274,8 @@ const Champs = () => {
             width="90%"
             padding="1rem"
             margin="1rem"
+            gap="1rem"
+            flowColumnOnMdScreen
           >
             {blueTeamChampions?.length > 0 ? (
               <Grid
@@ -312,7 +320,12 @@ const Champs = () => {
             ) : null}
           </StyledFlexBox>
 
-          <SearchBar width="800px" height="100px" zIndex="1" margin="2% 0 0 0 ">
+          <SearchBar
+            width="min(40%, 28rem)"
+            height="6rem"
+            zIndex="1"
+            margin="2% 0 0 0 "
+          >
             <Input
               onInput={onSearchChampion}
               label="챔피언 이름을 입력해주세요"
@@ -320,7 +333,12 @@ const Champs = () => {
           </SearchBar>
         </Container>
 
-        <Grid padding="2% 5% 5% 5%">
+        <Grid
+          gridTemplateColumns="repeat(auto-fit, minmax(1rem, 5rem))"
+          justifyContent="center"
+          width="100%"
+          padding="2% 5% 5% 5%"
+        >
           {championImgListToShow.map((image) => (
             <ImgChampion
               key={image.name}
@@ -358,6 +376,7 @@ const Champs = () => {
                 padding="1rem"
                 justify="space-between"
                 width="95%"
+                flowColumnOnMdScreen
               >
                 {teamComparison.blue.champions.length > 0 ? (
                   <Grid
@@ -401,6 +420,7 @@ const Champs = () => {
                 width="95%"
                 margin="0"
                 padding="1rem"
+                flowColumnOnMdScreen
               >
                 <StyledFlexBox flexDirection="column" padding="1rem">
                   <StyledText fontSize="2.5rem" textAlign="left">

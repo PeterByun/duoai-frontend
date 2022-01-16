@@ -9,6 +9,8 @@ export type GridStyleProps = {
 
   gridColumn?: string
 
+  justifyContent?: string
+
   emphasized?: boolean
 
   boxShadow?: string
@@ -25,6 +27,9 @@ export const GridStyle = styled.section<GridStyleProps>`
     gridTemplateColumns ? gridTemplateColumns : 'repeat(10, 1fr)'};
   grid-row-gap: 1rem;
   grid-column-gap: 1rem;
+
+  justify-content: ${({ justifyContent }) =>
+    justifyContent ? justifyContent : null};
 
   grid-column: ${({ gridColumn }) => (gridColumn ? gridColumn : null)};
 

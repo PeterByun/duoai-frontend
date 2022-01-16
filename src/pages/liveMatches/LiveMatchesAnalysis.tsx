@@ -178,8 +178,9 @@ const Stats = () => {
       <Container flexDirection="column">
         <Grid
           gridTemplateColumns={
-            isSummonerSelected ? '1fr' : 'repeat(auto-fit, minmax(8rem, 1fr))'
+            isSummonerSelected ? '1fr' : 'repeat(auto-fit, minmax(8rem, 18rem))'
           }
+          justifyContent="center"
           width="100%"
           padding="1rem"
           isChildrenClickable
