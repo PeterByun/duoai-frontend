@@ -85,7 +85,9 @@ const MultiSearchMain = () => {
       </Button>
       {summonerSearchResults ? (
         <Grid
-          gridTemplateColumns="repeat(5, 1fr)"
+          gridTemplateColumns="repeat(auto-fit, minmax(15rem, 20rem))"
+          justifyContent="center"
+          width="100%"
           padding="1rem"
           borderRadius="5px"
         >
