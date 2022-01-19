@@ -479,8 +479,8 @@ const MatchTable = ({
                   <Button
                     fontSize="1.5rem"
                     color="blue"
-                    width="100px"
-                    height="100px"
+                    width="5rem"
+                    height="5rem"
                     margin="auto 1rem auto 1rem"
                     borderRadius="50%"
                     onClick={() => {

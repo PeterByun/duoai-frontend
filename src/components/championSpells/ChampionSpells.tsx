@@ -10,15 +10,15 @@ type ChampionSpellsProps = GridProps & {
 export default function ChampionSpells(props: ChampionSpellsProps) {
   return (
     <Grid
-      gridTemplateColumns="2rem 2rem"
-      gridTemplateRows="2rem 2rem"
+      gridTemplateColumns="repeat(auto-fit, minmax(2rem, 1fr))"
+      gridTemplateRows="auto"
       padding="1rem"
     >
       {props.spells.map((spell, idx) => (
         <ImgStyle
           key={spell.imgSrc ?? '' + idx}
-          width="30px"
-          height="30px"
+          width="3rem"
+          height="3rem"
           src={spell.imgSrc}
         />
       ))}

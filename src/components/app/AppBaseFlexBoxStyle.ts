@@ -8,6 +8,7 @@ export type BaseFlexBoxStyleProps = {
   justify?: string
   gap?: string
 
+  boxShadow?: string
   gridColumn?: string
 } & BaseStyleProps
 
@@ -22,5 +23,7 @@ export const BaseFlexBoxStyle = (props: BaseFlexBoxStyleProps) => {
     gap: ${props.gap};
 
     grid-column: ${props.gridColumn};
+
+    box-shadow: ${props.boxShadow};
   `
 }

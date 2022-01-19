@@ -53,9 +53,9 @@ const Alert = (props: AlertProps) => {
       <StyledFlexBox
         backgroundColor="white"
         position="fixed"
-        left="35vw"
-        top="25vw"
-        width="30vw"
+        left="25vw"
+        top="30vw"
+        width="fit-content"
         height="20vh"
         flexDirection="column"
         borderRadius="5px"
@@ -63,7 +63,7 @@ const Alert = (props: AlertProps) => {
       >
         <Heading level={3}>{props.alertData.title}</Heading>
 
-        <StyledText>{props.alertData.message}</StyledText>
+        <StyledText padding="1rem">{props.alertData.message}</StyledText>
 
         <StyledFlexBox width="80%" flexDirection="row" justify="space-evenly">
           <Button onClick={handleConfirmClick} width="5rem" height="2rem">

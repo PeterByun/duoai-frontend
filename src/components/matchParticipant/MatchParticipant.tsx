@@ -7,6 +7,8 @@ import {
   DraggableRubric,
 } from 'react-beautiful-dnd'
 
+import { css, jsx } from '@emotion/react'
+
 import { useChampionImages } from '@/hooks/use-champion-images'
 
 import Grid from '@/components/grid/Grid'
@@ -65,19 +67,21 @@ export function MatchParticipant(
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
-      gridTemplateColumns="1fr 1fr 1fr"
+      gridTemplateColumns="1fr"
+      gridTemplateRows="auto"
       boxShadow="5px 5px 8px 0px #6a6a6a"
       borderRadius="5px"
-      width="20rem"
+      width="max(6vm, 20rem)"
       height="auto"
       padding="1rem"
       style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
     >
       <ImgStyle
-        width="100px"
-        height="100px"
+        width="5rem"
+        height="5rem"
         borderRadius="100%"
         border="1px solid var(--white)"
+        margin="0px auto"
         src={getChampionImage(participant.championNameEng)}
       />
 
@@ -91,17 +95,18 @@ export function MatchParticipant(
         ]}
       />
 
-      <StyledFlexBox flexDirection="column">
+      <StyledFlexBox flexDirection="row">
         <StyledText fontSize="1rem" fontWeight="bold">
           CS:
           {participant?.totalMinionsKilled}
         </StyledText>
+        &nbsp; / &nbsp;
         <StyledText fontSize="1rem" fontWeight="bold">
-          레벨 {participant?.champLevel}
+          레벨: {participant?.champLevel}
         </StyledText>
       </StyledFlexBox>
 
-      <StyledFlexBox flexDirection="row" gridColumn="1/5">
+      <StyledFlexBox flexDirection="row">
         <ChampionKda
           kills={participant?.kills}
           deaths={participant?.deaths}
@@ -110,8 +115,7 @@ export function MatchParticipant(
       </StyledFlexBox>
 
       <ChampionItems
-        gridTemplateColumns="repeat(6, 1fr)"
-        gridColumn="1/5"
+        gridTemplateColumns="repeat(auto-fit, minmax(2rem, 1fr))"
         padding="0"
         items={[
           {

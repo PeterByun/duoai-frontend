@@ -32,8 +32,8 @@ export default function ChampionItems(props: ChampionItemsProps) {
         return (
           <ImgStyle
             key={item.itemId + idx}
-            width="30px"
-            height="30px"
+            width="2rem"
+            height="2rem"
             src={getItemIcon(item.itemId)}
           />
         )

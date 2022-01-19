@@ -27,4 +27,12 @@ export const MatchSummaryStyle = styled.div<MatchSummaryStyleProps>`
   ${mq['sm']} {
     flex-flow: column;
   }
+
+  ${mq['md']} {
+    flex-flow: row;
+  }
+
+  ${mq['lg']} {
+    flex-flow: row;
+  }
 `

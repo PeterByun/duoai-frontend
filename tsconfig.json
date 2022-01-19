@@ -9,7 +9,9 @@
     // Never set the "module" to somthing other than ESM because doing so will make webpack unable to tree-shake.
     "module": "esnext",
     "target": "es5",
-    "jsx": "react",
+    // These two jsx options are for the new JSX transform and emotion's css prop
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext"],
     "noImplicitAny": true,

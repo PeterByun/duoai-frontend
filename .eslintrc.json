@@ -22,6 +22,9 @@
   "rules": {
     "@typescript-eslint/no-var-requires": "off",
     "react/prop-types": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    // These two JSX related rules are no logner needed with the new JSX runtime(automatic)
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
