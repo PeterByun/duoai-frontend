@@ -2,11 +2,11 @@ import styled from '@emotion/styled'
 
 import { BaseStyle, BaseStyleProps } from '@/components/app/AppBaseStyle'
 
-export type StyledSvgProps = {
+export type StyledSvgBackButtonProps = {
   isButton?: boolean
 } & BaseStyleProps
 
-export const StyledSvg = styled.svg<StyledSvgProps>`
+export const StyledSvgBackButton = styled.svg<StyledSvgBackButtonProps>`
   ${BaseStyle}
 
   cursor: ${({ isButton }) => (isButton ? 'pointer' : null)};

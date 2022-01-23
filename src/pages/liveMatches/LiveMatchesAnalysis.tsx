@@ -11,6 +11,7 @@ import Button from '@/components/button/Button'
 import Container from '@/components/container/Container'
 import Grid from '@/components/grid/Grid'
 import MatchTable from '@/components/matchTable/MatchTable'
+import Loading from '@/components/loading/Loading'
 
 import { getMatchList, getProSummoners } from '../../utils/endpoints'
 
@@ -22,7 +23,7 @@ import {
 
 import { useChampionImages } from '@/hooks/use-champion-images'
 import Heading from '@/components/heading/Heading'
-import { StyledSvg } from '@/components/svg/StyledSvg.style'
+import { StyledSvgBackButton } from '@/components/svg/StyledSvgBackButton.style'
 import Strong from '@/components/strong/Strong'
 
 type Summoner = {
@@ -37,20 +38,25 @@ type Summoner = {
 const Stats = () => {
   const [summonerList, setSummonerList] = React.useState<Array<Summoner>>([])
 
+  const [getSummonerListTask, setGetSummonerListTask] =
+    useState<Promise<void> | null>(null)
+
+  const [getMatchListTask, setGetMatchListTask] =
+    useState<Promise<void> | null>(null)
+
   const summonerListToPreserve = useRef<Summoner[]>()
 
   const { getChampionImage } = useChampionImages()
 
   useEffect(() => {
-    const requestProSummoners = async () => {
-      const proSummoners = await getProSummoners
-        .send<Array<Summoner>>()
-        .then((res) => res.data)
-      setSummonerList(proSummoners)
-      summonerListToPreserve.current = [...proSummoners]
+    const requestProSummoners = () => {
+      return getProSummoners.send<Array<Summoner>>().then((res) => {
+        setSummonerList(res.data)
+        summonerListToPreserve.current = [...res.data]
+      })
     }
 
-    requestProSummoners()
+    setGetSummonerListTask(requestProSummoners())
   }, [])
 
   const [isSummonerSelected, setIsSummonerSelected] =
@@ -71,7 +77,7 @@ const Stats = () => {
   }
 
   const handleSummonerCardClick = (summoner: Summoner) => {
-    getMatchList
+    const getMatchListTaskPromise = getMatchList
       .setParams({ summonerName: summoner.summonerName })
       .send<Match[]>()
       .then((response) => {
@@ -113,12 +119,14 @@ const Stats = () => {
         })
 
         setMatchList(matchiListResponse)
-        setIsSummonerSelected(true)
         setSelectedSommoner(summoner)
       })
       .catch((error) => {
         console.error('Could not fetch a match list from the server.')
       })
+
+    setIsSummonerSelected(true)
+    setGetMatchListTask(getMatchListTaskPromise)
   }
 
   const handleBackToSummonerListClick = () => {
@@ -185,57 +193,66 @@ const Stats = () => {
           padding="1rem"
           isChildrenClickable
         >
-          {isSummonerSelected && selectedSommoner ? (
-            <>
-              <StyledFlexBox flexDirection="row" justify="center">
-                <StyledSvg
-                  position="absolute"
-                  left="5rem"
-                  height="50"
-                  width="40"
-                  isButton
-                  onClick={handleBackToSummonerListClick}
-                >
-                  <polygon points="25,0 25,40 0,20" style={{ fill: 'black' }} />
-                  Sorry, your browser does not support inline SVG.
-                </StyledSvg>
-                <Heading level={1} margin="0">
-                  <Strong fontSize="3rem" color="blue">
-                    {selectedSommoner.summonerName}
-                  </Strong>
-                  님의 최근 전적
-                </Heading>
-              </StyledFlexBox>
+          {isSummonerSelected ? (
+            <Loading task={getMatchListTask}>
+              {selectedSommoner && (
+                <>
+                  <StyledFlexBox flexDirection="row" justify="center">
+                    <StyledSvgBackButton
+                      position="absolute"
+                      left="5rem"
+                      height="50"
+                      width="40"
+                      isButton
+                      onClick={handleBackToSummonerListClick}
+                    >
+                      <polygon
+                        points="25,0 25,40 0,20"
+                        style={{ fill: 'black' }}
+                      />
+                      Sorry, your browser does not support inline SVG.
+                    </StyledSvgBackButton>
+                    <Heading level={1} margin="0">
+                      <Strong fontSize="3rem" color="blue">
+                        {selectedSommoner.summonerName}
+                      </Strong>
+                      님의 최근 전적
+                    </Heading>
+                  </StyledFlexBox>
 
-              <MatchTable
-                matchList={matchList}
-                setMatchList={setMatchList}
-                summonerId={selectedSommoner.summonerId}
-              />
-            </>
-          ) : (
-            summonerList.map((summoner: Summoner, idx) => (
-              <CardStyle
-                key={summoner.summonerName + idx}
-                onClick={() => {
-                  handleSummonerCardClick(summoner)
-                }}
-              >
-                <StyledFlexBox flexDirection="column" gap="1rem">
-                  <StyledText fontSize="1.5rem" fontWeight="bold">
-                    {summoner.summonerName}
-                  </StyledText>
-                  <StyledText>{summoner.championNameKor}</StyledText>
-                  <Img
-                    width="5rem"
-                    height="5rem"
-                    borderRadius="100%"
-                    border="1px solid var(--white)"
-                    src={getChampionImage(summoner.championNameEng)}
+                  <MatchTable
+                    matchList={matchList}
+                    setMatchList={setMatchList}
+                    summonerId={selectedSommoner.summonerId}
                   />
-                </StyledFlexBox>
-              </CardStyle>
-            ))
+                </>
+              )}
+            </Loading>
+          ) : (
+            <Loading task={getSummonerListTask}>
+              {summonerList.map((summoner: Summoner, idx) => (
+                <CardStyle
+                  key={summoner.summonerName + idx}
+                  onClick={() => {
+                    handleSummonerCardClick(summoner)
+                  }}
+                >
+                  <StyledFlexBox flexDirection="column" gap="1rem">
+                    <StyledText fontSize="1.5rem" fontWeight="bold">
+                      {summoner.summonerName}
+                    </StyledText>
+                    <StyledText>{summoner.championNameKor}</StyledText>
+                    <Img
+                      width="5rem"
+                      height="5rem"
+                      borderRadius="100%"
+                      border="1px solid var(--white)"
+                      src={getChampionImage(summoner.championNameEng)}
+                    />
+                  </StyledFlexBox>
+                </CardStyle>
+              ))}
+            </Loading>
           )}
         </Grid>
       </Container>

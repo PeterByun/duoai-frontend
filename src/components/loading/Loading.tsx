@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import { LoadingSpinner } from '@/components/svg/LoadingSpinner'
+
 const Loading = (props: {
   task: Promise<void> | null
   children: React.ReactNode
@@ -8,6 +10,7 @@ const Loading = (props: {
 
   useEffect(() => {
     if (props.task) {
+      setIsTaskDone(false)
       props.task.finally(() => {
         setIsTaskDone(true)
       })
@@ -15,15 +18,7 @@ const Loading = (props: {
   }, [props.task])
 
   return (
-    <>
-      {props.task ? (
-        isTaskDone ? (
-          props.children
-        ) : (
-          <div> loading ...</div>
-        )
-      ) : null}
-    </>
+    <>{props.task ? isTaskDone ? props.children : <LoadingSpinner /> : null}</>
   )
 }
 
