@@ -1,4 +1,4 @@
-import React, {
+import {
   KeyboardEventHandler,
   useState,
   useEffect,
@@ -10,6 +10,8 @@ import MultiSearchResultCard, {
 } from '@/components/multiSearchResultCard/MultiSearchResultCard'
 import Grid from '@/components/grid/Grid'
 import Button from '@/components/button/Button'
+import Loading from '@/components/loading/Loading'
+
 import { StyledTextArea } from '@/components/textArea/StyledTextArea.style'
 
 import { getMatchSummary } from '../../utils/endpoints'
@@ -20,6 +22,8 @@ const MultiSearchMain = () => {
   const [summonerSearchResults, setSummonerSearchResults] = useState<
     SummonerSearchResult[]
   >([])
+  const [getMatchSummaryTask, setGetMatchSummaryTask] =
+    useState<Promise<void> | null>(null)
 
   const searchSummoners = (searchTextInput: string) => {
     if (!searchTextInput) return
@@ -42,14 +46,16 @@ const MultiSearchMain = () => {
   useEffect(() => {
     if (!summonerNames.length) return
 
-    getMatchSummary
-      .setParams({
-        summonerList: summonerNames,
-      })
-      .send<SummonerSearchResult[]>()
-      .then((response) => {
-        setSummonerSearchResults(response.data)
-      })
+    setGetMatchSummaryTask(
+      getMatchSummary
+        .setParams({
+          summonerList: summonerNames,
+        })
+        .send<SummonerSearchResult[]>()
+        .then((response) => {
+          setSummonerSearchResults(response.data)
+        })
+    )
   }, [summonerNames])
 
   const handleSummonerSearchKeyup: KeyboardEventHandler<HTMLTextAreaElement> = (
@@ -66,6 +72,9 @@ const MultiSearchMain = () => {
     searchSummoners(searchText)
   }
 
+  const SEARCH_PLACE_HOLDER =
+    '소환사1 님이 방에 참가했습니다. \n소환사2 님이 방에 참가했습니다. \n소환사3 님이 방에 참가했습니다. \n소환사4 님이 방에 참가했습니다. \n소환사5 님이 방에 참가했습니다.'
+
   return (
     <>
       <StyledTextArea
@@ -74,6 +83,7 @@ const MultiSearchMain = () => {
         height="7rem"
         fontSize="1.2rem"
         autoFocus
+        placeholder={SEARCH_PLACE_HOLDER}
       ></StyledTextArea>
       <Button
         onClick={handleSearchClick}
@@ -83,24 +93,27 @@ const MultiSearchMain = () => {
       >
         검색
       </Button>
-      {summonerSearchResults ? (
-        <Grid
-          gridTemplateColumns="repeat(auto-fit, minmax(15rem, 20rem))"
-          justifyContent="center"
-          width="100%"
-          padding="1rem"
-          borderRadius="5px"
-        >
-          {summonerSearchResults.map((summonerSearchResult) => (
-            <MultiSearchResultCard
-              key={summonerSearchResult.summonerName}
-              summonerSearchResult={summonerSearchResult}
-            />
-          ))}
-        </Grid>
-      ) : (
-        <div></div>
-      )}
+
+      <Loading task={getMatchSummaryTask}>
+        {summonerSearchResults ? (
+          <Grid
+            gridTemplateColumns="repeat(auto-fit, minmax(15rem, 20rem))"
+            justifyContent="center"
+            width="100%"
+            padding="1rem"
+            borderRadius="5px"
+          >
+            {summonerSearchResults.map((summonerSearchResult) => (
+              <MultiSearchResultCard
+                key={summonerSearchResult.summonerName}
+                summonerSearchResult={summonerSearchResult}
+              />
+            ))}
+          </Grid>
+        ) : (
+          <div></div>
+        )}
+      </Loading>
     </>
   )
 }

@@ -1,9 +1,9 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import NavigationBar from './components/navigator/Navigator'
-import Loading from './components/loading/Loading'
+import LoadingComponent from './components/loading/LoadingComponent'
 
 const Landing = lazy(() => import('./pages/Landing'))
 const Champion = lazy(() => import('./pages/champion/Champion'))
@@ -62,73 +62,136 @@ function App() {
         <Routes>
           <Route
             path={routes.champion.path}
-            element={<Loading resultComponent={<Champion />} />}
+            element={
+              <LoadingComponent>
+                <Champion />
+              </LoadingComponent>
+            }
           >
             <Route
               index
-              element={<Loading resultComponent={<ChampionInfo />} />}
+              element={
+                <LoadingComponent>
+                  <ChampionInfo />
+                </LoadingComponent>
+              }
             />
             <Route
               path={championInfoRoutes.stats.path}
-              element={<Loading resultComponent={<ChampionStats />} />}
+              element={
+                <LoadingComponent>
+                  <ChampionStats />
+                </LoadingComponent>
+              }
             />
             <Route
               path={championInfoRoutes.banPick.path}
-              element={<Loading resultComponent={<ChampionBanPick />} />}
+              element={
+                <LoadingComponent>
+                  <ChampionBanPick />
+                </LoadingComponent>
+              }
             />
           </Route>
 
           <Route
             path={routes.liveMatches.path}
-            element={<Loading resultComponent={<LiveMatches />} />}
+            element={
+              <LoadingComponent>
+                <LiveMatches />
+              </LoadingComponent>
+            }
           >
             <Route
               index
-              element={<Loading resultComponent={<LiveMatchesAnalysis />} />}
+              element={
+                <LoadingComponent>
+                  <LiveMatchesAnalysis />
+                </LoadingComponent>
+              }
             />
           </Route>
 
           <Route
             path={routes.multiSearch.path}
-            element={<Loading resultComponent={<MultiSearch />} />}
+            element={
+              <LoadingComponent>
+                <MultiSearch />
+              </LoadingComponent>
+            }
           >
             <Route
               index
-              element={<Loading resultComponent={<MultiSearchMain />} />}
+              element={
+                <LoadingComponent>
+                  <MultiSearchMain />
+                </LoadingComponent>
+              }
             />
           </Route>
 
           <Route
             path={routes.leaderboard.path}
-            element={<Loading resultComponent={<Leaderboard />} />}
+            element={
+              <LoadingComponent>
+                <Leaderboard />
+              </LoadingComponent>
+            }
           >
             <Route
               index
-              element={<Loading resultComponent={<SummonerRanking />} />}
+              element={
+                <LoadingComponent>
+                  <SummonerRanking />
+                </LoadingComponent>
+              }
             />
 
             <Route
               path={leaderboardRoutes.expertRanking.path}
-              element={<Loading resultComponent={<ExpertRanking />} />}
+              element={
+                <LoadingComponent>
+                  <ExpertRanking />
+                </LoadingComponent>
+              }
             />
 
             <Route
               path={leaderboardRoutes.summonerStats.path}
-              element={<Loading resultComponent={<SummonerStats />} />}
+              element={
+                <LoadingComponent>
+                  <SummonerStats />
+                </LoadingComponent>
+              }
             />
           </Route>
 
           <Route
             path={routes.summoner.path}
-            element={<Loading resultComponent={<Summoner />} />}
+            element={
+              <LoadingComponent>
+                <Summoner />
+              </LoadingComponent>
+            }
           >
             <Route
               index
-              element={<Loading resultComponent={<SummonerSearch />} />}
+              element={
+                <LoadingComponent>
+                  <SummonerSearch />
+                </LoadingComponent>
+              }
             />
           </Route>
 
-          <Route path="*" element={<Loading resultComponent={<Landing />} />} />
+          <Route
+            path="*"
+            element={
+              <LoadingComponent>
+                <Landing />
+              </LoadingComponent>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

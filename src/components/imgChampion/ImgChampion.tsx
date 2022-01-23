@@ -40,8 +40,14 @@ const ImgChampion = (props: ImgStyleProps & ImgChampionProps) => {
       >
         {props.children}
       </ImgStyle>
+
       {!props.isNameHidden && (
-        <StyledText textAlign="center" width="100%" color={props.color}>
+        <StyledText
+          textAlign="center"
+          width="100%"
+          color={props.color}
+          whiteSpace="pre-line"
+        >
           {props.image.name}
         </StyledText>
       )}

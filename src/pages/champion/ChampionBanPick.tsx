@@ -434,14 +434,13 @@ const Champs = () => {
                     align="center"
                     justify="center"
                   >
-                    <StyledText fontSize="2.5rem" position="absolute">
-                      <StyledText
-                        fontSize="3rem"
-                        fontWeight="bold"
-                        color="team-blue"
-                      >
-                        {toPercentage(teamComparison.blue.winRatio)}
-                      </StyledText>
+                    <StyledText
+                      fontSize="3rem"
+                      fontWeight="bold"
+                      color="team-blue"
+                      position="absolute"
+                    >
+                      {toPercentage(teamComparison.blue.winRatio)}
                     </StyledText>
                     <Canvas
                       draw={drawWinRatioCircle(
@@ -468,14 +467,13 @@ const Champs = () => {
                     align="center"
                     justify="center"
                   >
-                    <StyledText fontSize="2.5rem" position="absolute">
-                      <StyledText
-                        fontSize="3rem"
-                        fontWeight="bold"
-                        color="team-red"
-                      >
-                        {toPercentage(teamComparison.red.winRatio)}
-                      </StyledText>
+                    <StyledText
+                      fontSize="3rem"
+                      fontWeight="bold"
+                      color="team-red"
+                      position="absolute"
+                    >
+                      {toPercentage(teamComparison.red.winRatio)}
                     </StyledText>
                     <Canvas
                       draw={drawWinRatioCircle(
