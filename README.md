@@ -17,27 +17,6 @@ npm run start
 
 ---
 
-# Project structure
-
-```
-/public: Files will **not** going be processed by the Webpack.
-
-/src:
-    /assets: Static files such as .css, .scss, ttf, etc..
-
-    /components: Components that are encapulated, thus can be used in different pages of the app.
-
-    /pages: Pages to be rendered by the **React-rotuer**. Nested folders represent nested **router-view**.
-
-    /tests: Unit Test files to ensure that components and utility moduels work as intended.
-
-/db.json: The json-server creates a fake REST API based on this file.
-
-
-```
-
----
-
 # CLI
 
 **npm install** - Intalls libraries specified in a package.json.

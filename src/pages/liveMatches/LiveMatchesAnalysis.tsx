@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { StyledText } from '@/components/text/Text'
-import { CardStyle } from '@/components/card/StyledCard'
 import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
-import { Img } from '@/components/img/Img'
 
 import SearchBar from '@/components/searchBox/SearchBox'
 import Input from '@/components/input/Input'
@@ -19,12 +16,15 @@ import {
   Match,
   ParticipantWithIdentity,
   MatchList,
+  ParticipantsEntity,
+  ParticipantIdentitiesEntity,
 } from '../../types/match-types'
 
 import { useChampionImages } from '@/hooks/use-champion-images'
 import Heading from '@/components/heading/Heading'
-import { StyledSvgBackButton } from '@/components/svg/StyledSvgBackButton.style'
+import { SvgBackButton } from '@/components/svg/SvgBackButton'
 import Strong from '@/components/strong/Strong'
+import { CardLiveMatchSummoner } from '@/components/card/CardLiveMatchSummoner'
 
 type Summoner = {
   summonerId: string
@@ -36,17 +36,19 @@ type Summoner = {
 }
 
 const Stats = () => {
+  // Fetch a list of progamers
+  const { getChampionImage } = useChampionImages()
+
   const [summonerList, setSummonerList] = React.useState<Array<Summoner>>([])
-
   const [getSummonerListTask, setGetSummonerListTask] =
-    useState<Promise<void> | null>(null)
-
-  const [getMatchListTask, setGetMatchListTask] =
     useState<Promise<void> | null>(null)
 
   const summonerListToPreserve = useRef<Summoner[]>()
 
-  const { getChampionImage } = useChampionImages()
+  const [isSummonerSelected, setIsSummonerSelected] =
+    React.useState<boolean>(false)
+  const [selectedSommoner, setSelectedSommoner] =
+    React.useState<Summoner | null>(null)
 
   useEffect(() => {
     const requestProSummoners = () => {
@@ -59,80 +61,7 @@ const Stats = () => {
     setGetSummonerListTask(requestProSummoners())
   }, [])
 
-  const [isSummonerSelected, setIsSummonerSelected] =
-    React.useState<boolean>(false)
-
-  const [selectedSommoner, setSelectedSommoner] =
-    React.useState<Summoner | null>(null)
-
-  const [matchList, setMatchList] = React.useState<MatchList>([])
-
-  const getSelectedParticipant = (
-    participants: Array<ParticipantWithIdentity>,
-    summonerName: string
-  ) => {
-    return participants.find(
-      (participant) => participant.summonerName === summonerName
-    )
-  }
-
-  const handleSummonerCardClick = (summoner: Summoner) => {
-    const getMatchListTaskPromise = getMatchList
-      .setParams({ summonerName: summoner.summonerName })
-      .send<Match[]>()
-      .then((response) => {
-        const matchiListResponse = response.data.map((match) => {
-          // Merge participant and participant identity.
-          match.participants = match.participants.map((participant) => {
-            const identityMatchesParticipant =
-              match.participantIdentities?.find(
-                (identity) =>
-                  identity.participantId === participant.participantId
-              )
-
-            participant = {
-              ...participant,
-              ...identityMatchesParticipant,
-            }
-
-            return participant
-          })
-
-          // Set the selcted summoner to each matchs.
-          const selectedSummonerInParticipants = getSelectedParticipant(
-            match.participants,
-            summoner.summonerName
-          )
-
-          if (selectedSummonerInParticipants)
-            match.selectedParticipant = selectedSummonerInParticipants
-
-          // Store a reference of participants to teams which they belong to.
-          match.teams = match.teams.map((team) => {
-            team.participants = match.participants.filter(
-              (participant) => participant.teamId === team.teamId
-            )
-            return team
-          })
-
-          return match
-        })
-
-        setMatchList(matchiListResponse)
-        setSelectedSommoner(summoner)
-      })
-      .catch((error) => {
-        console.error('Could not fetch a match list from the server.')
-      })
-
-    setIsSummonerSelected(true)
-    setGetMatchListTask(getMatchListTaskPromise)
-  }
-
-  const handleBackToSummonerListClick = () => {
-    setIsSummonerSelected(false)
-  }
-
+  // Filter progamers by name.
   const [summonerNameToSearch, setSummonerNameToSearch] = useState<
     string | null
   >(null)
@@ -169,6 +98,94 @@ const Stats = () => {
     }
   }
 
+  // Fetch game records of the selected pro gamer.
+  const [matchList, setMatchList] = React.useState<MatchList>([])
+  const [getMatchListTask, setGetMatchListTask] =
+    useState<Promise<void> | null>(null)
+
+  const getSelectedParticipant = (
+    participants: Array<ParticipantWithIdentity>,
+    summonerName: string
+  ) => {
+    return participants.find(
+      (participant) => participant.summonerName === summonerName
+    )
+  }
+
+  const mergeParticipantWithIdentity = (
+    participants: ParticipantWithIdentity[],
+    participantIdentities?: ParticipantIdentitiesEntity[]
+  ) => {
+    return participants.map((participant) => {
+      const identityMatchesParticipant = participantIdentities?.find(
+        (identity) => identity.participantId === participant.participantId
+      )
+
+      participant = {
+        ...participant,
+        ...identityMatchesParticipant,
+      }
+
+      return participant
+    })
+  }
+
+  const setSelectedSummonerToMatchIfExist = (
+    match: Match,
+    summonerName: string
+  ) => {
+    const selectedSummonerInParticipants = getSelectedParticipant(
+      match.participants,
+      summonerName
+    )
+
+    if (selectedSummonerInParticipants)
+      match.selectedParticipant = selectedSummonerInParticipants
+  }
+
+  const mapParticipantsToMatchTeams = (match: Match) => {
+    match.teams = match.teams.map((team) => {
+      team.participants = match.participants.filter(
+        (participant) => participant.teamId === team.teamId
+      )
+      return team
+    })
+  }
+
+  const handleSummonerCardClick = (summoner: Summoner) => {
+    const getMatchListTaskPromise = getMatchList
+      .setParams({ summonerName: summoner.summonerName })
+      .send<Match[]>()
+      .then((response) => {
+        const matchiListResponse = response.data.map((match) => {
+          // Merge participant and participant identity.
+          match.participants = mergeParticipantWithIdentity(
+            match.participants,
+            match.participantIdentities
+          )
+
+          setSelectedSummonerToMatchIfExist(match, summoner.summonerName)
+
+          mapParticipantsToMatchTeams(match)
+
+          return match
+        })
+
+        setMatchList(matchiListResponse)
+        setSelectedSommoner(summoner)
+      })
+      .catch((error) => {
+        console.error('Failed to fetch a match list from the server.', error)
+      })
+
+    setIsSummonerSelected(true)
+    setGetMatchListTask(getMatchListTaskPromise)
+  }
+
+  const handleBackToSummonerListClick = () => {
+    setIsSummonerSelected(false)
+  }
+
   return (
     <>
       {(!isSummonerSelected || !selectedSommoner) && (
@@ -198,20 +215,8 @@ const Stats = () => {
               {selectedSommoner && (
                 <>
                   <StyledFlexBox flexDirection="row" justify="center">
-                    <StyledSvgBackButton
-                      position="absolute"
-                      left="5rem"
-                      height="50"
-                      width="40"
-                      isButton
-                      onClick={handleBackToSummonerListClick}
-                    >
-                      <polygon
-                        points="25,0 25,40 0,20"
-                        style={{ fill: 'black' }}
-                      />
-                      Sorry, your browser does not support inline SVG.
-                    </StyledSvgBackButton>
+                    <SvgBackButton onClick={handleBackToSummonerListClick} />
+
                     <Heading level={1} margin="0">
                       <Strong fontSize="3rem" color="blue">
                         {selectedSommoner.summonerName}
@@ -231,26 +236,17 @@ const Stats = () => {
           ) : (
             <Loading task={getSummonerListTask}>
               {summonerList.map((summoner: Summoner, idx) => (
-                <CardStyle
-                  key={summoner.summonerName + idx}
+                // summoners are not unique, so idx is used as a key.
+                // We need to make summoners unique.
+                <CardLiveMatchSummoner
+                  key={summoner.summonerId + idx}
+                  summonerName={summoner.summonerName}
+                  championImg={getChampionImage(summoner.championNameEng)}
+                  championNameKor={summoner.championNameKor}
                   onClick={() => {
                     handleSummonerCardClick(summoner)
                   }}
-                >
-                  <StyledFlexBox flexDirection="column" gap="1rem">
-                    <StyledText fontSize="1.5rem" fontWeight="bold">
-                      {summoner.summonerName}
-                    </StyledText>
-                    <StyledText>{summoner.championNameKor}</StyledText>
-                    <Img
-                      width="5rem"
-                      height="5rem"
-                      borderRadius="100%"
-                      border="1px solid var(--white)"
-                      src={getChampionImage(summoner.championNameEng)}
-                    />
-                  </StyledFlexBox>
-                </CardStyle>
+                />
               ))}
             </Loading>
           )}

@@ -1,3 +1,4 @@
+// TODO: You should remove this reducer, and store imgaes into a S3 bucket.
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
