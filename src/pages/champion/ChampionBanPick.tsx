@@ -1,41 +1,50 @@
 import React, { useRef, useEffect, ChangeEvent } from 'react'
 
-import Strong from '@/components/strong/Strong'
 import Container from '@/components/container/Container'
 import SearchBar from '@/components/searchBox/SearchBox'
 import Input from '@/components/input/Input'
-import Button from '@/components/button/Button'
 import Grid from '@/components/grid/Grid'
-import Canvas from '@/components/canvas/Canvas'
+import { GridSelectedChampions } from '@/components/grid/GridSelectedChampions'
 import ImgChampion from '@/components/imgChampion/ImgChampion'
-import SelectedChampion from '@/components/selectedChampion/SelectedChampion'
+import { ChampionBanPickHeader } from '@/components/ChampionBanPickHeader'
+import { ChampionBanPickResultHeader } from '@/components/ChampionBanPickResultHeader'
+import { ChampionBanPickResult } from '@/components/ChampionBanPickResult'
+
 import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
 import { StyledText } from '@/components/text/Text'
 
-import { analyzeBanPick } from '../../utils/endpoints'
-import { capitalize, toPercentage } from '../../utils/string-utils'
+import { analyzeBanPick } from '@/utils/endpoints'
+
 import {
   importChampionThumbnails,
   addInfoToChampionImg,
-} from '../../utils/file-utils'
+} from '@/utils/file-utils'
 
-import { colors } from '../../constants/app-constants'
-import { teamTypes } from '../../constants/match-constants'
+import { teamTypes } from '@/constants/match-constants'
 
-import { ChampionImg } from '../../types/champion-types'
+import { ChampionImg } from '@/types/champion-types'
 
 type TeamAnaylysis = {
   champions: Array<ChampionImg>
   winRatio: number
 }
 
-type TeamComparisonList = Array<{
+export type TeamComparison = {
   blue: TeamAnaylysis
   red: TeamAnaylysis
-}>
+}
+
+type TeamComparisonList = Array<TeamComparison>
 
 const Champs = () => {
-  const championImgList = addInfoToChampionImg(importChampionThumbnails())
+  // Lists of champions by team.
+  const [blueTeamChampions, setBlueTeamChampions] = React.useState<
+    Array<ChampionImg>
+  >([])
+
+  const [redTeamChampions, setRedTeamChampions] = React.useState<
+    Array<ChampionImg>
+  >([])
 
   const isChampSelected = (image: ChampionImg): boolean => {
     const findSelectedChamp = (champ: ChampionImg) => champ.name === image.name
@@ -50,83 +59,7 @@ const Champs = () => {
     return blueTeamChampions.length + redTeamChampions.length > 9
   }
 
-  const getUnselectedTeam = (selTeam: string): string => {
-    return selTeam === teamTypes.blue ? teamTypes.red : teamTypes.blue
-  }
-
-  const toggleSelectedTeam = () => {
-    setSelectedTeam(getUnselectedTeam(selectedTeam))
-  }
-
-  const drawWinRatioCircle = (winRatio: number, teamColor: string) => {
-    return (ctx: CanvasRenderingContext2D, frameCount: number): boolean => {
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-
-      ctx.lineWidth = 23
-      ctx.strokeStyle = '#e6e6e6'
-
-      ctx.beginPath()
-      ctx.arc(100, 100, 65, 0, 2 * Math.PI)
-      ctx.stroke()
-
-      const startAngle = Math.PI * 1.5
-
-      ctx.beginPath()
-      ctx.lineWidth = 15
-      ctx.strokeStyle = colors[teamColor]
-      const endAngle =
-        startAngle + Math.PI * 2 * winRatio * (frameCount * 0.025)
-      ctx.arc(100, 100, 65, startAngle, endAngle)
-      ctx.stroke()
-
-      if (endAngle >= startAngle + Math.PI * 2 * winRatio) return false
-
-      return true
-    }
-  }
-
-  const [selectedTeam, setSelectedTeam] = React.useState<string>(teamTypes.blue)
-
-  const [blueTeamChampions, setBlueTeamChampions] = React.useState<
-    Array<ChampionImg>
-  >([])
-
-  const [redTeamChampions, setRedTeamChampions] = React.useState<
-    Array<ChampionImg>
-  >([])
-
-  const [teamComparisonList, setTeamComparisonList] =
-    React.useState<TeamComparisonList>([])
-
-  const [championImgListToShow, setChampionImgListToShow] = React.useState<
-    Array<ChampionImg>
-  >([...championImgList])
-
-  const resultContainerRef = useRef<HTMLHeadingElement>(null)
-
-  // Switch selected team to another team when current selected team is full.
-  useEffect(() => {
-    const selectedTeamChamps =
-      selectedTeam === teamTypes.blue ? blueTeamChampions : redTeamChampions
-    if (selectedTeamChamps.length > 4 && !isAllChampsSelected())
-      toggleSelectedTeam()
-  }, [blueTeamChampions, redTeamChampions])
-
-  // Scroll to the result section after the result is rendered.
-  let resultContainerPosition: any
-  useEffect(() => {
-    if (resultContainerRef?.current)
-      resultContainerPosition =
-        document.documentElement.scrollTop +
-        resultContainerRef.current.getBoundingClientRect().top
-    window.scrollTo({
-      top: resultContainerPosition,
-      left: 0,
-      behavior: 'auto',
-    })
-  }, [teamComparisonList])
-
-  const onChampionClick = (image: ChampionImg) => {
+  const handleChampionClick = (image: ChampionImg) => {
     if (selectedTeam === teamTypes.blue) {
       if (blueTeamChampions.length > 4 || isChampSelected(image)) return
       setBlueTeamChampions([...blueTeamChampions, image])
@@ -136,7 +69,31 @@ const Champs = () => {
     }
   }
 
-  const onSelectedChampionClick = (
+  // Selected Team
+  const [selectedTeam, setSelectedTeam] = React.useState<string>(teamTypes.blue)
+
+  const getUnselectedTeam = (selTeam: string): string => {
+    return selTeam === teamTypes.blue ? teamTypes.red : teamTypes.blue
+  }
+
+  const championImgList = addInfoToChampionImg(importChampionThumbnails())
+
+  const [championImgListToShow, setChampionImgListToShow] = React.useState<
+    Array<ChampionImg>
+  >([...championImgList])
+
+  const [teamComparisonList, setTeamComparisonList] =
+    React.useState<TeamComparisonList>([])
+
+  const toggleSelectedTeam = () => {
+    setSelectedTeam(getUnselectedTeam(selectedTeam))
+  }
+
+  const handleSwitchTeamClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    toggleSelectedTeam()
+  }
+
+  const handleSelectedChampionClick = (
     selectedImage: ChampionImg,
     teamColor: string
   ) => {
@@ -153,11 +110,31 @@ const Champs = () => {
     }
   }
 
-  const onSwitchTeamClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    toggleSelectedTeam()
-  }
+  // Switch selected team to another team when currently selected team is full.
+  useEffect(() => {
+    const selectedTeamChamps =
+      selectedTeam === teamTypes.blue ? blueTeamChampions : redTeamChampions
+    if (selectedTeamChamps.length > 4 && !isAllChampsSelected())
+      toggleSelectedTeam()
+  }, [blueTeamChampions, redTeamChampions])
 
-  const onAnalyze = (e: React.MouseEvent<HTMLButtonElement>) => {
+  // Scroll to the result section after the result is loaded.
+  const resultContainerRef = useRef<HTMLHeadingElement>(null)
+  let resultContainerPosition: any
+  useEffect(() => {
+    if (resultContainerRef?.current)
+      resultContainerPosition =
+        document.documentElement.scrollTop +
+        resultContainerRef.current.getBoundingClientRect().top
+
+    window.scrollTo({
+      top: resultContainerPosition,
+      left: 0,
+      behavior: 'auto',
+    })
+  }, [teamComparisonList])
+
+  const handleAnalyze = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!isAllChampsSelected()) {
       alert('챔피언을 모두 선택해주세요.')
       return
@@ -191,7 +168,7 @@ const Champs = () => {
       })
   }
 
-  const onSearchChampion = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChampion = (event: ChangeEvent<HTMLInputElement>) => {
     setChampionImgListToShow(
       championImgList.filter((champ) => {
         return (
@@ -214,59 +191,11 @@ const Champs = () => {
           sticky
           margin="0"
         >
-          <StyledFlexBox
-            flexDirection="row"
-            width="90%"
-            padding="1rem"
-            margin="1rem"
-            flowColumnOnMdScreen
-          >
-            <Strong
-              color="white"
-              backgroundColor={`team-${selectedTeam}`}
-              fontSize="clamp(16px, 3.5rem, 4vw)"
-              fontWeight="bold"
-              textAlign="left"
-            >
-              {capitalize(selectedTeam)}팀
-            </Strong>
-
-            <StyledText
-              fontSize="clamp(16px, 3.5rem, 4vw)"
-              fontWeight="bold"
-              textAlign="left"
-            >
-              &nbsp; 챔피언을 선택해주세요.
-            </StyledText>
-
-            <StyledFlexBox
-              flexDirection="column"
-              justify="space-evenly"
-              width="28rem"
-              height="12rem"
-              padding="0"
-              margin="0"
-              gap="1rem"
-            >
-              <Button
-                width="10rem"
-                height="5rem"
-                fontSize="1.5rem"
-                onClick={onSwitchTeamClick}
-              >
-                팀 변경
-              </Button>
-              <Button
-                width="10rem"
-                height="5rem"
-                fontSize="1.5rem"
-                backgroundColor="blue"
-                onClick={onAnalyze}
-              >
-                분석하기
-              </Button>
-            </StyledFlexBox>
-          </StyledFlexBox>
+          <ChampionBanPickHeader
+            selectedTeamColor={selectedTeam}
+            onSwitchTeamClick={handleSwitchTeamClick}
+            onAnalyze={handleAnalyze}
+          />
 
           <StyledFlexBox
             flexDirection="row"
@@ -278,12 +207,7 @@ const Champs = () => {
             flowColumnOnMdScreen
           >
             {blueTeamChampions?.length > 0 ? (
-              <Grid
-                gridTemplateColumns="repeat(5, 1fr)"
-                backgroundColor="team-light-blue"
-                padding="1rem"
-                borderRadius="5px"
-                isChildrenClickable
+              <GridSelectedChampions
                 emphasized={
                   selectedTeam === teamTypes.blue && !isAllChampsSelected()
                 }
@@ -292,19 +216,14 @@ const Champs = () => {
                   <ImgChampion
                     key={image.name}
                     image={image}
-                    onClick={onSelectedChampionClick(image, 'blue')}
+                    onClick={handleSelectedChampionClick(image, 'blue')}
                   />
                 ))}
-              </Grid>
+              </GridSelectedChampions>
             ) : null}
 
             {redTeamChampions?.length > 0 ? (
-              <Grid
-                isChildrenClickable
-                gridTemplateColumns="repeat(5, 1fr)"
-                padding="1rem"
-                backgroundColor="team-light-red"
-                borderRadius="5px"
+              <GridSelectedChampions
                 emphasized={
                   selectedTeam === teamTypes.red && !isAllChampsSelected()
                 }
@@ -313,10 +232,10 @@ const Champs = () => {
                   <ImgChampion
                     key={image.name}
                     image={image}
-                    onClick={onSelectedChampionClick(image, 'red')}
+                    onClick={handleSelectedChampionClick(image, 'red')}
                   />
                 ))}
-              </Grid>
+              </GridSelectedChampions>
             ) : null}
           </StyledFlexBox>
 
@@ -327,7 +246,7 @@ const Champs = () => {
             margin="2% 0 0 0 "
           >
             <Input
-              onInput={onSearchChampion}
+              onInput={handleSearchChampion}
               label="챔피언 이름을 입력해주세요"
             />
           </SearchBar>
@@ -347,7 +266,7 @@ const Champs = () => {
               height="4rem"
               disabled={isChampSelected(image)}
               onClick={() => {
-                onChampionClick(image)
+                handleChampionClick(image)
               }}
             />
           ))}
@@ -367,127 +286,12 @@ const Champs = () => {
 
           {teamComparisonList.map((teamComparison, idx) => (
             <Container
-              key={idx + teamComparison.blue.winRatio}
+              key={teamComparison.blue.winRatio}
               flexDirection="column"
               padding="1rem"
             >
-              <StyledFlexBox
-                flexDirection="row"
-                padding="1rem"
-                justify="space-between"
-                width="95%"
-                flowColumnOnMdScreen
-              >
-                {teamComparison.blue.champions.length > 0 ? (
-                  <Grid
-                    gridTemplateColumns="repeat(5, 1fr)"
-                    padding="1rem"
-                    backgroundColor="team-blue"
-                    color="white"
-                    borderRadius="5px"
-                  >
-                    {teamComparison.blue.champions.map((champion) => (
-                      <SelectedChampion
-                        color="white"
-                        key={champion.name}
-                        champion={champion}
-                      />
-                    ))}
-                  </Grid>
-                ) : null}
-                {teamComparison.red.champions.length > 0 ? (
-                  <Grid
-                    gridTemplateColumns="repeat(5, 1fr)"
-                    padding="1rem"
-                    backgroundColor="team-red"
-                    color="white"
-                    borderRadius="5px"
-                  >
-                    {teamComparison.red.champions.map((champion) => (
-                      <SelectedChampion
-                        color="white"
-                        key={champion.name}
-                        champion={champion}
-                      />
-                    ))}
-                  </Grid>
-                ) : null}
-              </StyledFlexBox>
-
-              <StyledFlexBox
-                flexDirection="row"
-                justify="space-between"
-                width="95%"
-                margin="0"
-                padding="1rem"
-                flowColumnOnMdScreen
-              >
-                <StyledFlexBox flexDirection="column" padding="1rem">
-                  <StyledText fontSize="2.5rem" textAlign="left">
-                    <Strong fontSize="2.5rem" color="team-blue">
-                      블루팀
-                    </Strong>
-                    &nbsp;예상승률
-                  </StyledText>
-                  <StyledFlexBox
-                    flexDirection="row"
-                    align="center"
-                    justify="center"
-                  >
-                    <StyledText
-                      fontSize="3rem"
-                      fontWeight="bold"
-                      color="team-blue"
-                      position="absolute"
-                    >
-                      {toPercentage(teamComparison.blue.winRatio)}
-                    </StyledText>
-                    <Canvas
-                      draw={drawWinRatioCircle(
-                        teamComparison.blue.winRatio,
-                        teamTypes.blue
-                      )}
-                      rest={{
-                        width: '200',
-                        height: '200',
-                      }}
-                    />
-                  </StyledFlexBox>
-                </StyledFlexBox>
-
-                <StyledFlexBox flexDirection="column" padding="1rem">
-                  <StyledText fontSize="2.5rem" textAlign="left">
-                    <Strong fontSize="2.5rem" color="team-red">
-                      레드팀
-                    </Strong>
-                    &nbsp;예상승률
-                  </StyledText>
-                  <StyledFlexBox
-                    flexDirection="row"
-                    align="center"
-                    justify="center"
-                  >
-                    <StyledText
-                      fontSize="3rem"
-                      fontWeight="bold"
-                      color="team-red"
-                      position="absolute"
-                    >
-                      {toPercentage(teamComparison.red.winRatio)}
-                    </StyledText>
-                    <Canvas
-                      draw={drawWinRatioCircle(
-                        teamComparison.red.winRatio,
-                        teamTypes.red
-                      )}
-                      rest={{
-                        width: '200',
-                        height: '200',
-                      }}
-                    />
-                  </StyledFlexBox>
-                </StyledFlexBox>
-              </StyledFlexBox>
+              <ChampionBanPickResultHeader teamComparison={teamComparison} />
+              <ChampionBanPickResult teamComparison={teamComparison} />
             </Container>
           ))}
         </Container>
