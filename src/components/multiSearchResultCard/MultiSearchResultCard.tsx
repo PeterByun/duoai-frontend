@@ -1,11 +1,9 @@
-import React from 'react'
-
 import Heading from '@/components/heading/Heading'
 
 import { StyledText } from '@/components/text/Text'
 import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
 import { StyledHr } from '@/components/hr/StyledHr.style'
-import ImgChampion from '@/components/imgChampion/ImgChampion'
+import ImgChampion from '@/components/img/ImgChampion'
 import Strong from '@/components/strong/Strong'
 import Container from '@/components/container/Container'
 

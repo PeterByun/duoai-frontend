@@ -10,7 +10,7 @@ import {
 import ChampionSpells from '@/components/championSpells/ChampionSpells'
 import ChampionKda from '@/components/championKda/ChampionItems'
 import ChampionItems from '@/components/championItems'
-import ImgChampion from '@/components/imgChampion/ImgChampion'
+import ImgChampion from '@/components/img/ImgChampion'
 import {
   MatchSummaryStyle,
   MatchSummaryWrapperStyle,

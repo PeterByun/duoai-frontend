@@ -35,9 +35,9 @@ export const ContainerCoverStyle = styled.section<ContainerCoverStyleProps>`
     return top ? top : 'null'
   }};
 
-  width: ${({ width }) => (width ? width : '80%')};
+  width: ${({ width }) => (width ? width : 'auto')};
   height: ${({ height }) => (height ? height : 'auto')};
-  margin: ${({ margin }) => (margin ? margin : '5rem')};
+  margin: ${({ margin }) => (margin ? margin : '1rem')};
 
   border-radius: 10px;
 
@@ -46,13 +46,14 @@ export const ContainerCoverStyle = styled.section<ContainerCoverStyleProps>`
       opacity
         ? `rgba(255, 255, 255, ${opacity});`
         : 'rgba(255, 255, 255, 0.25);'};
+    justify-content: ${({ justify }) => (justify ? justify : 'center')};
+    padding: ${({ padding }) => (padding ? padding : '1rem')};
+    gap: ${({ gap }) => (gap ? gap : '0')};
+
     > * {
       margin-bottom: ${({ childrenMarginBottom }) =>
-        childrenMarginBottom ? childrenMarginBottom : 0};
+        childrenMarginBottom ? childrenMarginBottom : null};
     }
-    justify-content: ${({ justify }) => (justify ? justify : 'center')};
-    padding: ${({ padding }) => (padding ? padding : '5rem')};
-    gap: ${({ gap }) => (gap ? gap : '0')};
   }
 `
 
@@ -67,7 +68,6 @@ export const ContainerStyle = styled.section`
 
   border-radius: 10px;
   transition: 0.5s all ease;
-  box-shadow: 0px 5px 15px 0 rgb(30 38 137 / 25%);
+  box-shadow: 0px 5px 13px 0 rgb(30 38 137 / 15%);
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 `

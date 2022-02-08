@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ImgStyleProps } from '@/components/img/StyledImg.style'
-import ImgChampion from '@/components/imgChampion/ImgChampion'
+import ImgChampion from '@/components/img/ImgChampion'
 
 import { ChampionImg } from '@/types/champion-types'
 

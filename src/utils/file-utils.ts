@@ -57,3 +57,27 @@ export const importItemIcons = () => {
 
   return itemIcons
 }
+
+export const importRankedPositionsIcons = () => {
+  const rankedPositionsIcons = importAll(
+    require.context(
+      './../assets/images/ranked-positions',
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  )
+
+  return rankedPositionsIcons
+}
+
+export const importRankIcons = () => {
+  const rankIcons = importAll(
+    require.context(
+      './../assets/images/ranked-emblems',
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  )
+
+  return rankIcons
+}

@@ -35,7 +35,7 @@ export const GlobalStyle = css`
     font-family: 'NEXON Lv1 Gothic OTF';
 
     // Colors
-    --main-bg-color: #fefefe;
+    --main-bg-color: #fbfbfb;
 
     --black: #000000;
     --white: #ffffff;

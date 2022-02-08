@@ -1,4 +1,4 @@
-import {
+import React, {
   KeyboardEventHandler,
   useState,
   useEffect,
@@ -11,10 +11,14 @@ import MultiSearchResultCard, {
 import Grid from '@/components/grid/Grid'
 import Button from '@/components/button/Button'
 import Loading from '@/components/loading/Loading'
+import {
+  MultiSearchAiAnalysisResult,
+  AiAnalysisResult,
+} from '@/components/MultiSearchAiAnalysisResult'
 
 import { StyledTextArea } from '@/components/textArea/StyledTextArea.style'
-
 import { getMatchSummary } from '../../utils/endpoints'
+import Container from '@/components/container/Container'
 
 const MultiSearchMain = () => {
   const [searchText, setSearchText] = useState<string>('')
@@ -75,6 +79,72 @@ const MultiSearchMain = () => {
   const SEARCH_PLACE_HOLDER =
     '소환사1 님이 방에 참가했습니다. \n소환사2 님이 방에 참가했습니다. \n소환사3 님이 방에 참가했습니다. \n소환사4 님이 방에 참가했습니다. \n소환사5 님이 방에 참가했습니다.'
 
+  // Result type radio buttons
+  const SEARCH_RESULT_TYPE: {
+    BASIC: 'BASIC'
+    AI: 'AI'
+  } = {
+    BASIC: 'BASIC',
+    AI: 'AI',
+  }
+
+  type SearchResultTypeValues =
+    typeof SEARCH_RESULT_TYPE[keyof typeof SEARCH_RESULT_TYPE]
+
+  const [selectedSearchResultType, setSelectedSearchResultType] =
+    useState<SearchResultTypeValues>(SEARCH_RESULT_TYPE.BASIC)
+
+  const handleSearchResultTypeChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSelectedSearchResultType(e.target.value as SearchResultTypeValues)
+  }
+
+  const aiAnalysisResult: AiAnalysisResult = {
+    expectedWinRate: 0.4,
+    mainLanerCount: {
+      top: 1,
+      jungle: 0,
+      mid: 0,
+      adc: 1,
+      support: 1,
+    },
+    summonerProfiles: [
+      {
+        name: 'Josh',
+        rank: 'gold',
+        leaguePoints: 55,
+        icons: ['killingspree', 'immotal'],
+        preferedChamps: [
+          {
+            champNameEng: 'Garen',
+            champNameKor: '가렌',
+          },
+          {
+            champNameEng: 'Alistar',
+            champNameKor: '알리스타',
+          },
+        ],
+      },
+      {
+        name: 'Peter',
+        rank: 'grandmaster',
+        leaguePoints: 55,
+        icons: ['ap mania', 'ganking'],
+        preferedChamps: [
+          {
+            champNameEng: 'Nunu',
+            champNameKor: '누누',
+          },
+          {
+            champNameEng: 'Quinn',
+            champNameKor: '퀸',
+          },
+        ],
+      },
+    ],
+  }
+
   return (
     <>
       <StyledTextArea
@@ -94,24 +164,56 @@ const MultiSearchMain = () => {
         검색
       </Button>
 
+      <MultiSearchAiAnalysisResult
+        aiAnalysisResult={aiAnalysisResult}
+      ></MultiSearchAiAnalysisResult>
+
       <Loading task={getMatchSummaryTask}>
-        {summonerSearchResults ? (
-          <Grid
-            gridTemplateColumns="repeat(auto-fit, minmax(15rem, 20rem))"
-            justifyContent="center"
-            width="100%"
-            padding="1rem"
-            borderRadius="5px"
-          >
-            {summonerSearchResults.map((summonerSearchResult) => (
-              <MultiSearchResultCard
-                key={summonerSearchResult.summonerName}
-                summonerSearchResult={summonerSearchResult}
-              />
-            ))}
-          </Grid>
-        ) : (
-          <div></div>
+        {summonerSearchResults && (
+          <Container>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  value={SEARCH_RESULT_TYPE.BASIC}
+                  checked={
+                    selectedSearchResultType === SEARCH_RESULT_TYPE.BASIC
+                  }
+                  onChange={handleSearchResultTypeChange}
+                />
+                검색결과
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value={SEARCH_RESULT_TYPE.AI}
+                  checked={selectedSearchResultType === SEARCH_RESULT_TYPE.AI}
+                  onChange={handleSearchResultTypeChange}
+                />
+                AI분석
+              </label>
+            </div>
+
+            {selectedSearchResultType === SEARCH_RESULT_TYPE.BASIC ? (
+              <Grid
+                gridTemplateColumns="repeat(auto-fit, minmax(15rem, 20rem))"
+                justifyContent="center"
+                width="100%"
+                padding="1rem"
+                borderRadius="5px"
+              >
+                {summonerSearchResults.map((summonerSearchResult) => (
+                  <MultiSearchResultCard
+                    key={summonerSearchResult.summonerName}
+                    summonerSearchResult={summonerSearchResult}
+                  />
+                ))}
+              </Grid>
+            ) : (
+              <div></div>
+              // Where you would place the AI analysis result
+            )}
+          </Container>
         )}
       </Loading>
     </>
