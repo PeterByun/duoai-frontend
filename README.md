@@ -53,3 +53,13 @@ Gen G Clid 님이 방에 참가했습니다.
 Liiv Effort 님이 방에 참가했습니다.
 T1 Zeus 님이 방에 참가했습니다.
 ```
+
+# Icons
+
+- <a href="https://www.flaticon.com/free-icons/agriculture" title="agriculture icons">Agriculture icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/sword" title="sword icons">Sword icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/battlefield" title="battlefield icons">Battlefield icons created by max.icons - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/torch" title="torch icons">Torch icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/shield" title="shield icons">Shield icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/bow" title="bow icons">Bow icons created by Good Ware - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/chick" title="chick icons">Chick icons created by Freepik - Flaticon</a>

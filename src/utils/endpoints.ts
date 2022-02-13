@@ -29,20 +29,25 @@ export const getTotalUserByTier = new Request(
 /**
  * API server endpoints
  */
-// Multi-search
-const matchSummaryUrl = '/api/match/summary'
-export const getMatchSummary = new Request(matchSummaryUrl, httpMethods.get)
-
 // Summoner search
 const matchListUrl = '/api/match/list'
 export const getMatchList = new Request(matchListUrl, httpMethods.get)
 
+// Multi-search
+const matchSummaryUrl = '/api/match/summary'
+export const getMatchSummary = new Request(matchSummaryUrl, httpMethods.get)
+
+// Multi-search Analysis
+const multiSearchAnalysisUrl = '/api/analysis/multi-search'
+export const getMultiSearchAnalysis = new Request(
+  multiSearchAnalysisUrl,
+  httpMethods.get
+)
+
 // Live pro matches
-// fetch pro players list
 const getProSummonersUrl = '/api/match/pro'
 export const getProSummoners = new Request(getProSummonersUrl, httpMethods.get)
 
-// Get match info to request analyze match after swap participants.
 const getSwitchedMatchUrl = '/api/match/switch'
 export const getSwitchedMatch = new Request(
   getSwitchedMatchUrl,
@@ -55,9 +60,6 @@ export const analyzeSwappedMatch = new Request(
   httpMethods.post
 )
 
-/**
- * API server endpoints to add
- */
 // Virtual ban-pick page
 const analyzeBanPickUrl = '/api/analysis/pickban'
 export const analyzeBanPick = new Request(analyzeBanPickUrl, httpMethods.post)

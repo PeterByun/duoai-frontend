@@ -81,3 +81,15 @@ export const importRankIcons = () => {
 
   return rankIcons
 }
+
+export const importSummonerTraitIcons = () => {
+  const summonerTraitIcons = importAll(
+    require.context(
+      './../assets/images/summoner-traits',
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  )
+
+  return summonerTraitIcons
+}

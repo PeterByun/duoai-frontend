@@ -59,7 +59,6 @@ export const GlobalStyle = css`
     --shadow-light-yelllow: 0 0px 10px 15px rgb(244 247 29 / 46%);
 
     // Colors by status
-
     --dark-blue: #0e4c89;
     --dark-gray: #2d2d2d;
 
@@ -78,6 +77,13 @@ export const GlobalStyle = css`
     --logo-blue: #2e53f3;
 
     --disabled: #9c9c9cde;
+
+    // Summoner lane collors
+    --jungle: #96fca7;
+    --mid: #c7afff;
+    --top: #e6e6ea;
+    --ad: #fe4a49;
+    --support: #fed766;
   }
   ::selection {
     background-color: #1089ffba;

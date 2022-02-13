@@ -1,4 +1,4 @@
-import { Method, PageTree, Page, PageLeaf } from '@/types/app-types'
+import { Method, PageTree, PageLeaf } from '@/types/app-types'
 
 export const colors: { [key: string]: string } = {
   blue: '#1aace5',

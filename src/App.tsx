@@ -42,8 +42,8 @@ const leaderboardRoutes = routes.leaderboard.children
 import {
   loadChampionThumbnails,
   loadItemIcons,
-  // loadRankedPositions,
   loadRankIcons,
+  loadsummonerTraitIcons,
 } from './redux/slices/assetSlice'
 import Summoner from './pages/summoner/Summoner'
 
@@ -54,6 +54,7 @@ function App() {
   dispatch(loadChampionThumbnails())
   dispatch(loadItemIcons())
   dispatch(loadRankIcons())
+  dispatch(loadsummonerTraitIcons())
 
   return (
     <>

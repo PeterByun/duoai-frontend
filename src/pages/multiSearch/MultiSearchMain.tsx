@@ -17,7 +17,7 @@ import {
 } from '@/components/MultiSearchAiAnalysisResult'
 
 import { StyledTextArea } from '@/components/textArea/StyledTextArea.style'
-import { getMatchSummary } from '../../utils/endpoints'
+import { getMatchSummary, getMultiSearchAnalysis } from '../../utils/endpoints'
 import Container from '@/components/container/Container'
 
 const MultiSearchMain = () => {
@@ -57,7 +57,7 @@ const MultiSearchMain = () => {
         })
         .send<SummonerSearchResult[]>()
         .then((response) => {
-          setSummonerSearchResults(response.data)
+          setSummonerSearchResults(Array.from(new Set(response.data)))
         })
     )
   }, [summonerNames])
@@ -100,6 +100,17 @@ const MultiSearchMain = () => {
     setSelectedSearchResultType(e.target.value as SearchResultTypeValues)
   }
 
+  // Use the below code to fetch analysis result once the api is done.
+  // const [aiAnalysisResult, setAiAnalysisResult] = useState<AiAnalysisResult|null>(null)
+
+  // useEffect(() => {
+  //   if(selectedSearchResultType === SEARCH_RESULT_TYPE.AI) {
+  //     getMultiSearchAnalysis.send().then(response => {
+  //       setAiAnalysisResult(response.data)
+  //     })
+  //   }
+  // }, [selectedSearchResultType])
+
   const aiAnalysisResult: AiAnalysisResult = {
     expectedWinRate: 0.4,
     mainLanerCount: {
@@ -114,7 +125,8 @@ const MultiSearchMain = () => {
         name: 'Josh',
         rank: 'gold',
         leaguePoints: 55,
-        icons: ['killingspree', 'immotal'],
+        icons: ['pradetor', 'dealer', 'lateBloomer'],
+        lane: 'mid',
         preferedChamps: [
           {
             champNameEng: 'Garen',
@@ -130,7 +142,8 @@ const MultiSearchMain = () => {
         name: 'Peter',
         rank: 'grandmaster',
         leaguePoints: 55,
-        icons: ['ap mania', 'ganking'],
+        lane: 'jungle',
+        icons: ['initiator', 'strategist', 'tanks'],
         preferedChamps: [
           {
             champNameEng: 'Nunu',
@@ -163,10 +176,6 @@ const MultiSearchMain = () => {
       >
         검색
       </Button>
-
-      <MultiSearchAiAnalysisResult
-        aiAnalysisResult={aiAnalysisResult}
-      ></MultiSearchAiAnalysisResult>
 
       <Loading task={getMatchSummaryTask}>
         {summonerSearchResults && (
@@ -210,8 +219,15 @@ const MultiSearchMain = () => {
                 ))}
               </Grid>
             ) : (
-              <div></div>
-              // Where you would place the AI analysis result
+              <div>
+                <h1>
+                  분석 기능은 개발중입니다. 조금만 기다려주세요! 아래 데이터는
+                  예시 데이터입니다.
+                </h1>
+                <MultiSearchAiAnalysisResult
+                  aiAnalysisResult={aiAnalysisResult}
+                ></MultiSearchAiAnalysisResult>
+              </div>
             )}
           </Container>
         )}

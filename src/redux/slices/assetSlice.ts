@@ -7,6 +7,7 @@ import {
   importItemIcons,
   importRankedPositionsIcons,
   importRankIcons,
+  importSummonerTraitIcons,
   ImportedFiles,
 } from '../../utils/file-utils'
 
@@ -15,6 +16,7 @@ type AssetState = {
   itemIcons: ImportedFiles
   rankedPositionsIcons: ImportedFiles
   rankIcons: ImportedFiles
+  summonerTraitIcons: ImportedFiles
 }
 
 const initialState: AssetState = {
@@ -22,6 +24,7 @@ const initialState: AssetState = {
   itemIcons: {},
   rankedPositionsIcons: {},
   rankIcons: {},
+  summonerTraitIcons: {},
 }
 
 export const assetSlice = createSlice({
@@ -40,6 +43,9 @@ export const assetSlice = createSlice({
     loadRankIcons: (state) => {
       state.rankIcons = importRankIcons()
     },
+    loadsummonerTraitIcons: (state) => {
+      state.summonerTraitIcons = importSummonerTraitIcons()
+    },
   },
 })
 
@@ -49,6 +55,7 @@ export const {
   loadItemIcons,
   loadRankedPositions,
   loadRankIcons,
+  loadsummonerTraitIcons,
 } = assetSlice.actions
 
 // Selectors
@@ -98,5 +105,8 @@ export const findRankIcon = (positionName: string) => (state: RootState) => {
     src: '',
   }
 }
+
+export const findSummonerTraitIcons = (state: RootState) =>
+  state.asset.summonerTraitIcons
 
 export default assetSlice.reducer
