@@ -199,7 +199,7 @@ export const MultiSearchAiAnalysisResult = ({
               gap="1rem"
               width="100%"
             >
-              <StyledFlexBox flexDirection="row">
+              <StyledFlexBox flexDirection="column">
                 <Heading level={2}> {summonerProfile.name} </Heading>
                 <ImgWithLabel
                   image={{

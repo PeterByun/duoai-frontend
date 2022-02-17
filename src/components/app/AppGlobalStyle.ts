@@ -79,8 +79,8 @@ export const GlobalStyle = css`
     --disabled: #9c9c9cde;
 
     // Summoner lane collors
-    --jungle: #96fca7;
-    --mid: #c7afff;
+    --jungle: #5de573;
+    --mid: #aa85ff;
     --top: #e6e6ea;
     --ad: #fe4a49;
     --support: #fed766;
