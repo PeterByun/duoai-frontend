@@ -78,12 +78,16 @@ export const GlobalStyle = css`
 
     --disabled: #9c9c9cde;
 
-    // Summoner lane collors
+    // Summoner lane colors
     --jungle: #5de573;
     --mid: #aa85ff;
     --top: #e6e6ea;
     --ad: #fe4a49;
     --support: #fed766;
+
+    // Summoner skill olors
+    --summoner-skill-bad: #eb2929;
+    --summoner-skill-good: #46eb29;
   }
   ::selection {
     background-color: #1089ffba;

@@ -11,18 +11,20 @@ import { useChampionImages } from '@/hooks/use-champion-images'
 import { findRankIcon, findSummonerTraitIcons } from '@/redux/slices/assetSlice'
 import { capitalize, toPercentage } from '@/utils/string-utils'
 
+import {
+  SUMMONER_LANES,
+  RANKED_EMBLEMS,
+} from '@/constants/multi-search-constants'
+
 type PreferedChamp = {
   champNameEng: string
   champNameKor: string
 }
 
-type SummonerProfileIcon =
-  | 'pradetor'
-  | 'lateBloomer'
-  | 'initiator'
-  | 'strategist'
-  | 'tanks'
-  | 'dealer'
+type SummonerProfileIcon = {
+  type: '성장형' | '공격형' | '방어형' | '운영형' | '이니시형'
+  point: 0 | 1
+}
 
 type SummonerProfile = {
   name: string
@@ -46,26 +48,6 @@ export type AiAnalysisResult = {
   summonerProfiles: SummonerProfile[]
 }
 
-const SUMMONER_LANES = {
-  bot: 'Position_Challenger-Bot',
-  mid: 'Position_Challenger-Mid',
-  jungle: 'Position_Challenger-Jungle',
-  support: 'Position_Challenger-Support',
-  top: 'Position_Challenger-Top',
-} as const
-
-const RANKED_EMBLEMS = {
-  grandmaster: 'Emblem_Grandmaster',
-  master: 'Emblem_Master',
-  challenger: 'Emblem_Challenger',
-  diamond: 'Emblem_Diamond',
-  platinum: 'Emblem_Platinum',
-  gold: 'Emblem_Gold',
-  silver: 'Emblem_Silver',
-  bronze: 'Emblem_Bronze',
-  iron: 'Emblem_Iron',
-} as const
-
 const MainLanerCount = (props: { lane: string; count: number }) => {
   return (
     <Container flexDirection="column">
@@ -84,23 +66,11 @@ const MainLanerCount = (props: { lane: string; count: number }) => {
   )
 }
 
-const LANE_COLLORS: {
+const COLORS_BY_POINT: {
   [key: string]: string
 } = {
-  jungle: 'jungle',
-  mid: 'mid',
-  top: 'top',
-  ad: 'ad',
-  support: 'support',
-} as const
-
-const SUMMONER_TRAIT_ICONS_LABEL = {
-  pradetor: '공격형',
-  lateBloomer: '성장형',
-  initiator: '이니시에이터',
-  strategist: '운영형',
-  tanks: '탱커',
-  dealer: '딜러',
+  0: 'summoner-skill-bad',
+  1: 'summoner-skill-good',
 } as const
 
 export const MultiSearchAiAnalysisResult = ({
@@ -222,12 +192,12 @@ export const MultiSearchAiAnalysisResult = ({
                 {summonerProfile.icons.map((icon) => (
                   <StyledFlexBox flexDirection="column">
                     <img
-                      src={summonerTraitIcons[icon]}
-                      alt={icon}
+                      src={summonerTraitIcons[icon.type]}
+                      alt={icon.type}
                       width="20px"
                       css={{
                         backgroundColor: `var(--${
-                          LANE_COLLORS[summonerProfile.lane]
+                          COLORS_BY_POINT[icon.point]
                         })`,
                         width: '2.5rem',
                         objectFit: 'cover',
@@ -235,7 +205,7 @@ export const MultiSearchAiAnalysisResult = ({
                         padding: '1rem',
                       }}
                     />
-                    {SUMMONER_TRAIT_ICONS_LABEL[icon]}
+                    {icon.type}
                   </StyledFlexBox>
                 ))}
               </Grid>

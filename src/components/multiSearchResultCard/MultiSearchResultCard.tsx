@@ -7,6 +7,8 @@ import ImgChampion from '@/components/img/ImgChampion'
 import Strong from '@/components/strong/Strong'
 import Container from '@/components/container/Container'
 
+import { useAppSelector } from '@/redux/hooks'
+import { findRankIcon } from '@/redux/slices/assetSlice'
 import { useChampionImages } from '@/hooks/use-champion-images'
 
 import {
@@ -16,8 +18,24 @@ import {
   getStreakMessage,
 } from '@/utils/string-utils'
 
+import { RANKED_EMBLEMS } from '@/constants/multi-search-constants'
+
 export type SummonerSearchResult = {
   summonerName: string
+  summonerTier:
+    | 'GRANDMASTER'
+    | 'MASTER'
+    | 'CHALLENGER'
+    | 'DIAMOND'
+    | 'PLATINUM'
+    | 'GOLD'
+    | 'SILVER'
+    | 'BRONZE'
+    | 'IRON'
+  summonerRank: string
+  leaguePoints: number
+  wins: number
+  losses: number
   mainPosition: string
   mainPositionPickRate: number
   mainPositionWinRate: number
@@ -54,8 +72,33 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
       padding="1rem"
       margin="0"
     >
-      <StyledFlexBox flexDirection="row">
-        <Heading level={2}>{props.summonerSearchResult.summonerName}</Heading>
+      <StyledFlexBox flexDirection="column">
+        <Heading level={2}>{props.summonerSearchResult.summonerName}</Heading>'
+        <Img
+          image={{
+            name: props.summonerSearchResult.summonerTier,
+            src: useAppSelector(
+              findRankIcon(
+                RANKED_EMBLEMS[
+                  props.summonerSearchResult.summonerTier.toLowerCase() as keyof typeof RANKED_EMBLEMS
+                ]
+              )
+            ).src,
+          }}
+          isNameHidden
+        />
+        <StyledText fontSize="2rem">
+          {`${props.summonerSearchResult.summonerTier} ${props.summonerSearchResult.summonerRank}`}
+        </StyledText>
+        <StyledText fontSize="2rem">
+          {props.summonerSearchResult.leaguePoints} 점
+        </StyledText>
+        <StyledText fontSize="2rem" color="win">
+          {props.summonerSearchResult.wins} 승
+        </StyledText>
+        <StyledText fontSize="2rem" color="lose">
+          {props.summonerSearchResult.losses} 패
+        </StyledText>
       </StyledFlexBox>
 
       <StyledFlexBox
@@ -66,16 +109,16 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
         <StyledText>{props.summonerSearchResult.mainPosition}</StyledText>
         <StyledFlexBox flexDirection="column" align="flex-start">
           <StyledText margin="0">
-            • 전체 게임의{' '}
+            • 전체 게임의
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.mainPositionPickRate)}
-            </Strong>{' '}
+            </Strong>
           </StyledText>
           <StyledText margin="0">
-            • 승률{' '}
+            • 승률
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.mainPositionWinRate)}
-            </Strong>{' '}
+            </Strong>
           </StyledText>
         </StyledFlexBox>
       </StyledFlexBox>
@@ -84,16 +127,16 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
         <StyledText>{props.summonerSearchResult.subPosition}</StyledText>
         <StyledFlexBox flexDirection="column" align="flex-start">
           <StyledText margin="0">
-            • 전체 게임의{' '}
+            • 전체 게임의
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.subPositionPickRate)}
-            </Strong>{' '}
+            </Strong>
           </StyledText>
           <StyledText margin="0">
-            • 승률{' '}
+            • 승률
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.subPositionWinRate)}
-            </Strong>{' '}
+            </Strong>
           </StyledText>
         </StyledFlexBox>
       </StyledFlexBox>
