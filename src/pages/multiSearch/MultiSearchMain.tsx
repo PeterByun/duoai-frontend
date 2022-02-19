@@ -125,7 +125,16 @@ const MultiSearchMain = () => {
         name: 'Josh',
         rank: 'gold',
         leaguePoints: 55,
-        icons: ['pradetor', 'dealer', 'lateBloomer'],
+        icons: [
+          {
+            type: '운영형',
+            point: 1,
+          },
+          {
+            type: '성장형',
+            point: 0,
+          },
+        ],
         lane: 'mid',
         preferedChamps: [
           {
@@ -143,7 +152,16 @@ const MultiSearchMain = () => {
         rank: 'grandmaster',
         leaguePoints: 55,
         lane: 'jungle',
-        icons: ['initiator', 'strategist', 'tanks'],
+        icons: [
+          {
+            type: '공격형',
+            point: 0,
+          },
+          {
+            type: '방어형',
+            point: 0,
+          },
+        ],
         preferedChamps: [
           {
             champNameEng: 'Nunu',
