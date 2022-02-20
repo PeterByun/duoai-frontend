@@ -16,9 +16,11 @@ import {
   formatKda,
   getHowOldFromNow,
   getStreakMessage,
+  capitalize,
 } from '@/utils/string-utils'
 
 import { RANKED_EMBLEMS } from '@/constants/multi-search-constants'
+import { ImgWithLabel } from '../img/ImgWithLabel'
 
 export type SummonerSearchResult = {
   summonerName: string
@@ -73,8 +75,8 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
       margin="0"
     >
       <StyledFlexBox flexDirection="column">
-        <Heading level={2}>{props.summonerSearchResult.summonerName}</Heading>'
-        <Img
+        <Heading level={2}>{props.summonerSearchResult.summonerName}</Heading>
+        <ImgWithLabel
           image={{
             name: props.summonerSearchResult.summonerTier,
             src: useAppSelector(
@@ -88,15 +90,17 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
           isNameHidden
         />
         <StyledText fontSize="2rem">
-          {`${props.summonerSearchResult.summonerTier} ${props.summonerSearchResult.summonerRank}`}
+          {`${capitalize(
+            props.summonerSearchResult.summonerTier.toLocaleLowerCase()
+          )} ${props.summonerSearchResult.summonerRank}`}
         </StyledText>
-        <StyledText fontSize="2rem">
+        <StyledText fontSize="1rem" margin="0">
           {props.summonerSearchResult.leaguePoints} 점
         </StyledText>
-        <StyledText fontSize="2rem" color="win">
+        <StyledText fontSize="1rem" color="win" margin="0">
           {props.summonerSearchResult.wins} 승
         </StyledText>
-        <StyledText fontSize="2rem" color="lose">
+        <StyledText fontSize="1rem" color="lose" margin="0">
           {props.summonerSearchResult.losses} 패
         </StyledText>
       </StyledFlexBox>

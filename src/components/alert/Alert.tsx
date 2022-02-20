@@ -53,12 +53,15 @@ const Alert = (props: AlertProps) => {
       <StyledFlexBox
         backgroundColor="white"
         position="fixed"
-        left="25vw"
-        top="30vw"
+        left="50%"
+        top="50%"
         width="fit-content"
         height="20vh"
         flexDirection="column"
         borderRadius="5px"
+        css={{
+          transform: 'translate(-50%, -50%)',
+        }}
         onClick={handleAlertClick}
       >
         <Heading level={3}>{props.alertData.title}</Heading>
@@ -71,7 +74,7 @@ const Alert = (props: AlertProps) => {
           </Button>
           <Button
             onClick={handleCloseClick}
-            backgroundColor="gray"
+            backgroundColor="dark-gray"
             width="5rem"
             height="2rem"
           >

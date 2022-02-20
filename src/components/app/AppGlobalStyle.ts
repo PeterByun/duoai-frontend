@@ -62,7 +62,7 @@ export const GlobalStyle = css`
     --dark-blue: #0e4c89;
     --dark-gray: #2d2d2d;
 
-    --win: #2dfaf8;
+    --win: #28cdff;
     --lose: #ff7d7f;
 
     --win-dark: #21e3e1;
@@ -86,8 +86,8 @@ export const GlobalStyle = css`
     --support: #fed766;
 
     // Summoner skill olors
-    --summoner-skill-bad: #eb2929;
-    --summoner-skill-good: #46eb29;
+    --summoner-skill-bad: #ff5757;
+    --summoner-skill-good: #63ff7d;
   }
   ::selection {
     background-color: #1089ffba;

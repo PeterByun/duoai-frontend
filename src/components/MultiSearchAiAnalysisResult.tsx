@@ -1,4 +1,5 @@
 import Heading from '@/components/heading/Heading'
+import Strong from '@/components/strong/Strong'
 import { StyledText } from '@/components/text/Text'
 import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
 import Container from './container/Container'
@@ -26,13 +27,16 @@ type SummonerProfileIcon = {
   point: 0 | 1
 }
 
+type RankedEmblemKeys = keyof typeof RANKED_EMBLEMS
+
 type SummonerProfile = {
   name: string
-  rank: keyof typeof RANKED_EMBLEMS
+  tier: string
+  rank: string
   leaguePoints: number
   lane: keyof typeof SUMMONER_LANES
   icons: SummonerProfileIcon[]
-  preferedChamps: PreferedChamp[]
+  preferredChamps: PreferedChamp[]
 }
 
 export type AiAnalysisResult = {
@@ -69,8 +73,8 @@ const MainLanerCount = (props: { lane: string; count: number }) => {
 const COLORS_BY_POINT: {
   [key: string]: string
 } = {
-  0: 'summoner-skill-bad',
-  1: 'summoner-skill-good',
+  1: 'summoner-skill-bad',
+  2: 'summoner-skill-good',
 } as const
 
 export const MultiSearchAiAnalysisResult = ({
@@ -134,7 +138,7 @@ export const MultiSearchAiAnalysisResult = ({
             >
               {aiAnalysisResult.summonerProfiles.map((summonerProfile) => (
                 <>
-                  {summonerProfile.preferedChamps.map((preferedChamp) => (
+                  {summonerProfile.preferredChamps.map((preferedChamp) => (
                     <StyledFlexBox
                       key={preferedChamp.champNameEng}
                       flexDirection="column"
@@ -156,12 +160,12 @@ export const MultiSearchAiAnalysisResult = ({
         )}
       </StyledFlexBox>
 
-      <Container flexDirection="column">
+      <Container flexDirection="column" width="80%">
         <Heading level={2} margin="1rem 0">
           팀원 특성 분석
         </Heading>
 
-        <StyledFlexBox flexDirection="column">
+        <Grid gridTemplateColumns="repeat(auto-fit, minmax(5rem, 1fr))">
           {aiAnalysisResult.summonerProfiles.map((summonerProfile) => (
             <Container
               key={summonerProfile.name}
@@ -170,24 +174,30 @@ export const MultiSearchAiAnalysisResult = ({
               width="100%"
             >
               <StyledFlexBox flexDirection="column">
-                <Heading level={2}> {summonerProfile.name} </Heading>
+                <Strong fontSize="1.5rem"> {summonerProfile.name} </Strong>
                 <ImgWithLabel
                   image={{
                     name: capitalize(summonerProfile.rank),
                     src: useAppSelector(
-                      findRankIcon(RANKED_EMBLEMS[summonerProfile.rank])
+                      findRankIcon(
+                        RANKED_EMBLEMS[
+                          summonerProfile.tier.toLowerCase() as RankedEmblemKeys
+                        ]
+                      )
                     ).src,
                   }}
+                  isNameHidden
                 />
-                <StyledText fontSize="1.5rem">
+                <StyledText fontSize="1rem">
                   {summonerProfile.leaguePoints} 점
                 </StyledText>
               </StyledFlexBox>
 
               <Grid
-                gridTemplateColumns="repeat(auto-fit, minmax(2.5rem, 1fr))"
+                gridTemplateColumns="repeat(auto-fit, minmax(20rem, 1fr))"
                 gridTemplateRows="auto"
                 padding="0"
+                width="100%"
               >
                 {summonerProfile.icons.map((icon) => (
                   <StyledFlexBox flexDirection="column">
@@ -211,7 +221,7 @@ export const MultiSearchAiAnalysisResult = ({
               </Grid>
             </Container>
           ))}
-        </StyledFlexBox>
+        </Grid>
       </Container>
     </Container>
   )

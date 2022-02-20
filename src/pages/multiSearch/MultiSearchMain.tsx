@@ -60,6 +60,15 @@ const MultiSearchMain = () => {
           setSummonerSearchResults(Array.from(new Set(response.data)))
         })
     )
+
+    getMultiSearchAnalysis
+      .setData({
+        summonerName: summonerNames,
+      })
+      .send<AiAnalysisResult>()
+      .then((response) => {
+        setAiAnalysisResult(response.data)
+      })
   }, [summonerNames])
 
   const handleSummonerSearchKeyup: KeyboardEventHandler<HTMLTextAreaElement> = (
@@ -100,81 +109,87 @@ const MultiSearchMain = () => {
     setSelectedSearchResultType(e.target.value as SearchResultTypeValues)
   }
 
-  // Use the below code to fetch analysis result once the api is done.
-  // const [aiAnalysisResult, setAiAnalysisResult] = useState<AiAnalysisResult|null>(null)
+  const [aiAnalysisResult, setAiAnalysisResult] =
+    useState<AiAnalysisResult | null>(null)
 
   // useEffect(() => {
-  //   if(selectedSearchResultType === SEARCH_RESULT_TYPE.AI) {
-  //     getMultiSearchAnalysis.send().then(response => {
-  //       setAiAnalysisResult(response.data)
-  //     })
+  //   if (selectedSearchResultType === SEARCH_RESULT_TYPE.AI) {
+  //     getMultiSearchAnalysis
+  //       .setData({
+  //         summonerName: summonerNames,
+  //       })
+  //       .send<AiAnalysisResult>()
+  //       .then((response) => {
+  //         setAiAnalysisResult(response.data)
+  //       })
   //   }
   // }, [selectedSearchResultType])
 
-  const aiAnalysisResult: AiAnalysisResult = {
-    expectedWinRate: 0.4,
-    mainLanerCount: {
-      top: 1,
-      jungle: 0,
-      mid: 0,
-      adc: 1,
-      support: 1,
-    },
-    summonerProfiles: [
-      {
-        name: 'Josh',
-        rank: 'gold',
-        leaguePoints: 55,
-        icons: [
-          {
-            type: '운영형',
-            point: 1,
-          },
-          {
-            type: '성장형',
-            point: 0,
-          },
-        ],
-        lane: 'mid',
-        preferedChamps: [
-          {
-            champNameEng: 'Garen',
-            champNameKor: '가렌',
-          },
-          {
-            champNameEng: 'Alistar',
-            champNameKor: '알리스타',
-          },
-        ],
-      },
-      {
-        name: 'Peter',
-        rank: 'grandmaster',
-        leaguePoints: 55,
-        lane: 'jungle',
-        icons: [
-          {
-            type: '공격형',
-            point: 0,
-          },
-          {
-            type: '방어형',
-            point: 0,
-          },
-        ],
-        preferedChamps: [
-          {
-            champNameEng: 'Nunu',
-            champNameKor: '누누',
-          },
-          {
-            champNameEng: 'Quinn',
-            champNameKor: '퀸',
-          },
-        ],
-      },
-    ],
-  }
+  // Dummy
+  // const aiAnalysisResult: AiAnalysisResult = {
+  //   expectedWinRate: 0.4,
+  //   mainLanerCount: {
+  //     top: 1,
+  //     jungle: 0,
+  //     mid: 0,
+  //     adc: 1,
+  //     support: 1,
+  //   },
+  //   summonerProfiles: [
+  //     {
+  //       name: 'Josh',
+  //       rank: 'gold',
+  //       leaguePoints: 55,
+  //       icons: [
+  //         {
+  //           type: '운영형',
+  //           point: 1,
+  //         },
+  //         {
+  //           type: '성장형',
+  //           point: 0,
+  //         },
+  //       ],
+  //       lane: 'mid',
+  //       preferredChamps: [
+  //         {
+  //           champNameEng: 'Garen',
+  //           champNameKor: '가렌',
+  //         },
+  //         {
+  //           champNameEng: 'Alistar',
+  //           champNameKor: '알리스타',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: 'Peter',
+  //       rank: 'grandmaster',
+  //       leaguePoints: 55,
+  //       lane: 'jungle',
+  //       icons: [
+  //         {
+  //           type: '공격형',
+  //           point: 0,
+  //         },
+  //         {
+  //           type: '방어형',
+  //           point: 0,
+  //         },
+  //       ],
+  //       preferredChamps: [
+  //         {
+  //           champNameEng: 'Nunu',
+  //           champNameKor: '누누',
+  //         },
+  //         {
+  //           champNameEng: 'Quinn',
+  //           champNameKor: '퀸',
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // }
 
   return (
     <>
@@ -197,7 +212,7 @@ const MultiSearchMain = () => {
 
       <Loading task={getMatchSummaryTask}>
         {summonerSearchResults && (
-          <Container>
+          <Container width="100%">
             <div>
               <label>
                 <input
@@ -223,7 +238,7 @@ const MultiSearchMain = () => {
 
             {selectedSearchResultType === SEARCH_RESULT_TYPE.BASIC ? (
               <Grid
-                gridTemplateColumns="repeat(auto-fit, minmax(15rem, 20rem))"
+                gridTemplateColumns="repeat(auto-fit, minmax(5rem, 20rem))"
                 justifyContent="center"
                 width="100%"
                 padding="1rem"
@@ -238,13 +253,11 @@ const MultiSearchMain = () => {
               </Grid>
             ) : (
               <div>
-                <h1>
-                  분석 기능은 개발중입니다. 조금만 기다려주세요! 아래 데이터는
-                  예시 데이터입니다.
-                </h1>
-                <MultiSearchAiAnalysisResult
-                  aiAnalysisResult={aiAnalysisResult}
-                ></MultiSearchAiAnalysisResult>
+                {aiAnalysisResult && (
+                  <MultiSearchAiAnalysisResult
+                    aiAnalysisResult={aiAnalysisResult}
+                  ></MultiSearchAiAnalysisResult>
+                )}
               </div>
             )}
           </Container>

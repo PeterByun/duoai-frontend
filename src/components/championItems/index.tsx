@@ -23,7 +23,7 @@ export default function ChampionItems(props: ChampionItemsProps) {
 
   return (
     <Grid
-      gridTemplateColumns="repeat(4, 1fr)"
+      gridTemplateColumns="repeat(auto-fit, minmax(1.5rem, 1fr))"
       width="100%"
       padding="1rem"
       {...props}

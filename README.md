@@ -47,11 +47,11 @@ npm run start
 Test input
 
 ```
-KT Dove 님이 방에 참가했습니다.
-T1 Roach 님이 방에 참가했습니다.
-Gen G Clid 님이 방에 참가했습니다.
-Liiv Effort 님이 방에 참가했습니다.
-T1 Zeus 님이 방에 참가했습니다.
+디알엑스 태윤님이 방에 참가했습니다.
+패배를까먹은사람님이 방에 참가했습니다.
+칼과 창 방패님이 방에 참가했습니다.
+whisper snow님이 방에 참가했습니다.
+콩나물이좋아요님이 방에 참가했습니다.
 ```
 
 # Icons
@@ -63,3 +63,4 @@ T1 Zeus 님이 방에 참가했습니다.
 - <a href="https://www.flaticon.com/free-icons/shield" title="shield icons">Shield icons created by Freepik - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/bow" title="bow icons">Bow icons created by Good Ware - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/chick" title="chick icons">Chick icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/left-arrow" title="left arrow icons">Left arrow icons created by nawicon - Flaticon</a>

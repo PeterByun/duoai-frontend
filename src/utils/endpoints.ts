@@ -34,14 +34,14 @@ const matchListUrl = '/api/match/list'
 export const getMatchList = new Request(matchListUrl, httpMethods.get)
 
 // Multi-search
-const matchSummaryUrl = '/api/match/summary'
+const matchSummaryUrl = '/api/match/multi-search'
 export const getMatchSummary = new Request(matchSummaryUrl, httpMethods.get)
 
 // Multi-search Analysis
 const multiSearchAnalysisUrl = '/api/analysis/multi-search'
 export const getMultiSearchAnalysis = new Request(
   multiSearchAnalysisUrl,
-  httpMethods.get
+  httpMethods.post
 )
 
 // Live pro matches

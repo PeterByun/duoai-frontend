@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
+import { StyledText } from '@/components/text/Text'
 
 import SearchBar from '@/components/searchBox/SearchBox'
 import Input from '@/components/input/Input'
@@ -16,15 +17,16 @@ import {
   Match,
   ParticipantWithIdentity,
   MatchList,
-  ParticipantsEntity,
   ParticipantIdentitiesEntity,
 } from '../../types/match-types'
 
 import { useChampionImages } from '@/hooks/use-champion-images'
 import Heading from '@/components/heading/Heading'
-import { SvgBackButton } from '@/components/svg/SvgBackButton'
 import Strong from '@/components/strong/Strong'
 import { CardLiveMatchSummoner } from '@/components/card/CardLiveMatchSummoner'
+import { Img } from '@/components/img/Img'
+
+import PrevButtonSrc from '@/assets/images/base/left-arrow.png'
 
 type Summoner = {
   summonerId: string
@@ -200,7 +202,7 @@ const Stats = () => {
         </SearchBar>
       )}
 
-      <Container flexDirection="column">
+      <Container flexDirection="column" width="85%">
         <Grid
           gridTemplateColumns={
             isSummonerSelected ? '1fr' : 'repeat(auto-fit, minmax(8rem, 18rem))'
@@ -215,13 +217,27 @@ const Stats = () => {
               {selectedSommoner && (
                 <>
                   <StyledFlexBox flexDirection="row" justify="center">
-                    <SvgBackButton onClick={handleBackToSummonerListClick} />
+                    <Img
+                      width="3rem"
+                      left="5rem"
+                      position="absolute"
+                      src={PrevButtonSrc}
+                      onClick={handleBackToSummonerListClick}
+                    />
 
                     <Heading level={1} margin="0">
-                      <Strong fontSize="3rem" color="blue">
+                      <Strong fontSize="3rem">
                         {selectedSommoner.summonerName}
                       </Strong>
-                      님의 최근 전적
+                      <StyledText
+                        color="dark-gray"
+                        fontSize="1.5rem"
+                        css={{
+                          display: 'inline',
+                        }}
+                      >
+                        님의 최근 전적
+                      </StyledText>
                     </Heading>
                   </StyledFlexBox>
 

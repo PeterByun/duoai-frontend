@@ -208,6 +208,7 @@ const Champs = () => {
           >
             {blueTeamChampions?.length > 0 ? (
               <GridSelectedChampions
+                teamColor="blue"
                 emphasized={
                   selectedTeam === teamTypes.blue && !isAllChampsSelected()
                 }
@@ -224,6 +225,7 @@ const Champs = () => {
 
             {redTeamChampions?.length > 0 ? (
               <GridSelectedChampions
+                teamColor="red"
                 emphasized={
                   selectedTeam === teamTypes.red && !isAllChampsSelected()
                 }
