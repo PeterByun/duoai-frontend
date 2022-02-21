@@ -38,7 +38,7 @@ export type SummonerSearchResult = {
   leaguePoints: number
   wins: number
   losses: number
-  mainPosition: string
+  mainPosition: LaneLabelKeys
   mainPositionPickRate: number
   mainPositionWinRate: number
   subPosition: string
@@ -61,6 +61,17 @@ export type SummonerSearchResult = {
 type MultiSearchResultCardProps = {
   summonerSearchResult: SummonerSearchResult
 }
+
+const LANE_LABELS = {
+  TOP: '탑',
+  JUNGLE: '정글',
+  MIDDLE: '미드',
+  BOTTOM: '원딜',
+  UTILITY: '서포터',
+  'NO SubPotision': null,
+}
+
+type LaneLabelKeys = keyof typeof LANE_LABELS
 
 const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
   const { getChampionImage } = useChampionImages()
@@ -110,7 +121,9 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
         border="0px 0px 1px 0px solid black"
         padding="0 1rem"
       >
-        <StyledText>{props.summonerSearchResult.mainPosition}</StyledText>
+        <StyledText>
+          {LANE_LABELS[props.summonerSearchResult.mainPosition]}
+        </StyledText>
         <StyledFlexBox flexDirection="column" align="flex-start">
           <StyledText margin="0">
             • 전체 게임의

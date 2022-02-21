@@ -53,6 +53,8 @@ export type AiAnalysisResult = {
 }
 
 const MainLanerCount = (props: { lane: string; count: number }) => {
+  if (!props.count) return null
+
   return (
     <Container flexDirection="column">
       <StyledText
@@ -86,7 +88,7 @@ export const MultiSearchAiAnalysisResult = ({
   const summonerTraitIcons = useAppSelector(findSummonerTraitIcons)
 
   return (
-    <Container>
+    <Container width="90%">
       <StyledFlexBox flexDirection="column" gap="1rem">
         <Container flexDirection="column" width="60%">
           <Heading level={2} margin="1rem 0">
@@ -144,7 +146,7 @@ export const MultiSearchAiAnalysisResult = ({
                       flexDirection="column"
                       justify="flex-start"
                     >
-                      {summonerProfile.name}
+                      <p>{summonerProfile.name}</p>
                       <ImgChampion
                         image={{
                           name: preferedChamp.champNameKor,
@@ -165,13 +167,16 @@ export const MultiSearchAiAnalysisResult = ({
           팀원 특성 분석
         </Heading>
 
-        <Grid gridTemplateColumns="repeat(auto-fit, minmax(5rem, 1fr))">
+        <Grid
+          gridTemplateColumns="repeat(auto-fit, minmax(5rem, 1fr))"
+          width="100%"
+        >
           {aiAnalysisResult.summonerProfiles.map((summonerProfile) => (
             <Container
               key={summonerProfile.name}
               flexDirection="column"
               gap="1rem"
-              width="100%"
+              width="90%"
             >
               <StyledFlexBox flexDirection="column">
                 <Strong fontSize="1.5rem"> {summonerProfile.name} </Strong>
@@ -194,7 +199,7 @@ export const MultiSearchAiAnalysisResult = ({
               </StyledFlexBox>
 
               <Grid
-                gridTemplateColumns="repeat(auto-fit, minmax(20rem, 1fr))"
+                gridTemplateColumns="repeat(auto-fit, minmax(8rem, 1fr))"
                 gridTemplateRows="auto"
                 padding="0"
                 width="100%"

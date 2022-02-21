@@ -19,6 +19,7 @@ import {
 import { StyledTextArea } from '@/components/textArea/StyledTextArea.style'
 import { getMatchSummary, getMultiSearchAnalysis } from '../../utils/endpoints'
 import Container from '@/components/container/Container'
+import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
 
 const MultiSearchMain = () => {
   const [searchText, setSearchText] = useState<string>('')
@@ -252,13 +253,13 @@ const MultiSearchMain = () => {
                 ))}
               </Grid>
             ) : (
-              <div>
+              <StyledFlexBox width="90%">
                 {aiAnalysisResult && (
                   <MultiSearchAiAnalysisResult
                     aiAnalysisResult={aiAnalysisResult}
                   ></MultiSearchAiAnalysisResult>
                 )}
-              </div>
+              </StyledFlexBox>
             )}
           </Container>
         )}
