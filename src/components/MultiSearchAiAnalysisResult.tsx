@@ -45,9 +45,9 @@ export type AiAnalysisResult = {
   mainLanerCount: {
     top: number
     jungle: number
-    mid: number
-    adc: number
-    support: number
+    middle: number
+    bottom: number
+    utility: number
   }
   summonerProfiles: SummonerProfile[]
 }
@@ -114,15 +114,15 @@ export const MultiSearchAiAnalysisResult = ({
             />
             <MainLanerCount
               lane="미드"
-              count={aiAnalysisResult.mainLanerCount.mid}
+              count={aiAnalysisResult.mainLanerCount.middle}
             />
             <MainLanerCount
               lane="원딜"
-              count={aiAnalysisResult.mainLanerCount.adc}
+              count={aiAnalysisResult.mainLanerCount.bottom}
             />
             <MainLanerCount
               lane="서폿"
-              count={aiAnalysisResult.mainLanerCount.support}
+              count={aiAnalysisResult.mainLanerCount.utility}
             />
           </StyledFlexBox>
         </Container>
