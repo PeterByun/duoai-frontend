@@ -26,9 +26,8 @@ export const routes: PageTree<PageLeaf> = Object.freeze({
         path: 'info',
       },
       stats: {
-        name: '통계',
+        name: '분석',
         path: 'stats',
-        disabled: true,
       },
       banPick: {
         name: '가상밴픽',
