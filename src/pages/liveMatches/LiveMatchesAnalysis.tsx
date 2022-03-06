@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
-import { StyledText } from '@/components/text/Text'
+import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { StyledText } from '@/components-atoms/text/Text'
 
-import SearchBar from '@/components/searchBox/SearchBox'
-import Input from '@/components/input/Input'
-import Button from '@/components/button/Button'
-import Container from '@/components/container/Container'
-import Grid from '@/components/grid/Grid'
-import MatchTable from '@/components/matchTable/MatchTable'
-import Loading from '@/components/loading/Loading'
+import SearchBar from '@/components-atoms/search-box/SearchBox'
+import Input from '@/components-atoms/input/Input'
+import Button from '@/components-atoms/button/Button'
+import Container from '@/components-atoms/container/Container'
+import Grid from '@/components-atoms/grid/Grid'
+import MatchTable from '@/components/match-table/MatchTable'
+import Loading from '@/components-atoms/loading/Loading'
 
 import { getMatchList, getProSummoners } from '../../utils/endpoints'
 
@@ -21,10 +21,10 @@ import {
 } from '../../types/match-types'
 
 import { useChampionImages } from '@/hooks/use-champion-images'
-import Heading from '@/components/heading/Heading'
-import Strong from '@/components/strong/Strong'
-import { CardLiveMatchSummoner } from '@/components/card/CardLiveMatchSummoner'
-import { Img } from '@/components/img/Img'
+import Heading from '@/components-atoms/heading/Heading'
+import Strong from '@/components-atoms/strong/Strong'
+import { CardLiveMatchSummoner } from '@/components-atoms/card/CardLiveMatchSummoner'
+import { Img } from '@/components-atoms/img/Img'
 
 import PrevButtonSrc from '@/assets/images/base/left-arrow.png'
 
@@ -219,10 +219,14 @@ const Stats = () => {
                   <StyledFlexBox flexDirection="row" justify="center">
                     <Img
                       width="3rem"
-                      left="5rem"
-                      position="absolute"
-                      src={PrevButtonSrc}
+                      image={{
+                        src: PrevButtonSrc,
+                      }}
                       onClick={handleBackToSummonerListClick}
+                      cssProps={{
+                        left: '5rem',
+                        position: 'absolute',
+                      }}
                     />
 
                     <Heading level={1} margin="0">

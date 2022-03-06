@@ -41,7 +41,7 @@ module.exports = () => {
     devtool: 'inline-source-map',
     devServer: {
       compress: true,
-      // Where to files which have not gone through webpack compilation.
+      // Files which are not going through the bundling.
       static: path.join(__dirname, 'public'),
       port: 9000,
       hot: true,

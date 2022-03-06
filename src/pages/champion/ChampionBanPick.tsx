@@ -1,17 +1,17 @@
 import React, { useRef, useEffect, ChangeEvent } from 'react'
 
-import Container from '@/components/container/Container'
-import SearchBar from '@/components/searchBox/SearchBox'
-import Input from '@/components/input/Input'
-import Grid from '@/components/grid/Grid'
-import { GridSelectedChampions } from '@/components/grid/GridSelectedChampions'
-import ImgChampion from '@/components/img/ImgChampion'
-import { ChampionBanPickHeader } from '@/components/ChampionBanPickHeader'
-import { ChampionBanPickResultHeader } from '@/components/ChampionBanPickResultHeader'
-import { ChampionBanPickResult } from '@/components/ChampionBanPickResult'
+import Container from '@/components-atoms/container/Container'
+import SearchBar from '@/components-atoms/search-box/SearchBox'
+import Input from '@/components-atoms/input/Input'
+import Grid from '@/components-atoms/grid/Grid'
+import { GridSelectedChampions } from '@/components-atoms/grid/GridSelectedChampions'
+import { Img } from '@/components-atoms/img/Img'
+import { ChampionBanPickHeader } from '@/components/champion-ban-pick/ChampionBanPickHeader'
+import { ChampionBanPickResultHeader } from '@/components/champion-ban-pick/ChampionBanPickResultHeader'
+import { ChampionBanPickResult } from '@/components/champion-ban-pick/ChampionBanPickResult'
 
-import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
-import { StyledText } from '@/components/text/Text'
+import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { StyledText } from '@/components-atoms/text/Text'
 
 import { analyzeBanPick } from '@/utils/endpoints'
 
@@ -181,13 +181,13 @@ const Champs = () => {
 
   return (
     <>
-      <Container flexDirection="column">
+      <Container flexDirection="column" width="80%">
         <Container
           flexDirection="column"
           width="100%"
           padding="1rem"
           opacity="0.5"
-          zIndex="2"
+          zIndex="1"
           sticky
           margin="0"
         >
@@ -200,7 +200,7 @@ const Champs = () => {
           <StyledFlexBox
             flexDirection="row"
             justify="space-between"
-            width="90%"
+            width="100%"
             padding="1rem"
             margin="1rem"
             gap="1rem"
@@ -214,10 +214,11 @@ const Champs = () => {
                 }
               >
                 {blueTeamChampions.map((image) => (
-                  <ImgChampion
+                  <Img
                     key={image.name}
                     image={image}
                     onClick={handleSelectedChampionClick(image, 'blue')}
+                    isNameHidden
                   />
                 ))}
               </GridSelectedChampions>
@@ -231,10 +232,11 @@ const Champs = () => {
                 }
               >
                 {redTeamChampions.map((image) => (
-                  <ImgChampion
+                  <Img
                     key={image.name}
                     image={image}
                     onClick={handleSelectedChampionClick(image, 'red')}
+                    isNameHidden
                   />
                 ))}
               </GridSelectedChampions>
@@ -261,12 +263,13 @@ const Champs = () => {
           padding="2% 5% 5% 5%"
         >
           {championImgListToShow.map((image) => (
-            <ImgChampion
+            <Img
               key={image.name}
               image={image}
               width="4rem"
               height="4rem"
               disabled={isChampSelected(image)}
+              isNameHidden
               onClick={() => {
                 handleChampionClick(image)
               }}
@@ -286,7 +289,7 @@ const Champs = () => {
             분석결과
           </StyledText>
 
-          {teamComparisonList.map((teamComparison, idx) => (
+          {teamComparisonList.map((teamComparison) => (
             <Container
               key={teamComparison.blue.winRatio}
               flexDirection="column"

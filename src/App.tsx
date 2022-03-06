@@ -2,8 +2,8 @@ import { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import NavigationBar from './components/navigator/Navigator'
-import LoadingComponent from './components/loading/LoadingComponent'
+import NavigationBar from '@/components-atoms/navigator/Navigator'
+import LoadingComponent from '@/components-atoms/loading/LoadingComponent'
 
 const Landing = lazy(() => import('./pages/Landing'))
 const Champion = lazy(() => import('./pages/champion/Champion'))

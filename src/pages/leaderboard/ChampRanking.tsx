@@ -3,13 +3,13 @@ import React, { ReactElement, useEffect } from 'react'
 import {
   SelectBarStyle,
   OptionStyle,
-} from '@/components/selectBar/StyledSelectBar.style'
+} from '@/components-atoms/select-bar/StyledSelectBar.style'
 
-import Container from '@/components/container/Container'
-import SearchBar from '@/components/searchBox/SearchBox'
-import Button from '@/components/button/Button'
-import Input from '@/components/input/Input'
-import Table from '@/components/table/Table'
+import Container from '@/components-atoms/container/Container'
+import SearchBar from '@/components-atoms/search-box/SearchBox'
+import Button from '@/components-atoms/button/Button'
+import Input from '@/components-atoms/input/Input'
+import Table from '@/components-atoms/table/Table'
 
 import { ChampRank } from '../../types/rank-types'
 

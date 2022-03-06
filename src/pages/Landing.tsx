@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import Slogan from '@/components/slogan/Slogan'
-import Button from '@/components/button/Button'
-import SearchBar from '@/components/searchBox/SearchBox'
-import Input from '@/components/input/Input'
-import { StyledFlexBox } from '@/components/flexBox/StyledFlexBox.style'
+import Slogan from '@/components-atoms/slogan/Slogan'
+import Button from '@/components-atoms/button/Button'
+import SearchBar from '@/components-atoms/search-box/SearchBox'
+import Input from '@/components-atoms/input/Input'
+import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 
 const Landing = () => {
   const navigate = useNavigate()
@@ -23,13 +23,13 @@ const Landing = () => {
     <StyledFlexBox
       flexDirection="column"
       align="center"
+      justify="center"
       width="100%"
       height="100%"
-      margin="4rem 0 0 0"
     >
       <Slogan />
 
-      <SearchBar width="30rem" height="8rem" margin="4rem 0 0 0">
+      <SearchBar width="30rem" height="8rem" margin="0 auto">
         <Input
           onChange={handleInputChange}
           label="소환사 이름을 검색해보세요!"

@@ -39,7 +39,7 @@ export const routes: PageTree<PageLeaf> = Object.freeze({
   liveMatches: {
     name: '프로경기',
     path: '/live-matches',
-    disabled: true,
+    disabled: false,
     children: {
       analysis: {
         index: true,

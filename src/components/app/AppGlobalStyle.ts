@@ -7,10 +7,10 @@ const breakpoints: { [index: string]: number } = {
 }
 
 export const mq = Object.keys(breakpoints)
-  .map((key) => [key, breakpoints[key]] as [string, number])
-  .reduce((prev, [key, breakpoint]) => {
-    prev[key] = `@media (min-width: ${breakpoint}px)`
-    return prev
+  .map((key) => [key, breakpoints[key]])
+  .reduce((acc, [key, breakpoint]) => {
+    acc[key] = `@media (min-width: ${breakpoint}px)`
+    return acc
   }, {} as { [index: string]: string })
 
 export const GlobalStyle = css`
@@ -101,17 +101,15 @@ export const GlobalStyle = css`
   #root {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
   body {
     margin: 0px;
     display: flex;
     flex-direction: column;
-  }
-  #root {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
   }
 
   #root > nav:last-of-type {
