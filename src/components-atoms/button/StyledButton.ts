@@ -26,7 +26,7 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
 
   border: none;
   border-radius: ${({ borderRadius }) =>
-    borderRadius ? borderRadius : '1rem'};
+    borderRadius ? borderRadius : '0.5rem'};
 
   text-align: center;
   cursor: pointer;

@@ -5,12 +5,26 @@ import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 import { StyledText } from '@/components-atoms/text/Text'
 
 import { capitalize } from '@/utils/string-utils'
+import { useMemo } from 'react'
+
+import { ChampionImg } from '@/types/champion-types'
 
 export const ChampionBanPickHeader = (props: {
   selectedTeamColor: string
   onSwitchTeamClick: (e: React.MouseEvent<HTMLButtonElement>) => void
   onAnalyze: (e: React.MouseEvent<HTMLButtonElement>) => void
+  selectedChampions: {
+    blueTeamChampions: Array<ChampionImg>
+    redTeamChampions: Array<ChampionImg>
+  }
 }) => {
+  const isReadyToAnalyze = useMemo(() => {
+    return (
+      props.selectedChampions.blueTeamChampions.length === 5 &&
+      props.selectedChampions.redTeamChampions.length === 5
+    )
+  }, [props.selectedChampions])
+
   return (
     <StyledFlexBox
       flexDirection="row"
@@ -19,23 +33,36 @@ export const ChampionBanPickHeader = (props: {
       margin="1rem"
       flowColumnOnMdScreen
     >
-      <Strong
-        color="white"
-        backgroundColor={`team-${props.selectedTeamColor}`}
-        fontSize="clamp(16px, 3.5rem, 4vw)"
-        fontWeight="bold"
-        textAlign="left"
-      >
-        {capitalize(props.selectedTeamColor)}팀
-      </Strong>
+      {isReadyToAnalyze ? (
+        <StyledText
+          fontSize="clamp(16px, 3.5rem, 4vw)"
+          fontWeight="bold"
+          textAlign="left"
+          whiteSpace="pre-wrap"
+        >
+          분석하기 버튼을 눌러보세요.
+        </StyledText>
+      ) : (
+        <>
+          <Strong
+            color="white"
+            backgroundColor={`team-${props.selectedTeamColor}`}
+            fontSize="clamp(16px, 3.5rem, 4vw)"
+            fontWeight="bold"
+            textAlign="left"
+          >
+            {capitalize(props.selectedTeamColor)}팀
+          </Strong>
 
-      <StyledText
-        fontSize="clamp(16px, 3.5rem, 4vw)"
-        fontWeight="bold"
-        textAlign="left"
-      >
-        &nbsp; 챔피언을 선택해주세요.
-      </StyledText>
+          <StyledText
+            fontSize="clamp(16px, 3.5rem, 4vw)"
+            fontWeight="bold"
+            textAlign="left"
+          >
+            &nbsp; 챔피언을 선택해주세요.
+          </StyledText>
+        </>
+      )}
 
       <StyledFlexBox
         flexDirection="column"

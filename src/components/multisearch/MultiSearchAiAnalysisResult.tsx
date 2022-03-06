@@ -87,7 +87,7 @@ export const MultiSearchAiAnalysisResult = ({
   const summonerTraitIcons = useAppSelector(findSummonerTraitIcons)
 
   return (
-    <Container width="90%">
+    <Container width="100%">
       <StyledFlexBox flexDirection="column" gap="1rem">
         <Container flexDirection="column" width="60%">
           <Heading level={2} margin="1rem 0">
@@ -216,7 +216,7 @@ export const MultiSearchAiAnalysisResult = ({
                         })`,
                         width: '2.5rem',
                         objectFit: 'cover',
-                        clipPath: 'circle()',
+                        borderRadius: '50%',
                         padding: '1rem',
                       }}
                     />

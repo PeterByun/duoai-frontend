@@ -9,7 +9,7 @@ export const SvgBackButton = (props: { onClick: () => void }) => {
       onClick={props.onClick}
       css={{
         position: 'absolute',
-        left: '5rem',
+        left: '1vw',
       }}
     >
       <polygon points="10,0 10,16 0,8" style={{ fill: 'black' }} />

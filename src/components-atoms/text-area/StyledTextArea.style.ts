@@ -1,9 +1,19 @@
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
-import { StyledTextProps, TextStyle } from '@/components-atoms/text/Text'
+import {
+  ComponentBaseStyle,
+  ComponentBaseStyleProps,
+} from '@/components/app/ComponentBaseStyle'
 
-export type StyledTextAreaProps = {} & StyledTextProps
+export type StyledTextAreaProps = {} & ComponentBaseStyleProps
+
+const TextAreaStyle = (props: StyledTextAreaProps) => {
+  return css`
+    ${ComponentBaseStyle(props)}
+  `
+}
 
 export const StyledTextArea = styled.textarea<StyledTextAreaProps>`
-  ${TextStyle}
+  ${TextAreaStyle}
 `

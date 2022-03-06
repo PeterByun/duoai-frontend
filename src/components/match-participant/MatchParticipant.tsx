@@ -80,7 +80,7 @@ export function MatchParticipant(
         margin="0px auto"
         src={getChampionImage(participant.championNameEng)}
         css={{
-          clipPath: 'circle()',
+          borderRadius: '50%',
           border: '1px solid var(--white)',
         }}
       />

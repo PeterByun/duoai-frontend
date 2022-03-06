@@ -5,7 +5,7 @@ type NavContainerStyleProps = {
 }
 
 export const NavContainerStyle = styled.nav<NavContainerStyleProps>`
-  background: 'transparent';
+  background: transparent;
 
   display: flex;
   flex-direction: row;
@@ -38,7 +38,7 @@ type LinkStyleProps = {
 }
 
 export const LinkStyle = styled.div<LinkStyleProps>`
-  background: 'transparent';
+  background: transparent;
   color: var(--black);
   text-align: center;
 

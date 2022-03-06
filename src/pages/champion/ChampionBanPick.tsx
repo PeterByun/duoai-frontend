@@ -192,6 +192,10 @@ const Champs = () => {
           margin="0"
         >
           <ChampionBanPickHeader
+            selectedChampions={{
+              blueTeamChampions,
+              redTeamChampions,
+            }}
             selectedTeamColor={selectedTeam}
             onSwitchTeamClick={handleSwitchTeamClick}
             onAnalyze={handleAnalyze}

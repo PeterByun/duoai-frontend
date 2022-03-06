@@ -113,93 +113,16 @@ const MultiSearchMain = () => {
   const [aiAnalysisResult, setAiAnalysisResult] =
     useState<AiAnalysisResult | null>(null)
 
-  // useEffect(() => {
-  //   if (selectedSearchResultType === SEARCH_RESULT_TYPE.AI) {
-  //     getMultiSearchAnalysis
-  //       .setData({
-  //         summonerName: summonerNames,
-  //       })
-  //       .send<AiAnalysisResult>()
-  //       .then((response) => {
-  //         setAiAnalysisResult(response.data)
-  //       })
-  //   }
-  // }, [selectedSearchResultType])
-
-  // Dummy
-  // const aiAnalysisResult: AiAnalysisResult = {
-  //   expectedWinRate: 0.4,
-  //   mainLanerCount: {
-  //     top: 1,
-  //     jungle: 0,
-  //     mid: 0,
-  //     adc: 1,
-  //     support: 1,
-  //   },
-  //   summonerProfiles: [
-  //     {
-  //       name: 'Josh',
-  //       rank: 'gold',
-  //       leaguePoints: 55,
-  //       icons: [
-  //         {
-  //           type: '운영형',
-  //           point: 1,
-  //         },
-  //         {
-  //           type: '성장형',
-  //           point: 0,
-  //         },
-  //       ],
-  //       lane: 'mid',
-  //       preferredChamps: [
-  //         {
-  //           champNameEng: 'Garen',
-  //           champNameKor: '가렌',
-  //         },
-  //         {
-  //           champNameEng: 'Alistar',
-  //           champNameKor: '알리스타',
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       name: 'Peter',
-  //       rank: 'grandmaster',
-  //       leaguePoints: 55,
-  //       lane: 'jungle',
-  //       icons: [
-  //         {
-  //           type: '공격형',
-  //           point: 0,
-  //         },
-  //         {
-  //           type: '방어형',
-  //           point: 0,
-  //         },
-  //       ],
-  //       preferredChamps: [
-  //         {
-  //           champNameEng: 'Nunu',
-  //           champNameKor: '누누',
-  //         },
-  //         {
-  //           champNameEng: 'Quinn',
-  //           champNameKor: '퀸',
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // }
-
   return (
     <>
       <StyledTextArea
         onKeyUp={handleSummonerSearchKeyup}
         width="30rem"
         height="7rem"
-        fontSize="1.2rem"
         autoFocus
+        css={{
+          fontSize: '1.2rem',
+        }}
         placeholder={SEARCH_PLACE_HOLDER}
       ></StyledTextArea>
       <Button
@@ -213,8 +136,8 @@ const MultiSearchMain = () => {
 
       <Loading task={getMatchSummaryTask}>
         {summonerSearchResults && (
-          <Container width="100%">
-            <div>
+          <Container width="80%">
+            <StyledFlexBox flexDirection="row">
               <label>
                 <input
                   type="radio"
@@ -235,7 +158,7 @@ const MultiSearchMain = () => {
                 />
                 AI분석
               </label>
-            </div>
+            </StyledFlexBox>
 
             {selectedSearchResultType === SEARCH_RESULT_TYPE.BASIC ? (
               <Grid

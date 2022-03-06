@@ -37,12 +37,15 @@ export const Img = (props: StyledImgProps & ImgProps) => {
       align="center"
       disabled={props.disabled}
       css={{
-        clipPath: props.circle ? 'circle()' : 'initial',
+        borderRadius: props.circle ? '50%' : 'initial',
         border: props.border ? '1px solid var(--white)' : 'initial',
         ...props.cssProps,
       }}
     >
       <StyledImg
+        css={{
+          borderRadius: props.circle ? '50%' : 'initial',
+        }}
         onClick={props.onClick}
         src={props.image.src}
         width={props.width ? props.width : '3rem'}

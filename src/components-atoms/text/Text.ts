@@ -28,28 +28,28 @@ export const TextStyle = (props: StyledTextProps) => {
 
     background: ${props.background};
 
-    -webkit-background-clip: ${props.clipBackground ? 'text' : null};
-    -webkit-text-fill-color: ${props.clipBackground ? 'transparent' : null};
+    -webkit-background-clip: ${props.clipBackground ?? 'text'};
+    -webkit-text-fill-color: ${props.clipBackground ?? 'transparent'};
 
     background-color: ${!props.background
-      ? null
+      ? 'initial'
       : props.highlighted
       ? 'var(--blue)'
       : props.backgroundColor
       ? 'var(--${backgroundColor})'
-      : null};
+      : 'initial'};
     color: ${props.highlighted
       ? 'var(--white)'
       : props.color
       ? `var(--${props.color})`
       : `var(--black)`};
 
-    width: ${props.highlighted ? 'fit-content' : 'inintial'};
+    width: ${props.highlighted && 'fit-content'};
 
     font-size: ${props.fontSize ?? '1rem'};
     font-weight: ${props.fontWeight ?? '1rem'};
 
-    margin: ${props.margin ?? 'inintial'};
+    margin: ${props.margin};
 
     text-align: ${props.textAlign ?? 'center'};
     white-space: ${props.whiteSpace ?? 'nowrap'};
