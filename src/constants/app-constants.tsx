@@ -1,4 +1,4 @@
-import { Method, PageTree, PageLeaf } from '@/types/app-types'
+import { Method, PageTree } from '@/types/app-types'
 
 export const colors: { [key: string]: string } = {
   blue: '#1aace5',
@@ -15,19 +15,32 @@ export const httpMethods: {
   delete: 'delete',
 }
 
-export const routes: PageTree<PageLeaf> = Object.freeze({
+export const routes: PageTree = Object.freeze({
   champion: {
     name: '챔피언',
     path: '/champion',
     children: {
-      info: {
-        index: true,
-        name: '정보',
-        path: 'info',
-      },
-      stats: {
+      analysis: {
         name: '분석',
-        path: 'stats',
+        path: 'analysis',
+        children: {
+          build: {
+            name: '빌드',
+            path: 'build',
+          },
+          counter: {
+            name: '카운터',
+            path: 'counter',
+          },
+          sabermetrics: {
+            name: '세이버매트릭스',
+            path: 'sabermetrics',
+          },
+        },
+      },
+      tier: {
+        name: '챔피언 티어',
+        path: 'tier',
       },
       banPick: {
         name: '가상밴픽',

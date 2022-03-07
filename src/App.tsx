@@ -11,8 +11,21 @@ const LiveMatches = lazy(() => import('./pages/liveMatches/LiveMatches'))
 const Leaderboard = lazy(() => import('./pages/leaderboard/Leaderboard'))
 const MultiSearch = lazy(() => import('./pages/multiSearch/MultiSearch'))
 
-const ChampionInfo = lazy(() => import('./pages/champion/ChampionInfo'))
-const ChampionStats = lazy(() => import('./pages/champion/ChampionStats'))
+const ChampionAnalysis = lazy(
+  () => import('./pages/champion/champion-analysis/ChampionAnalysis')
+)
+const ChampionAnalysisBuild = lazy(
+  () => import('./pages/champion/champion-analysis/ChampionBuild')
+)
+const ChampionAnalysisCounter = lazy(
+  () => import('./pages/champion/champion-analysis/ChampionCounter')
+)
+const ChampionAnalysisSabermetrics = lazy(
+  () => import('./pages/champion/champion-analysis/ChampionSabemetrics')
+)
+
+const ChampionTier = lazy(() => import('./pages/champion/ChampionTier'))
+
 const ChampionBanPick = lazy(() => import('./pages/champion/ChampionBanPick'))
 
 const SummonerRanking = lazy(
@@ -36,8 +49,9 @@ import { GlobalStyle } from './components/app/AppGlobalStyle'
 import { Global } from '@emotion/react'
 
 import { routes } from './constants/app-constants'
-const championInfoRoutes = routes.champion.children
-const leaderboardRoutes = routes.leaderboard.children
+const championInfoRoutes = routes.champion.children!
+const championAnalysisRoutes = routes.champion.children!.analysis.children!
+const leaderboardRoutes = routes.leaderboard.children!
 
 import {
   loadChampionThumbnails,
@@ -73,18 +87,45 @@ function App() {
             }
           >
             <Route
-              index
+              path={championInfoRoutes.analysis.path}
               element={
                 <LoadingComponent>
-                  <ChampionInfo />
+                  <ChampionAnalysis />
                 </LoadingComponent>
               }
-            />
+            >
+              <Route
+                path={championAnalysisRoutes.build.path}
+                element={
+                  <LoadingComponent>
+                    <ChampionAnalysisBuild />
+                  </LoadingComponent>
+                }
+              />
+
+              <Route
+                path={championAnalysisRoutes.counter.path}
+                element={
+                  <LoadingComponent>
+                    <ChampionAnalysisCounter />
+                  </LoadingComponent>
+                }
+              />
+
+              <Route
+                path={championAnalysisRoutes.sabermetrics.path}
+                element={
+                  <LoadingComponent>
+                    <ChampionAnalysisSabermetrics />
+                  </LoadingComponent>
+                }
+              />
+            </Route>
             <Route
-              path={championInfoRoutes.stats.path}
+              path={championInfoRoutes.tier.path}
               element={
                 <LoadingComponent>
-                  <ChampionStats />
+                  <ChampionTier />
                 </LoadingComponent>
               }
             />

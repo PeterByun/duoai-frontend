@@ -8,14 +8,13 @@ export type Page = {
   disabled?: boolean
   invisible?: boolean
   index?: boolean
+  children?: {
+    [key: string]: Page
+  }
 }
 
 export type PageLeaf = Exclude<Page, 'children'>
 
-export type PageTree<C> = {
-  [key: string]: Page & {
-    children: {
-      [key: string]: C
-    }
-  }
+export type PageTree = {
+  [key: string]: Page
 }

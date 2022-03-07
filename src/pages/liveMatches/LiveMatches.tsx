@@ -5,7 +5,7 @@ import NavigationBar from '@/components-atoms/navigator/Navigator'
 import { Page } from '../../types/app-types'
 
 import { routes } from '../../constants/app-constants'
-const LiveMatchesRoutes = routes.liveMatches.children
+const LiveMatchesRoutes = routes.liveMatches.children!
 
 const pages: Page[] = [...Object.values(LiveMatchesRoutes)]
 
