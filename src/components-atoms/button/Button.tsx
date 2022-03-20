@@ -8,6 +8,7 @@ import {
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   children?: React.ReactNode
+  primary?: boolean
 }
 
 const Button = (props: ButtonProps & ButtonStyleProps) => {

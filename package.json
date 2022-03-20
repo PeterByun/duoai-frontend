@@ -8,7 +8,9 @@
     "analyze": "webpack --analyze --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:stg": "webpack --config webpack.prod.js --env staging",
-    "build:prd": "webpack --config webpack.prod.js"
+    "build:prd": "webpack --config webpack.prod.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [
     "duoai"
@@ -22,6 +24,14 @@
     "@babel/preset-typescript": "^7.16.5",
     "@emotion/babel-plugin": "^11.7.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
+    "@storybook/addon-actions": "^6.5.0-alpha.49",
+    "@storybook/addon-essentials": "^6.5.0-alpha.49",
+    "@storybook/addon-interactions": "^6.5.0-alpha.49",
+    "@storybook/addon-links": "^6.5.0-alpha.49",
+    "@storybook/builder-webpack5": "^6.5.0-alpha.49",
+    "@storybook/manager-webpack5": "^6.5.0-alpha.49",
+    "@storybook/react": "^6.5.0-alpha.49",
+    "@storybook/testing-library": "^0.0.9",
     "@types/react": "^17.0.38",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^17.0.11",
@@ -31,6 +41,7 @@
     "css-minimizer-webpack-plugin": "^3.3.1",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-storybook": "^0.5.7",
     "eslint-webpack-plugin": "^3.1.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",

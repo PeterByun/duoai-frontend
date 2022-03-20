@@ -9,6 +9,7 @@ export type ButtonStyleProps = {
   fontWeight?: string
   borderRadius?: string
   fontSize?: string
+  primary?: boolean
 } & ComponentBaseStyleProps
 
 export const ButtonStyle = styled.button<ButtonStyleProps>`
@@ -18,8 +19,10 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   align-items: center;
   justify-content: center;
 
-  background: ${({ backgroundColor }) =>
-    backgroundColor ? `var(--${backgroundColor})` : 'var(--dark-blue)'};
+  background: ${({ backgroundColor, primary }) => {
+    if (primary) return 'var(--blue)'
+    return backgroundColor ? `var(--${backgroundColor})` : 'var(--dark-blue)'
+  }};
   font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : 'bold')};
   color: var(--white);
