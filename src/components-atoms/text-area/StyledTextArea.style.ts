@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import {
   ComponentBaseStyle,
   ComponentBaseStyleProps,
-} from '@/components/app/ComponentBaseStyle'
+} from '@/components-features/app/ComponentBaseStyle'
 
 export type StyledTextAreaProps = {} & ComponentBaseStyleProps
 

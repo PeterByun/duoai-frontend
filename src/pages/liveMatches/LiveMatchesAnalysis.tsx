@@ -8,17 +8,17 @@ import Input from '@/components-atoms/input/Input'
 import Button from '@/components-atoms/button/Button'
 import Container from '@/components-atoms/container/Container'
 import Grid from '@/components-atoms/grid/Grid'
-import MatchTable from '@/components/match-table/MatchTable'
+import MatchTable from '@/components-features/match-table/MatchTable'
 import Loading from '@/components-atoms/loading/Loading'
 
-import { getMatchList, getProSummoners } from '../../utils/endpoints'
+import { getMatchList, getProSummoners } from '@/apis/duoai/duoai'
 
 import {
   Match,
   ParticipantWithIdentity,
   MatchList,
   ParticipantIdentitiesEntity,
-} from '../../types/match-types'
+} from '@/apis/duoai/types/match'
 
 import { useChampionImages } from '@/hooks/use-champion-images'
 import Heading from '@/components-atoms/heading/Heading'

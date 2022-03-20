@@ -6,14 +6,14 @@ import Input from '@/components-atoms/input/Input'
 import Grid from '@/components-atoms/grid/Grid'
 import { GridSelectedChampions } from '@/components-atoms/grid/GridSelectedChampions'
 import { Img } from '@/components-atoms/img/Img'
-import { ChampionBanPickHeader } from '@/components/champion-ban-pick/ChampionBanPickHeader'
-import { ChampionBanPickResultHeader } from '@/components/champion-ban-pick/ChampionBanPickResultHeader'
-import { ChampionBanPickResult } from '@/components/champion-ban-pick/ChampionBanPickResult'
+import { ChampionBanPickHeader } from '@/components-features/champion-ban-pick/ChampionBanPickHeader'
+import { ChampionBanPickResultHeader } from '@/components-features/champion-ban-pick/ChampionBanPickResultHeader'
+import { ChampionBanPickResult } from '@/components-features/champion-ban-pick/ChampionBanPickResult'
 
 import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 import { StyledText } from '@/components-atoms/text/Text'
 
-import { analyzeBanPick } from '@/utils/endpoints'
+import { analyzeBanPick } from '@/apis/duoai/duoai'
 
 import {
   importChampionThumbnails,

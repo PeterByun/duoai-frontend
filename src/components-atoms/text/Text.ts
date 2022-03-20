@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import {
   ComponentBaseStyle,
   ComponentBaseStyleProps,
-} from '@/components/app/ComponentBaseStyle'
+} from '@/components-features/app/ComponentBaseStyle'
 
 export type StyledTextProps = {
   color?: string

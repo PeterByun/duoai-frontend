@@ -23,11 +23,32 @@ npm run start
 <br>
 **start** - Starts a local development server.
 <br>
-**test:unit**
+**test:unit** - TODO
 <br>
-**test:e2e**
+**test:e2e** - TODO
 <br>
 **build** - Build the application bundle.
+
+---
+
+# File structure
+
+If the data scheme of API is not suitable for the client, you should process it with an adapter, so the complexity of API spreads to the components.
+This is why we have a dedicated folder for APIs(/apis). Also, this will make the Front-end application testable without the backend API server, thus decreasing the operational cost by efficiently implementing E2E tests.
+
+\*files prefixed with "app" means these files belong to the app, but not specific features.
+
+- /apis: HTTP request modules for API endpoints.
+  Each API consists of one or more type definitions and an adapter for processing data.
+- /assets: Static assets such as images, fonts, json files.
+- /components-atoms: Very basic dumb components that are used to build complex, smart components.
+- /components-features: Components belong to specific features(pages).
+- /constants: Constants that are categorized by feature.
+- /hooks: React component logics exracted for common use cases.
+- /pages: Components under pages represent pages and routes.
+- /redux: Global state management.
+- /types: Type definitions.
+- /utils: Utility modules.
 
 ---
 

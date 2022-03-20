@@ -8,14 +8,14 @@ import {
   DroppableProvided,
 } from 'react-beautiful-dnd'
 
-import ChampionSpells from '@/components/champion-spells/ChampionSpells'
-import ChampionKda from '@/components/champion-kda/ChampionKda'
-import ChampionItems from '@/components/champion-items/ChampionItems'
+import ChampionSpells from '@/components-features/champion-spells/ChampionSpells'
+import ChampionKda from '@/components-features/champion-kda/ChampionKda'
+import ChampionItems from '@/components-features/champion-items/ChampionItems'
 import { Img } from '@/components-atoms/img/Img'
 import {
   StyledMatchSummary,
   StyledMatchSummaryWrapper,
-} from '@/components/match-table/StyledMatchSummary.style'
+} from '@/components-features/match-table/StyledMatchSummary.style'
 import Button from '@/components-atoms/button/Button'
 import Heading from '@/components-atoms/heading/Heading'
 import Alert, { AlertData } from '@/components-atoms/alert/Alert'
@@ -27,9 +27,9 @@ import { StyledImg } from '@/components-atoms/img/StyledImg.style'
 import {
   getMatchParticipantClone,
   MatchParticipant,
-} from '@/components/match-participant/MatchParticipant'
+} from '@/components-features/match-participant/MatchParticipant'
 
-import { analyzeSwappedMatch } from '@/utils/endpoints'
+import { analyzeSwappedMatch } from '@/apis/duoai/duoai'
 import { useChampionImages } from '@/hooks/use-champion-images'
 import { toPercentage, getHowOldFromNow } from '@/utils/string-utils'
 import {
@@ -43,7 +43,7 @@ import {
   ParticipantsEntity,
   ParticipantWithIdentity,
   TeamsEntity,
-} from '@/types/match-types'
+} from '@/apis/duoai/types/match'
 
 type MatchTableProps = {
   matchList: MatchList

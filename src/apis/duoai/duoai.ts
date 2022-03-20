@@ -1,5 +1,5 @@
-import { Request } from './axios-utils'
-import { httpMethods } from '../constants/app-constants'
+import { Request } from '@/utils/http-utils'
+import { httpMethods } from '../../constants/app-constants'
 
 /**
  * Ranking pages dummy endpoints

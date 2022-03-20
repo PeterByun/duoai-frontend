@@ -9,9 +9,9 @@ import {
 import { useChampionImages } from '@/hooks/use-champion-images'
 
 import Grid from '@/components-atoms/grid/Grid'
-import ChampionSpells from '@/components/champion-spells/ChampionSpells'
-import ChampionKda from '@/components/champion-kda/ChampionKda'
-import ChampionItems from '@/components/champion-items/ChampionItems'
+import ChampionSpells from '@/components-features/champion-spells/ChampionSpells'
+import ChampionKda from '@/components-features/champion-kda/ChampionKda'
+import ChampionItems from '@/components-features/champion-items/ChampionItems'
 
 import { StyledText } from '@/components-atoms/text/Text'
 import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
@@ -19,7 +19,7 @@ import { StyledImg } from '@/components-atoms/img/StyledImg.style'
 
 import { extractItemsFromParticipant } from '@/utils/match-utils'
 
-import { ParticipantWithIdentity } from '@/types/match-types'
+import { ParticipantWithIdentity } from '@/apis/duoai/types/match'
 
 const getItemStyle = (
   isDragging: boolean,

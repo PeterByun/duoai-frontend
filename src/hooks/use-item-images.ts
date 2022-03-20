@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/redux/hooks'
-import { selectItemIcons } from '@/redux/slices/assetSlice'
+import { selectItemIcons } from '@/redux/slices/asset-slice'
 import { getValueOrDefaultFromObject } from '@/utils/array-utils'
 
 export function useItemImages() {

@@ -8,7 +8,10 @@ import { Img } from '@/components-atoms/img/Img'
 
 import { useAppSelector } from '@/redux/hooks'
 import { useChampionImages } from '@/hooks/use-champion-images'
-import { findRankIcon, findSummonerTraitIcons } from '@/redux/slices/assetSlice'
+import {
+  findRankIcon,
+  findSummonerTraitIcons,
+} from '@/redux/slices/asset-slice'
 import { capitalize, toPercentage } from '@/utils/string-utils'
 
 import {

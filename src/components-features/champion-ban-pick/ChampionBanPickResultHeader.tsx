@@ -1,5 +1,5 @@
 import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import SelectedChampion from '@/components/champion-ban-pick/SelectedChampion'
+import SelectedChampion from '@/components-features/champion-ban-pick/SelectedChampion'
 
 import { TeamComparison } from '@/pages/champion/ChampionBanPick'
 import { GridSelectedChampions } from '@/components-atoms/grid/GridSelectedChampions'

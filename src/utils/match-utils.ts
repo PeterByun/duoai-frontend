@@ -1,7 +1,7 @@
 import {
   ParticipantsEntity,
   ParticipantWithIdentity,
-} from '@/types/match-types'
+} from '@/apis/duoai/types/match'
 
 export const extractItemsFromParticipant = (
   participant: ParticipantWithIdentity | ParticipantsEntity | undefined

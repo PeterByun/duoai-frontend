@@ -45,7 +45,7 @@ const MultiSearchMain = lazy(
 const SummonerSearch = lazy(() => import('./pages/summoner/SummonerSearch'))
 
 import { Page } from './types/app-types'
-import { GlobalStyle } from './components/app/AppGlobalStyle'
+import { GlobalStyle } from './components-features/app/GlobalStyle'
 import { Global } from '@emotion/react'
 
 import { routes } from './constants/app-constants'
@@ -58,7 +58,7 @@ import {
   loadItemIcons,
   loadRankIcons,
   loadsummonerTraitIcons,
-} from './redux/slices/assetSlice'
+} from './redux/slices/asset-slice'
 import Summoner from './pages/summoner/Summoner'
 
 const pages: Page[] = [...Object.values(routes)]

@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
-import { mq } from '@/components/app/AppGlobalStyle'
+import { mq } from '@/components-features/app/GlobalStyle'
 import {
   ComponentBaseStyle,
   ComponentBaseStyleProps,
-} from '@/components/app/ComponentBaseStyle'
+} from '@/components-features/app/ComponentBaseStyle'
 
 type StyledMatchSummaryProps = {
   win?: boolean

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import asssetReducer from './slices/assetSlice'
+import asssetReducer from './slices/asset-slice'
 
 // Create the store with reducers. configureStore API adds the thunk middleware by default.
 export const store = configureStore({

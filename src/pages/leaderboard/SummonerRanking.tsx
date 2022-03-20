@@ -14,7 +14,7 @@ import Table from '@/components-atoms/table/Table'
 import { SummonerRank } from '../../types/rank-types'
 
 import { roles } from '../../constants/rank-constants'
-import { getSummonerRankingByRole } from '../../utils/endpoints'
+import { getSummonerRankingByRole } from '@/apis/duoai/duoai'
 
 type SummonerRanksByRole = { [char: string]: SummonerRank[] }
 

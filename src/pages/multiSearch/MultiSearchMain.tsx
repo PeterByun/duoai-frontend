@@ -7,17 +7,17 @@ import React, {
 
 import MultiSearchResultCard, {
   SummonerSearchResult,
-} from '@/components/multiSearch-result-card/MultiSearchResultCard'
+} from '@/components-features/multiSearch-result-card/MultiSearchResultCard'
 import Grid from '@/components-atoms/grid/Grid'
 import Button from '@/components-atoms/button/Button'
 import Loading from '@/components-atoms/loading/Loading'
 import {
   MultiSearchAiAnalysisResult,
   AiAnalysisResult,
-} from '@/components/multisearch/MultiSearchAiAnalysisResult'
+} from '@/components-features/multisearch/MultiSearchAiAnalysisResult'
 
 import { StyledTextArea } from '@/components-atoms/text-area/StyledTextArea.style'
-import { getMatchSummary, getMultiSearchAnalysis } from '../../utils/endpoints'
+import { getMatchSummary, getMultiSearchAnalysis } from '@/apis/duoai/duoai'
 import Container from '@/components-atoms/container/Container'
 import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 

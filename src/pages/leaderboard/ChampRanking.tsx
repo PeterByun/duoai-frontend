@@ -13,7 +13,7 @@ import Table from '@/components-atoms/table/Table'
 
 import { ChampRank } from '../../types/rank-types'
 
-import { getChampRankingsByTier } from '../../utils/endpoints'
+import { getChampRankingsByTier } from '@/apis/duoai/duoai'
 import { tiers, roles } from '../../constants/rank-constants'
 
 type ChampRanksByTier = { [char: string]: ChampRank[] }

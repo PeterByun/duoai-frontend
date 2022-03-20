@@ -1,9 +1,10 @@
-import { ChampionDataList, ChampionImg } from '../types/champion-types'
+import { ChampionDataList } from '@/apis/duoai/types/champion'
+import { ChampionImg } from '@/types/champion-types'
 
 import { pathToName } from '@/utils/string-utils'
 
 import championNameAndKeyPair from '../assets/js/champion-name-key-pair'
-import championDataJson from './../assets/json/champion-info.json'
+import championDataJson from '../assets/json/champion-info.json'
 
 export type ImportedFiles = {
   [key: string]: string

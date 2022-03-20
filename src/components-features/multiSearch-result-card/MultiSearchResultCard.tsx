@@ -8,7 +8,7 @@ import Strong from '@/components-atoms/strong/Strong'
 import Container from '@/components-atoms/container/Container'
 
 import { useAppSelector } from '@/redux/hooks'
-import { findRankIcon } from '@/redux/slices/assetSlice'
+import { findRankIcon } from '@/redux/slices/asset-slice'
 import { useChampionImages } from '@/hooks/use-champion-images'
 
 import {

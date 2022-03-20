@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/redux/hooks'
-import { selectChampionThumbnails } from '@/redux/slices/assetSlice'
+import { selectChampionThumbnails } from '@/redux/slices/asset-slice'
 import { getValueOrDefaultFromObject } from '@/utils/array-utils'
 
 export function useChampionImages() {

@@ -13,7 +13,7 @@ import Table from '@/components-atoms/table/Table'
 
 import { SummonerRank } from '../../types/rank-types'
 
-import { getSummonerRanking } from '../../utils/endpoints'
+import { getSummonerRanking } from '@/apis/duoai/duoai'
 import {
   champions,
   tiers,
