@@ -4,7 +4,6 @@ import { pathToName } from '@/utils/string-utils'
 
 import championNameAndKeyPair from '../assets/js/champion-name-key-pair'
 import championDataJson from './../assets/json/champion-info.json'
-const championDataList: ChampionDataList = JSON.parse(championDataJson)
 
 export type ImportedFiles = {
   [key: string]: string
@@ -23,19 +22,25 @@ export const importAll = (
   return files
 }
 
+/**
+ * TODO: this function should use the update championDataList.
+ */
 export const addInfoToChampionImg = (
   imagesSrcList: ImportedFiles
 ): ChampionImg[] => {
   let championImg = []
 
   for (const [fileName, path] of Object.entries(imagesSrcList)) {
-    const championData = championDataList[fileName.toLowerCase()]
+    const championData = (championDataJson as unknown as ChampionDataList)[
+      fileName.toLowerCase()
+    ]
 
     championImg.push({
       name: championData?.name,
       src: path,
       key: championNameAndKeyPair[fileName],
       consonants: championData?.consonants,
+      laneName: '',
     })
   }
 

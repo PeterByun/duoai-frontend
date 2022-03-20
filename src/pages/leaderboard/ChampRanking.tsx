@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect } from 'react'
 
 import {
-  SelectBarStyle,
-  OptionStyle,
+  StyledSelectBar,
+  StyledOption,
 } from '@/components-atoms/select-bar/StyledSelectBar.style'
 
 import Container from '@/components-atoms/container/Container'
@@ -105,15 +105,17 @@ export const ChampRanking = (): ReactElement => {
     fetchChampRankings()
   }, [])
 
-  const onChampionSearchInputKeyUp = (
+  const handleChampionSearchInputKeyUp = (
     e: React.KeyboardEvent<HTMLInputElement>
   ): void => {
     searchInputVal = e.currentTarget.value
 
-    if (e.key === 'Enter') onSearchChampion()
+    if (e.key === 'Enter') handleSearchChampion()
   }
 
-  const onSearchChampion = (e?: React.MouseEvent<HTMLButtonElement>): void => {
+  const handleSearchChampion = (
+    e?: React.MouseEvent<HTMLButtonElement>
+  ): void => {
     if (searchInputVal && selectedChampRankings) {
       setSelectedChampionRankings(
         selectedChampRankings.filter(
@@ -154,37 +156,37 @@ export const ChampRanking = (): ReactElement => {
   return (
     <Container childrenMarginBottom="10px" flexDirection={'column'}>
       <SearchBar width="1000px" height="100px">
-        <Input label="챔피언 검색" onKeyUp={onChampionSearchInputKeyUp} />
-        <Button width="80px" height="40px" onClick={onSearchChampion}>
+        <Input label="챔피언 검색" onKeyUp={handleChampionSearchInputKeyUp} />
+        <Button width="80px" height="40px" onClick={handleSearchChampion}>
           검색
         </Button>
       </SearchBar>
 
-      <SelectBarStyle width="1000px" height="80px" depth={0}>
+      <StyledSelectBar width="1000px" height="80px" depth={0}>
         {Object.values(tiers).map((tier) => (
-          <OptionStyle
+          <StyledOption
             value={tier.value}
             key={tier.name}
             active={selectedTier === tier.value}
             onClick={onTierClick(tier.value)}
           >
             {tier.name}
-          </OptionStyle>
+          </StyledOption>
         ))}
-      </SelectBarStyle>
+      </StyledSelectBar>
 
-      <SelectBarStyle width="1000px" height="80px" depth={1}>
+      <StyledSelectBar width="1000px" height="80px" depth={1}>
         {Object.values(roles).map((role) => (
-          <OptionStyle
+          <StyledOption
             value={role.value}
             key={role.name}
             active={selectedRole === role.value}
             onClick={onRoleClick(role.value)}
           >
             {role.name}
-          </OptionStyle>
+          </StyledOption>
         ))}
-      </SelectBarStyle>
+      </StyledSelectBar>
 
       <Table
         headItems={champRankingTableHeadItems}

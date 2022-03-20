@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { InputHTMLAttributes } from 'react'
 import {
   InputStyle,
   InputWrapperStyle,
@@ -11,7 +11,7 @@ type InputProps = {
   label?: string
   width?: string
   height?: string
-}
+} & InputHTMLAttributes<HTMLInputElement>
 
 export default function Input(props: InputProps) {
   return (

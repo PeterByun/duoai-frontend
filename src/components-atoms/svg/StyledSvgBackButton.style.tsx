@@ -12,9 +12,9 @@ export type StyledSvgBackButtonProps = {
 export const StyledSvgBackButton = styled.svg<StyledSvgBackButtonProps>`
   ${ComponentBaseStyle}
 
-  cursor: ${({ isButton }) => (isButton ? 'pointer' : null)};
+  cursor: ${({ isButton }) => (isButton ? 'pointer' : '')};
 
   :hover {
-    opacity: ${({ isButton }) => (isButton ? '0.8' : null)};
+    opacity: ${({ isButton }) => (isButton ? '0.8' : '')};
   }
 `

@@ -17,13 +17,13 @@ export const StyledImg = styled.img<StyledImgProps>`
 
   cursor: ${({ disabled, onClick }) => {
     if (disabled) return null
-    return onClick ? 'pointer' : null
+    return onClick ? 'pointer' : ''
   }};
 
   :hover {
     opacity: ${({ disabled, onClick }) => {
-      if (disabled) return null
-      return onClick ? '0.8' : null
+      if (disabled) return ''
+      return onClick ? '0.8' : ''
     }};
   }
 `

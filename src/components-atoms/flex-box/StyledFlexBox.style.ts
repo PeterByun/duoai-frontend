@@ -24,29 +24,29 @@ export const StyledFlexBox = styled.div<FlexBoxStyleProps>`
     flexDirection ? flexDirection : 'row'};
   align-items: ${({ align }) => (align ? align : 'center')};
   justify-content: ${({ justify }) => (justify ? justify : 'center')};
-  gap: ${({ gap }) => (gap ? gap : null)};
+  gap: ${({ gap }) => (gap ? gap : '')};
 
-  grid-column: ${({ gridColumn }) => (gridColumn ? gridColumn : null)};
+  grid-column: ${({ gridColumn }) => (gridColumn ? gridColumn : '')};
 
-  cursor: ${({ boxShadow }) => (boxShadow ? boxShadow : null)};
+  cursor: ${({ boxShadow }) => (boxShadow ? boxShadow : '')};
 
-  filter: ${({ disabled }) => (disabled ? 'grayscale(1)' : null)};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : null)};
+  filter: ${({ disabled }) => (disabled ? 'grayscale(1)' : '')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : '')};
 
   ${mq['sm']} {
     flex-flow: ${({ flowColumnOnMdScreen }) =>
-      flowColumnOnMdScreen ? 'column' : null};
+      flowColumnOnMdScreen ? 'column' : ''};
   }
   ${mq['md']} {
     flex-flow: ${({ flowColumnOnMdScreen }) =>
-      flowColumnOnMdScreen ? 'column' : null};
+      flowColumnOnMdScreen ? 'column' : ''};
   }
   ${mq['lg']} {
     flex-flow: ${({ flowColumnOnMdScreen }) =>
-      flowColumnOnMdScreen ? 'initial' : null};
+      flowColumnOnMdScreen ? 'initial' : ''};
   }
 
   > * {
-    pointer-events: ${({ disabled }) => (disabled ? 'none !important' : null)};
+    pointer-events: ${({ disabled }) => (disabled ? 'none !important' : '')};
   }
 `

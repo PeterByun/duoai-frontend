@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
 import {
-  SelectBarStyle,
-  OptionStyle,
+  StyledSelectBar,
+  StyledOption,
 } from '@/components-atoms/select-bar/StyledSelectBar.style'
 
 import Container from '@/components-atoms/container/Container'
@@ -112,44 +112,44 @@ export const ExpertRanking = () => {
         </Button>
       </SearchBar>
 
-      <SelectBarStyle width="1000px" height="80px" depth={1}>
+      <StyledSelectBar width="1000px" height="80px" depth={1}>
         {Object.values(champions).map((champion) => (
-          <OptionStyle
+          <StyledOption
             value={champion.value}
             key={champion.name}
             active={selectedChampion === champion.value}
             onClick={onChampionClick(champion.value)}
           >
             {champion.name}
-          </OptionStyle>
+          </StyledOption>
         ))}
-      </SelectBarStyle>
+      </StyledSelectBar>
 
-      <SelectBarStyle width="1000px" height="80px" depth={0}>
+      <StyledSelectBar width="1000px" height="80px" depth={0}>
         {Object.values(tiers).map((tier) => (
-          <OptionStyle
+          <StyledOption
             value={tier.value}
             key={tier.name}
             active={selectedTier === tier.value}
             onClick={onTierClick(tier.value)}
           >
             {tier.name}
-          </OptionStyle>
+          </StyledOption>
         ))}
-      </SelectBarStyle>
+      </StyledSelectBar>
 
-      <SelectBarStyle width="1000px" height="80px" depth={2}>
+      <StyledSelectBar width="1000px" height="80px" depth={2}>
         {Object.values(expertCriteria).map((criteria) => (
-          <OptionStyle
+          <StyledOption
             value={criteria.value}
             key={criteria.name}
             active={selectedExpertCriteria === criteria.value}
             onClick={onExpertCriteriaClick(criteria.value)}
           >
             {criteria.name}
-          </OptionStyle>
+          </StyledOption>
         ))}
-      </SelectBarStyle>
+      </StyledSelectBar>
 
       <Table
         headItems={summonerRankingsTableHeadItems}

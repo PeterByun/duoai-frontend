@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
 import {
-  SelectBarStyle,
-  OptionStyle,
+  StyledSelectBar,
+  StyledOption,
 } from '@/components-atoms/select-bar/StyledSelectBar.style'
 
 import Container from '@/components-atoms/container/Container'
@@ -99,18 +99,18 @@ const SummonerRanking = () => {
         </Button>
       </SearchBar>
 
-      <SelectBarStyle width="1000px" height="80px" depth={0}>
+      <StyledSelectBar width="1000px" height="80px" depth={0}>
         {Object.values(roles).map((role) => (
-          <OptionStyle
+          <StyledOption
             value={role.value}
             key={role.name}
             active={selectedRole === role.value}
             onClick={onRoleClick(role.value)}
           >
             {role.name}
-          </OptionStyle>
+          </StyledOption>
         ))}
-      </SelectBarStyle>
+      </StyledSelectBar>
 
       <Table
         headItems={summonerRankingsTableHeadItems}

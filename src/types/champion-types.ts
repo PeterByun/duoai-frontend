@@ -12,4 +12,5 @@ export type ChampionImg = {
   src: string
   key: number
   consonants: string
+  laneName: string
 }

@@ -5,21 +5,14 @@ import {
   ComponentBaseStyleProps,
 } from '@/components/app/ComponentBaseStyle'
 
-type SelectBarStyleProps = {
+type StyledSelectBarProps = {
   depth: number
 } & ComponentBaseStyleProps
 
-export const SelectBarStyle = styled.div<SelectBarStyleProps>`
+export const StyledSelectBar = styled.div<StyledSelectBarProps>`
   ${ComponentBaseStyle}
 
-  background-color: ${({ depth }) => {
-    switch (depth) {
-      case 0:
-        return 'var(--gray)'
-      default:
-        return 'var(--gray)'
-    }
-  }};
+  background-color: transparent;
 
   position: relative;
   display: flex;
@@ -32,25 +25,13 @@ export const SelectBarStyle = styled.div<SelectBarStyleProps>`
   overflow-x: auto;
 `
 
-type OptionStyleProps = {
+type StyledOptionProps = {
   active: boolean
 }
 
-export const OptionStyle = styled.button<OptionStyleProps>`
-  background: ${({ active }) => {
-    if (active) {
-      return 'var(--dark-blue)'
-    } else {
-      return 'transparent'
-    }
-  }};
-  color: ${({ active }) => {
-    if (active) {
-      return 'var(--white)'
-    } else {
-      return 'var(--black)'
-    }
-  }};
+export const StyledOption = styled.button<StyledOptionProps>`
+  background: transparent;
+  color: var(--black);
 
   display: flex;
   flex-direction: column;
@@ -63,10 +44,12 @@ export const OptionStyle = styled.button<OptionStyleProps>`
   margin: 0 10px;
   padding: 3px 5px;
 
-  font-size: 1rem;
+  font-size: 1.2rem;
 
-  border: none;
-  border-radius: 3px;
+  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  border: 1px solid transparent;
+  border-bottom: ${({ active }) =>
+    active ? '1px solid var(--black)' : 'none'};
 
   white-space: nowrap;
   user-select: none;
@@ -77,6 +60,6 @@ export const OptionStyle = styled.button<OptionStyleProps>`
 
   :hover {
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 0.7;
   }
 `
