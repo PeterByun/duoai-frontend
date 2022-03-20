@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
-import { StyledText, StyledTextProps } from '@/components-atoms/text/Text'
+import { Text, StyledTextProps } from '@/components-atoms/text/Text'
 
 export type StrongStyleProps = {} & StyledTextProps
 
-export const StyledStrong = styled(StyledText)<StrongStyleProps>``
+export const StyledStrong = styled(Text)<StrongStyleProps>``

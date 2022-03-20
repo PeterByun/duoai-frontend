@@ -18,14 +18,13 @@ type ImgProps = {
   width?: string
   height?: string
 
-  children?: React.ReactNode
-  onClick?: (e: React.MouseEvent<HTMLImageElement>) => void
   disabled?: boolean
   isNameHidden?: boolean
   circle?: boolean
   border?: boolean
-  cursor?: string
 
+  onClick?: (e: React.MouseEvent<HTMLImageElement>) => void
+  children?: React.ReactNode
   css?: CSSProperties
 }
 
@@ -39,7 +38,7 @@ export const Img = (props: StyledImgProps & ImgProps) => {
       css={{
         borderRadius: props.circle ? '50%' : 'initial',
         border: props.border ? '1px solid var(--white)' : 'initial',
-        ...props.cssProps,
+        ...props.css,
       }}
     >
       <StyledImg
@@ -51,7 +50,6 @@ export const Img = (props: StyledImgProps & ImgProps) => {
         width={props.width ? props.width : '3rem'}
         height={props.height ? props.height : '3rem'}
         aria-label={props.image.name}
-        {...props}
       >
         {props.children}
       </StyledImg>

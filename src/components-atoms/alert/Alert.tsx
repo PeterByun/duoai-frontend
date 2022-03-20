@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
-import { StyledFlexBox } from '../flex-box/StyledFlexBox.style'
+import { FlexBox } from '../flex-box/StyledFlexBox.style'
 import { StyledModal } from '../modal/StyledModal.style'
-import { StyledText } from '../text/Text'
+import { Text } from '../text/Text'
 
 import Heading from '../heading/Heading'
 import Button from '../button/Button'
@@ -50,7 +50,7 @@ const Alert = (props: AlertProps) => {
       isOpen={props.alertData.isAlertOpen}
       onClick={handleCloseClick}
     >
-      <StyledFlexBox
+      <FlexBox
         backgroundColor="white"
         width="fit-content"
         height="20vh"
@@ -66,9 +66,9 @@ const Alert = (props: AlertProps) => {
       >
         <Heading level={3}>{props.alertData.title}</Heading>
 
-        <StyledText padding="1rem">{props.alertData.message}</StyledText>
+        <Text padding="1rem">{props.alertData.message}</Text>
 
-        <StyledFlexBox width="80%" flexDirection="row" justify="space-evenly">
+        <FlexBox width="80%" flexDirection="row" justify="space-evenly">
           <Button onClick={handleConfirmClick} width="5rem" height="2rem">
             확인
           </Button>
@@ -80,8 +80,8 @@ const Alert = (props: AlertProps) => {
           >
             닫기
           </Button>
-        </StyledFlexBox>
-      </StyledFlexBox>
+        </FlexBox>
+      </FlexBox>
     </StyledModal>
   )
 

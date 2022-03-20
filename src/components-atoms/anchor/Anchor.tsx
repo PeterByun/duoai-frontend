@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyledText, StyledTextProps } from '@/components-atoms/text/Text'
+import { Text, StyledTextProps } from '@/components-atoms/text/Text'
 
 type AnchorProps = {
   children: React.ReactNode
@@ -9,8 +9,8 @@ type AnchorProps = {
 
 export const Anchor = (props: AnchorProps) => {
   return (
-    <StyledText as="a" {...props}>
+    <Text as="a" {...props}>
       {props.children}
-    </StyledText>
+    </Text>
   )
 }

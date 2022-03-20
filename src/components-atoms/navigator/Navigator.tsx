@@ -39,7 +39,6 @@ const NavigationBar = (props: NavigationBarProps) => {
               }}
               width="6rem"
               margin="0 0 0 3rem"
-              cursor="pointer"
               onClick={onLogoClick}
               isNameHidden
             />
