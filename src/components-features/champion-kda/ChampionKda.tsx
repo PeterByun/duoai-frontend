@@ -1,8 +1,8 @@
 import {
-  StyledFlexBox,
+  FlexBox,
   FlexBoxStyleProps,
 } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledText } from '@/components-atoms/text/Text'
+import { Text } from '@/components-atoms/text/Text'
 
 import { formatKda } from '@/utils/string-utils'
 
@@ -20,15 +20,15 @@ export default function ChampionKda(props: ChampionKdaProps) {
   })
 
   return (
-    <StyledFlexBox flexDirection="column">
-      <StyledFlexBox gap="1rem">
-        <StyledText fontSize="1rem" fontWeight="bold" whiteSpace="nowrap">
+    <FlexBox flexDirection="column">
+      <FlexBox gap="1rem">
+        <Text fontSize="1rem" fontWeight="bold" whiteSpace="nowrap">
           {kda.formattedKda}
-        </StyledText>
-        <StyledText fontSize="1rem" fontWeight="bold">
+        </Text>
+        <Text fontSize="1rem" fontWeight="bold">
           {kda.kdaRatio}
-        </StyledText>
-      </StyledFlexBox>
-    </StyledFlexBox>
+        </Text>
+      </FlexBox>
+    </FlexBox>
   )
 }

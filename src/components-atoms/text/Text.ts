@@ -22,7 +22,7 @@ export type StyledTextProps = {
   clipBackground?: boolean
 } & ComponentBaseStyleProps
 
-export const TextStyle = (props: StyledTextProps) => {
+export const StyledText = (props: StyledTextProps) => {
   return css`
     ${ComponentBaseStyle(props)}
 
@@ -56,6 +56,6 @@ export const TextStyle = (props: StyledTextProps) => {
   `
 }
 
-export const StyledText = styled.p<StyledTextProps>`
-  ${TextStyle}
+export const Text = styled.p<StyledTextProps>`
+  ${StyledText}
 `

@@ -1,4 +1,4 @@
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 import SelectedChampion from '@/components-features/champion-ban-pick/SelectedChampion'
 
 import { TeamComparison } from '@/pages/champion/ChampionBanPick'
@@ -8,7 +8,7 @@ export const ChampionBanPickResultHeader = (props: {
   teamComparison: TeamComparison
 }) => {
   return (
-    <StyledFlexBox
+    <FlexBox
       flexDirection="row"
       padding="1rem"
       justify="space-between"
@@ -37,6 +37,6 @@ export const ChampionBanPickResultHeader = (props: {
           ))}
         </GridSelectedChampions>
       ) : null}
-    </StyledFlexBox>
+    </FlexBox>
   )
 }

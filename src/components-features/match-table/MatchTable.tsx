@@ -11,18 +11,18 @@ import {
 import ChampionSpells from '@/components-features/champion-spells/ChampionSpells'
 import ChampionKda from '@/components-features/champion-kda/ChampionKda'
 import ChampionItems from '@/components-features/champion-items/ChampionItems'
-import { Img } from '@/components-atoms/img/Img'
+
 import {
-  StyledMatchSummary,
-  StyledMatchSummaryWrapper,
+  MatchSummary,
+  MatchSummaryWrapper,
 } from '@/components-features/match-table/StyledMatchSummary.style'
 import Button from '@/components-atoms/button/Button'
 import Heading from '@/components-atoms/heading/Heading'
 import Alert, { AlertData } from '@/components-atoms/alert/Alert'
+import { Img } from '@/components-atoms/img/Img'
 
-import { StyledText } from '@/components-atoms/text/Text'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledImg } from '@/components-atoms/img/StyledImg.style'
+import { Text } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 // We need cloned MatchParticipantElement to implement drag and drop.
 import {
   getMatchParticipantClone,
@@ -263,7 +263,7 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
     }
 
     return (
-      <StyledFlexBox
+      <FlexBox
         flexDirection="column"
         align="flex-start"
         padding="0.5rem"
@@ -279,21 +279,23 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
         {props.teams
           .find((team) => team.teamId === teamId)
           ?.participants?.map((participant) => (
-            <StyledFlexBox
+            <FlexBox
               key={participant.accountId}
               css={{
                 whiteSpace: 'nowrap',
               }}
             >
-              <StyledImg
+              <Img
                 width="1.5rem"
                 height="1.5rem"
-                src={getChampionImage(participant.championNameEng)}
+                image={{
+                  src: getChampionImage(participant.championNameEng),
+                }}
               />
               {participant.summonerName}
-            </StyledFlexBox>
+            </FlexBox>
           ))}
-      </StyledFlexBox>
+      </FlexBox>
     )
   }
 
@@ -311,7 +313,7 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
     }
 
     return (
-      <StyledFlexBox
+      <FlexBox
         ref={props.provided.innerRef}
         flexDirection="column"
         justify="start"
@@ -339,7 +341,7 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
             </Draggable>
           ))}
         {props.provided.placeholder}
-      </StyledFlexBox>
+      </FlexBox>
     )
   }
 
@@ -353,35 +355,31 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
       />
       {matchList &&
         matchList.map((match) => (
-          <StyledMatchSummaryWrapper
+          <MatchSummaryWrapper
             key={match.gameId}
             css={{
               flexDirection: 'column',
             }}
           >
-            <StyledMatchSummary
+            <MatchSummary
               win={match.selectedParticipant?.win}
               css={{
                 gap: '1rem',
               }}
             >
-              <StyledFlexBox flexDirection="column">
-                <StyledText
-                  fontSize="1rem"
-                  fontWeight="bold"
-                  whiteSpace="nowrap"
-                >
+              <FlexBox flexDirection="column">
+                <Text fontSize="1rem" fontWeight="bold" whiteSpace="nowrap">
                   {`${gameTypes[match.gameType]}, ${gameModes[match.gameMode]}`}
                   <br />
                   {match.selectedParticipant?.win ? '승리' : '패배'}
-                </StyledText>
+                </Text>
 
-                <StyledText fontSize="1rem" whiteSpace="nowrap">
+                <Text fontSize="1rem" whiteSpace="nowrap">
                   {getHowOldFromNow(match.gameCreation)}
                   <br />
                   {getHowLongLasted(match.gameDuration)}
-                </StyledText>
-              </StyledFlexBox>
+                </Text>
+              </FlexBox>
 
               <Img
                 isNameHidden
@@ -401,19 +399,19 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
                 )}
               />
 
-              <StyledFlexBox flexDirection="column">
+              <FlexBox flexDirection="column">
                 <ChampionKda
                   kills={match.selectedParticipant?.kills}
                   deaths={match.selectedParticipant?.deaths}
                   assists={match.selectedParticipant?.assists}
                 />
 
-                <StyledFlexBox flexDirection="row">
-                  <StyledText fontSize="1rem" fontWeight="bold">
+                <FlexBox flexDirection="row">
+                  <Text fontSize="1rem" fontWeight="bold">
                     {`CS: ${match.selectedParticipant?.totalMinionsKilled} 레벨: ${match.selectedParticipant?.champLevel}`}
-                  </StyledText>
-                </StyledFlexBox>
-              </StyledFlexBox>
+                  </Text>
+                </FlexBox>
+              </FlexBox>
 
               <ChampionItems
                 items={extractItemsFromParticipant(match.selectedParticipant)}
@@ -421,7 +419,7 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
 
               <MatchSelectedChampions teams={match.teams} teamColor="blue" />
               <MatchSelectedChampions teams={match.teams} teamColor="red" />
-            </StyledMatchSummary>
+            </MatchSummary>
 
             <Button
               color="dark-blue"
@@ -437,7 +435,7 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
 
             {matchListExpendedMap.get(match.gameId) ? (
               <DragDropContext onDragEnd={onDragEnd}>
-                <StyledFlexBox flexDirection="row" align="flex-start">
+                <FlexBox flexDirection="row" align="flex-start">
                   <Droppable
                     droppableId={match.gameId + ',0'}
                     renderClone={getMatchParticipantClone(
@@ -483,10 +481,10 @@ const MatchTable = ({ matchList, setMatchList }: MatchTableProps) => {
                       />
                     )}
                   </Droppable>
-                </StyledFlexBox>
+                </FlexBox>
               </DragDropContext>
             ) : null}
-          </StyledMatchSummaryWrapper>
+          </MatchSummaryWrapper>
         ))}
     </>
   )

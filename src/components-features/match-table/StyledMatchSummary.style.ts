@@ -12,7 +12,7 @@ type StyledMatchSummaryProps = {
 
 type StyledMatchSummaryWrapperProps = {} & ComponentBaseStyleProps
 
-export const StyledMatchSummaryWrapper = styled.article<StyledMatchSummaryWrapperProps>`
+export const MatchSummaryWrapper = styled.article<StyledMatchSummaryWrapperProps>`
   ${ComponentBaseStyle}
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ export const StyledMatchSummaryWrapper = styled.article<StyledMatchSummaryWrappe
   justify-content: center;
 `
 
-export const StyledMatchSummary = styled.div<StyledMatchSummaryProps>`
+export const MatchSummary = styled.div<StyledMatchSummaryProps>`
   ${ComponentBaseStyle}
 
   display: flex;

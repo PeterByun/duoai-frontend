@@ -3,8 +3,8 @@ import {
   StyledImgProps,
 } from '@/components-atoms/img/StyledImg.style'
 
-import { StyledText } from '@/components-atoms/text/Text'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Text } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 import { CSSProperties } from 'react'
 
 type ImgProps = {
@@ -26,12 +26,12 @@ type ImgProps = {
   border?: boolean
   cursor?: string
 
-  cssProps?: CSSProperties
+  css?: CSSProperties
 }
 
 export const Img = (props: StyledImgProps & ImgProps) => {
   return (
-    <StyledFlexBox
+    <FlexBox
       aria-label="image-wrapper"
       flexDirection="column"
       align="center"
@@ -57,15 +57,15 @@ export const Img = (props: StyledImgProps & ImgProps) => {
       </StyledImg>
 
       {!props.isNameHidden && (
-        <StyledText
+        <Text
           textAlign="center"
           width="100%"
           color={props.color}
           whiteSpace="pre-line"
         >
           {props.image.name}
-        </StyledText>
+        </Text>
       )}
-    </StyledFlexBox>
+    </FlexBox>
   )
 }

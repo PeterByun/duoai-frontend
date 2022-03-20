@@ -5,7 +5,7 @@ import Slogan from '@/components-atoms/slogan/Slogan'
 import Button from '@/components-atoms/button/Button'
 import SearchBar from '@/components-atoms/search-box/SearchBox'
 import Input from '@/components-atoms/input/Input'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 
 const Landing = () => {
   const navigate = useNavigate()
@@ -20,7 +20,7 @@ const Landing = () => {
   }
 
   return (
-    <StyledFlexBox
+    <FlexBox
       flexDirection="column"
       align="center"
       justify="center"
@@ -38,7 +38,7 @@ const Landing = () => {
           검색
         </Button>
       </SearchBar>
-    </StyledFlexBox>
+    </FlexBox>
   )
 }
 

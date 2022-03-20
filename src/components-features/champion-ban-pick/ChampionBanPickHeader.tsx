@@ -1,8 +1,8 @@
 import Button from '@/components-atoms/button/Button'
 import Strong from '@/components-atoms/strong/Strong'
 
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledText } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Text } from '@/components-atoms/text/Text'
 
 import { capitalize } from '@/utils/string-utils'
 import { useMemo } from 'react'
@@ -26,7 +26,7 @@ export const ChampionBanPickHeader = (props: {
   }, [props.selectedChampions])
 
   return (
-    <StyledFlexBox
+    <FlexBox
       flexDirection="row"
       width="90%"
       padding="1rem"
@@ -34,14 +34,14 @@ export const ChampionBanPickHeader = (props: {
       flowColumnOnMdScreen
     >
       {isReadyToAnalyze ? (
-        <StyledText
+        <Text
           fontSize="clamp(16px, 3.5rem, 4vw)"
           fontWeight="bold"
           textAlign="left"
           whiteSpace="pre-wrap"
         >
           분석하기 버튼을 눌러보세요.
-        </StyledText>
+        </Text>
       ) : (
         <>
           <Strong
@@ -54,17 +54,17 @@ export const ChampionBanPickHeader = (props: {
             {capitalize(props.selectedTeamColor)}팀
           </Strong>
 
-          <StyledText
+          <Text
             fontSize="clamp(16px, 3.5rem, 4vw)"
             fontWeight="bold"
             textAlign="left"
           >
             &nbsp; 챔피언을 선택해주세요.
-          </StyledText>
+          </Text>
         </>
       )}
 
-      <StyledFlexBox
+      <FlexBox
         flexDirection="column"
         justify="space-evenly"
         width="28rem"
@@ -94,7 +94,7 @@ export const ChampionBanPickHeader = (props: {
         >
           분석하기
         </Button>
-      </StyledFlexBox>
-    </StyledFlexBox>
+      </FlexBox>
+    </FlexBox>
   )
 }

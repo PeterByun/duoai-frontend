@@ -16,7 +16,7 @@ export type FlexBoxStyleProps = {
   flowColumnOnMdScreen?: boolean
 } & ComponentBaseStyleProps
 
-export const StyledFlexBox = styled.div<FlexBoxStyleProps>`
+export const FlexBox = styled.div<FlexBoxStyleProps>`
   ${ComponentBaseStyle}
 
   display: flex;

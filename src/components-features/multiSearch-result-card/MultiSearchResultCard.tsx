@@ -1,8 +1,8 @@
 import Heading from '@/components-atoms/heading/Heading'
 
-import { StyledText } from '@/components-atoms/text/Text'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledHr } from '@/components-atoms/hr/StyledHr.style'
+import { Text } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Hr } from '@/components-atoms/hr/StyledHr.style'
 import { Img } from '@/components-atoms/img/Img'
 import Strong from '@/components-atoms/strong/Strong'
 import Container from '@/components-atoms/container/Container'
@@ -84,7 +84,7 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
       padding="1rem"
       margin="0"
     >
-      <StyledFlexBox flexDirection="column">
+      <FlexBox flexDirection="column">
         <Heading level={2}>{props.summonerSearchResult.summonerName}</Heading>
         <Img
           image={{
@@ -99,85 +99,79 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
           }}
           isNameHidden
         />
-        <StyledText fontSize="2rem">
+        <Text fontSize="2rem">
           {`${capitalize(
             props.summonerSearchResult.summonerTier.toLocaleLowerCase()
           )} ${props.summonerSearchResult.summonerRank}`}
-        </StyledText>
-        <StyledText fontSize="1rem" margin="0">
+        </Text>
+        <Text fontSize="1rem" margin="0">
           {props.summonerSearchResult.leaguePoints} 점
-        </StyledText>
-        <StyledText fontSize="1rem" color="win" margin="0">
+        </Text>
+        <Text fontSize="1rem" color="win" margin="0">
           {props.summonerSearchResult.wins} 승
-        </StyledText>
-        <StyledText fontSize="1rem" color="lose" margin="0">
+        </Text>
+        <Text fontSize="1rem" color="lose" margin="0">
           {props.summonerSearchResult.losses} 패
-        </StyledText>
-      </StyledFlexBox>
+        </Text>
+      </FlexBox>
 
-      <StyledFlexBox
+      <FlexBox
         flexDirection="row"
         padding="0 1rem"
         css={{
           border: '0px 0px 1px 0px solid black',
         }}
       >
-        <StyledText>
-          {LANE_LABELS[props.summonerSearchResult.mainPosition]}
-        </StyledText>
-        <StyledFlexBox flexDirection="column" align="flex-start">
-          <StyledText margin="0">
+        <Text>{LANE_LABELS[props.summonerSearchResult.mainPosition]}</Text>
+        <FlexBox flexDirection="column" align="flex-start">
+          <Text margin="0">
             • 전체 게임의
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.mainPositionPickRate)}
             </Strong>
-          </StyledText>
-          <StyledText margin="0">
+          </Text>
+          <Text margin="0">
             • 승률
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.mainPositionWinRate)}
             </Strong>
-          </StyledText>
-        </StyledFlexBox>
-      </StyledFlexBox>
+          </Text>
+        </FlexBox>
+      </FlexBox>
 
-      <StyledFlexBox flexDirection="row">
-        <StyledText>{props.summonerSearchResult.subPosition}</StyledText>
-        <StyledFlexBox flexDirection="column" align="flex-start">
-          <StyledText margin="0">
+      <FlexBox flexDirection="row">
+        <Text>{props.summonerSearchResult.subPosition}</Text>
+        <FlexBox flexDirection="column" align="flex-start">
+          <Text margin="0">
             • 전체 게임의
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.subPositionPickRate)}
             </Strong>
-          </StyledText>
-          <StyledText margin="0">
+          </Text>
+          <Text margin="0">
             • 승률
             <Strong color="blue">
               {toPercentage(props.summonerSearchResult.subPositionWinRate)}
             </Strong>
-          </StyledText>
-        </StyledFlexBox>
-      </StyledFlexBox>
+          </Text>
+        </FlexBox>
+      </FlexBox>
 
       {props.summonerSearchResult.streakResult > 0 && (
-        <StyledFlexBox flexDirection="row">
+        <FlexBox flexDirection="row">
           {`${props.summonerSearchResult.streakResult} ${getStreakMessage(
             props.summonerSearchResult.streakInfo
           )}`}
-        </StyledFlexBox>
+        </FlexBox>
       )}
 
-      <StyledHr></StyledHr>
+      <Hr></Hr>
 
       {props.summonerSearchResult.playedGameInfoList ? (
-        <StyledFlexBox flexDirection="column" align="flex-start" width="100%">
+        <FlexBox flexDirection="column" align="flex-start" width="100%">
           {props.summonerSearchResult.playedGameInfoList.map((gameRecord) => {
             return (
-              <StyledFlexBox
-                key={gameRecord.date}
-                flexDirection="row"
-                width="100%"
-              >
+              <FlexBox key={gameRecord.date} flexDirection="row" width="100%">
                 <Img
                   width="1.5rem"
                   height="1.5rem"
@@ -197,13 +191,13 @@ const MultiSearchResultCard = (props: MultiSearchResultCardProps) => {
                     assists: gameRecord.assists,
                   }).formattedKda
                 }
-                <StyledText margin="0 0 0 auto">
+                <Text margin="0 0 0 auto">
                   {getHowOldFromNow(gameRecord.date)}
-                </StyledText>
-              </StyledFlexBox>
+                </Text>
+              </FlexBox>
             )
           })}
-        </StyledFlexBox>
+        </FlexBox>
       ) : null}
     </Container>
   )

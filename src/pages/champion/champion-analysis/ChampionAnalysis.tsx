@@ -3,13 +3,13 @@ import { Outlet, useOutletContext } from 'react-router-dom'
 
 import NavigationBar from '@/components-atoms/navigator/Navigator'
 import Grid from '@/components-atoms/grid/Grid'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 import Container from '@/components-atoms/container/Container'
 import Heading from '@/components-atoms/heading/Heading'
 import { Img } from '@/components-atoms/img/Img'
 import {
-  StyledSelectBar,
-  StyledOption,
+  SelectBar,
+  Option,
 } from '@/components-atoms/select-bar/StyledSelectBar.style'
 import SearchBar from '@/components-atoms/search-box/SearchBox'
 import Button from '@/components-atoms/button/Button'
@@ -80,7 +80,7 @@ const ChampionAnalysisChampionGrid = (props: {
     }
 
   return (
-    <StyledFlexBox flexDirection="column">
+    <FlexBox flexDirection="column">
       <Heading level={1}>분석할 챔피언을 선택해주세요.</Heading>
       <SearchBar width="18rem" height="7rem">
         <Input
@@ -94,18 +94,18 @@ const ChampionAnalysisChampionGrid = (props: {
       </SearchBar>
 
       <Container>
-        <StyledSelectBar width="64rem;" height="4rem" depth={0}>
+        <SelectBar width="64rem;" height="4rem" depth={0}>
           {Object.values(lanes).map((lane) => (
-            <StyledOption
+            <Option
               value={lane.value}
               key={lane.name}
               active={selectedLane.current === lane.value}
               onClick={handleLaneClick(lane.value)}
             >
               {lane.name}
-            </StyledOption>
+            </Option>
           ))}
-        </StyledSelectBar>
+        </SelectBar>
       </Container>
 
       <Container width="64rem">
@@ -128,7 +128,7 @@ const ChampionAnalysisChampionGrid = (props: {
           ))}
         </Grid>
       </Container>
-    </StyledFlexBox>
+    </FlexBox>
   )
 }
 

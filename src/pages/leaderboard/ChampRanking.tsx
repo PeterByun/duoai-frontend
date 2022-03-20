@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect } from 'react'
 
 import {
-  StyledSelectBar,
-  StyledOption,
+  SelectBar,
+  Option,
 } from '@/components-atoms/select-bar/StyledSelectBar.style'
 
 import Container from '@/components-atoms/container/Container'
@@ -162,31 +162,31 @@ export const ChampRanking = (): ReactElement => {
         </Button>
       </SearchBar>
 
-      <StyledSelectBar width="1000px" height="80px" depth={0}>
+      <SelectBar width="1000px" height="80px" depth={0}>
         {Object.values(tiers).map((tier) => (
-          <StyledOption
+          <Option
             value={tier.value}
             key={tier.name}
             active={selectedTier === tier.value}
             onClick={onTierClick(tier.value)}
           >
             {tier.name}
-          </StyledOption>
+          </Option>
         ))}
-      </StyledSelectBar>
+      </SelectBar>
 
-      <StyledSelectBar width="1000px" height="80px" depth={1}>
+      <SelectBar width="1000px" height="80px" depth={1}>
         {Object.values(roles).map((role) => (
-          <StyledOption
+          <Option
             value={role.value}
             key={role.name}
             active={selectedRole === role.value}
             onClick={onRoleClick(role.value)}
           >
             {role.name}
-          </StyledOption>
+          </Option>
         ))}
-      </StyledSelectBar>
+      </SelectBar>
 
       <Table
         headItems={champRankingTableHeadItems}

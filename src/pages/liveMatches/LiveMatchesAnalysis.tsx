@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledText } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Text } from '@/components-atoms/text/Text'
 
 import SearchBar from '@/components-atoms/search-box/SearchBox'
 import Input from '@/components-atoms/input/Input'
@@ -216,14 +216,14 @@ const Stats = () => {
             <Loading task={getMatchListTask}>
               {selectedSommoner && (
                 <>
-                  <StyledFlexBox flexDirection="row" justify="center">
+                  <FlexBox flexDirection="row" justify="center">
                     <Img
                       width="3rem"
                       image={{
                         src: PrevButtonSrc,
                       }}
                       onClick={handleBackToSummonerListClick}
-                      cssProps={{
+                      css={{
                         left: '5rem',
                         position: 'absolute',
                       }}
@@ -233,7 +233,7 @@ const Stats = () => {
                       <Strong fontSize="3rem">
                         {selectedSommoner.summonerName}
                       </Strong>
-                      <StyledText
+                      <Text
                         color="dark-gray"
                         fontSize="1.5rem"
                         css={{
@@ -241,9 +241,9 @@ const Stats = () => {
                         }}
                       >
                         님의 최근 전적
-                      </StyledText>
+                      </Text>
                     </Heading>
-                  </StyledFlexBox>
+                  </FlexBox>
 
                   <MatchTable
                     matchList={matchList}

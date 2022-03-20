@@ -16,10 +16,10 @@ import {
   AiAnalysisResult,
 } from '@/components-features/multisearch/MultiSearchAiAnalysisResult'
 
-import { StyledTextArea } from '@/components-atoms/text-area/StyledTextArea.style'
+import { TextArea } from '@/components-atoms/text-area/StyledTextArea.style'
 import { getMatchSummary, getMultiSearchAnalysis } from '@/apis/duoai/duoai'
 import Container from '@/components-atoms/container/Container'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 
 const MultiSearchMain = () => {
   const [searchText, setSearchText] = useState<string>('')
@@ -115,7 +115,7 @@ const MultiSearchMain = () => {
 
   return (
     <>
-      <StyledTextArea
+      <TextArea
         onKeyUp={handleSummonerSearchKeyup}
         width="30rem"
         height="7rem"
@@ -124,7 +124,7 @@ const MultiSearchMain = () => {
           fontSize: '1.2rem',
         }}
         placeholder={SEARCH_PLACE_HOLDER}
-      ></StyledTextArea>
+      ></TextArea>
       <Button
         onClick={handleSearchClick}
         width="30rem"
@@ -137,7 +137,7 @@ const MultiSearchMain = () => {
       <Loading task={getMatchSummaryTask}>
         {summonerSearchResults && (
           <Container width="80%">
-            <StyledFlexBox flexDirection="row">
+            <FlexBox flexDirection="row">
               <label>
                 <input
                   type="radio"
@@ -158,7 +158,7 @@ const MultiSearchMain = () => {
                 />
                 AI분석
               </label>
-            </StyledFlexBox>
+            </FlexBox>
 
             {selectedSearchResultType === SEARCH_RESULT_TYPE.BASIC ? (
               <Grid
@@ -176,13 +176,13 @@ const MultiSearchMain = () => {
                 ))}
               </Grid>
             ) : (
-              <StyledFlexBox width="90%">
+              <FlexBox width="90%">
                 {aiAnalysisResult && (
                   <MultiSearchAiAnalysisResult
                     aiAnalysisResult={aiAnalysisResult}
                   ></MultiSearchAiAnalysisResult>
                 )}
-              </StyledFlexBox>
+              </FlexBox>
             )}
           </Container>
         )}

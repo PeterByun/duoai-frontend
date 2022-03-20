@@ -1,7 +1,7 @@
 import { useItemImages } from '@/hooks/use-item-images'
 
 import Grid, { GridProps } from '@/components-atoms/grid/Grid'
-import { StyledImg } from '@/components-atoms/img/StyledImg.style'
+import { Img } from '@/components-atoms/img/Img'
 
 type Item = { itemId?: number }
 
@@ -28,11 +28,13 @@ export default function ChampionItems(props: ChampionItemsProps) {
     >
       {itemsToShow.map((item, idx) => {
         return (
-          <StyledImg
+          <Img
             key={item.itemId + idx}
             width="2rem"
             height="2rem"
-            src={getItemIcon(item.itemId)}
+            image={{
+              src: getItemIcon(item.itemId),
+            }}
           />
         )
       })}

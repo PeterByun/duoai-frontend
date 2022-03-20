@@ -13,9 +13,9 @@ import ChampionSpells from '@/components-features/champion-spells/ChampionSpells
 import ChampionKda from '@/components-features/champion-kda/ChampionKda'
 import ChampionItems from '@/components-features/champion-items/ChampionItems'
 
-import { StyledText } from '@/components-atoms/text/Text'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledImg } from '@/components-atoms/img/StyledImg.style'
+import { Text } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Img } from '@/components-atoms/img/Img'
 
 import { extractItemsFromParticipant } from '@/utils/match-utils'
 
@@ -74,11 +74,13 @@ export function MatchParticipant(
       padding="1rem"
       style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
     >
-      <StyledImg
+      <Img
         width="5rem"
         height="5rem"
         margin="0px auto"
-        src={getChampionImage(participant.championNameEng)}
+        image={{
+          src: getChampionImage(participant.championNameEng),
+        }}
         css={{
           borderRadius: '50%',
           border: '1px solid var(--white)',
@@ -95,24 +97,24 @@ export function MatchParticipant(
         ]}
       />
 
-      <StyledFlexBox flexDirection="row">
-        <StyledText fontSize="1rem" fontWeight="bold">
+      <FlexBox flexDirection="row">
+        <Text fontSize="1rem" fontWeight="bold">
           CS:
           {participant?.totalMinionsKilled}
-        </StyledText>
+        </Text>
         &nbsp; / &nbsp;
-        <StyledText fontSize="1rem" fontWeight="bold">
+        <Text fontSize="1rem" fontWeight="bold">
           레벨: {participant?.champLevel}
-        </StyledText>
-      </StyledFlexBox>
+        </Text>
+      </FlexBox>
 
-      <StyledFlexBox flexDirection="row">
+      <FlexBox flexDirection="row">
         <ChampionKda
           kills={participant?.kills}
           deaths={participant?.deaths}
           assists={participant?.assists}
         />
-      </StyledFlexBox>
+      </FlexBox>
 
       <ChampionItems
         gridTemplateColumns="repeat(auto-fit, minmax(2rem, 1fr))"

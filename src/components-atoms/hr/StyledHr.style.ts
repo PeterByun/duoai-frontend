@@ -7,7 +7,7 @@ import {
 
 export type StyledHrProps = {} & ComponentBaseStyleProps
 
-export const StyledHr = styled.img<StyledHrProps>`
+export const Hr = styled.img<StyledHrProps>`
   ${ComponentBaseStyle}
   width: 80%;
   height: 1px;

@@ -9,7 +9,7 @@ type StyledSelectBarProps = {
   depth: number
 } & ComponentBaseStyleProps
 
-export const StyledSelectBar = styled.div<StyledSelectBarProps>`
+export const SelectBar = styled.div<StyledSelectBarProps>`
   ${ComponentBaseStyle}
 
   background-color: transparent;
@@ -29,7 +29,7 @@ type StyledOptionProps = {
   active: boolean
 }
 
-export const StyledOption = styled.button<StyledOptionProps>`
+export const Option = styled.button<StyledOptionProps>`
   background: transparent;
   color: var(--black);
 

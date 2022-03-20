@@ -14,6 +14,6 @@ const TextAreaStyle = (props: StyledTextAreaProps) => {
   `
 }
 
-export const StyledTextArea = styled.textarea<StyledTextAreaProps>`
+export const TextArea = styled.textarea<StyledTextAreaProps>`
   ${TextAreaStyle}
 `

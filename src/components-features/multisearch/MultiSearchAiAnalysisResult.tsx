@@ -1,7 +1,7 @@
 import Heading from '@/components-atoms/heading/Heading'
 import Strong from '@/components-atoms/strong/Strong'
-import { StyledText } from '@/components-atoms/text/Text'
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Text } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
 import Container from '@/components-atoms/container/Container'
 import Grid from '@/components-atoms/grid/Grid'
 import { Img } from '@/components-atoms/img/Img'
@@ -59,17 +59,12 @@ const MainLanerCount = (props: { lane: string; count: number }) => {
 
   return (
     <Container flexDirection="column">
-      <StyledText
-        fontSize="1rem"
-        fontWeight="bold"
-        color="dark-gray"
-        margin="0"
-      >
+      <Text fontSize="1rem" fontWeight="bold" color="dark-gray" margin="0">
         {props.lane}
-      </StyledText>
-      <StyledText fontSize="1rem" color="dark-gray" margin="0">
+      </Text>
+      <Text fontSize="1rem" color="dark-gray" margin="0">
         {props.count}명
-      </StyledText>
+      </Text>
     </Container>
   )
 }
@@ -91,21 +86,21 @@ export const MultiSearchAiAnalysisResult = ({
 
   return (
     <Container width="100%">
-      <StyledFlexBox flexDirection="column" gap="1rem">
+      <FlexBox flexDirection="column" gap="1rem">
         <Container flexDirection="column" width="60%">
           <Heading level={2} margin="1rem 0">
             예상 게임 승률
           </Heading>
-          <StyledText fontSize="3rem" color="dark-gray" margin="0">
+          <Text fontSize="3rem" color="dark-gray" margin="0">
             {toPercentage(aiAnalysisResult.expectedWinRate)}
-          </StyledText>
+          </Text>
         </Container>
 
         <Container flexDirection="column">
           <Heading level={2} margin="1rem 0">
             모스트 라인 팀원수
           </Heading>
-          <StyledFlexBox gap="1rem">
+          <FlexBox gap="1rem">
             <MainLanerCount
               lane="탑"
               count={aiAnalysisResult.mainLanerCount.top}
@@ -126,7 +121,7 @@ export const MultiSearchAiAnalysisResult = ({
               lane="서폿"
               count={aiAnalysisResult.mainLanerCount.utility}
             />
-          </StyledFlexBox>
+          </FlexBox>
         </Container>
 
         {aiAnalysisResult.summonerProfiles && (
@@ -143,7 +138,7 @@ export const MultiSearchAiAnalysisResult = ({
               {aiAnalysisResult.summonerProfiles.map((summonerProfile) => (
                 <>
                   {summonerProfile.preferredChamps.map((preferedChamp) => (
-                    <StyledFlexBox
+                    <FlexBox
                       key={preferedChamp.champNameEng}
                       flexDirection="column"
                       justify="flex-start"
@@ -156,14 +151,14 @@ export const MultiSearchAiAnalysisResult = ({
                         }}
                         isNameHidden
                       />
-                    </StyledFlexBox>
+                    </FlexBox>
                   ))}
                 </>
               ))}
             </Grid>
           </Container>
         )}
-      </StyledFlexBox>
+      </FlexBox>
 
       <Container flexDirection="column" width="80%">
         <Heading level={2} margin="1rem 0">
@@ -181,7 +176,7 @@ export const MultiSearchAiAnalysisResult = ({
               gap="1rem"
               width="90%"
             >
-              <StyledFlexBox flexDirection="column">
+              <FlexBox flexDirection="column">
                 <Strong fontSize="1.5rem"> {summonerProfile.name} </Strong>
                 <Img
                   image={{
@@ -196,10 +191,8 @@ export const MultiSearchAiAnalysisResult = ({
                   }}
                   isNameHidden
                 />
-                <StyledText fontSize="1rem">
-                  {summonerProfile.leaguePoints} 점
-                </StyledText>
-              </StyledFlexBox>
+                <Text fontSize="1rem">{summonerProfile.leaguePoints} 점</Text>
+              </FlexBox>
 
               <Grid
                 gridTemplateColumns="repeat(auto-fit, minmax(8rem, 1fr))"
@@ -208,7 +201,7 @@ export const MultiSearchAiAnalysisResult = ({
                 width="100%"
               >
                 {summonerProfile.icons.map((icon) => (
-                  <StyledFlexBox flexDirection="column">
+                  <FlexBox flexDirection="column">
                     <img
                       src={summonerTraitIcons[icon.type]}
                       alt={icon.type}
@@ -224,7 +217,7 @@ export const MultiSearchAiAnalysisResult = ({
                       }}
                     />
                     {icon.type}
-                  </StyledFlexBox>
+                  </FlexBox>
                 ))}
               </Grid>
             </Container>

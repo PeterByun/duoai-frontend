@@ -10,8 +10,8 @@ import { ChampionBanPickHeader } from '@/components-features/champion-ban-pick/C
 import { ChampionBanPickResultHeader } from '@/components-features/champion-ban-pick/ChampionBanPickResultHeader'
 import { ChampionBanPickResult } from '@/components-features/champion-ban-pick/ChampionBanPickResult'
 
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledText } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Text } from '@/components-atoms/text/Text'
 
 import { analyzeBanPick } from '@/apis/duoai/duoai'
 
@@ -201,7 +201,7 @@ const Champs = () => {
             onAnalyze={handleAnalyze}
           />
 
-          <StyledFlexBox
+          <FlexBox
             flexDirection="row"
             justify="space-between"
             width="100%"
@@ -245,7 +245,7 @@ const Champs = () => {
                 ))}
               </GridSelectedChampions>
             ) : null}
-          </StyledFlexBox>
+          </FlexBox>
 
           <SearchBar
             width="min(40%, 28rem)"
@@ -284,14 +284,14 @@ const Champs = () => {
 
       {teamComparisonList.length > 0 ? (
         <Container flexDirection="column">
-          <StyledText
+          <Text
             fontSize="3.5rem"
             fontWeight="bold"
             textAlign="left"
             ref={resultContainerRef}
           >
             분석결과
-          </StyledText>
+          </Text>
 
           {teamComparisonList.map((teamComparison) => (
             <Container

@@ -2,8 +2,8 @@ import Strong from '@/components-atoms/strong/Strong'
 import Canvas from '@/components-atoms/canvas/Canvas'
 import { drawWinRatioCircle } from '@/components-atoms/canvas/WinRatioCircle'
 
-import { StyledFlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { StyledText } from '@/components-atoms/text/Text'
+import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
+import { Text } from '@/components-atoms/text/Text'
 
 import { toPercentage } from '@/utils/string-utils'
 import { teamTypes } from '@/constants/match-constants'
@@ -14,12 +14,12 @@ const ExpectedWinRateHeader = (props: { teamName: string }) => {
   const textColor = props.teamName === '블루팀' ? 'team-blue' : 'team-red'
 
   return (
-    <StyledText fontSize="2.5rem" textAlign="left">
+    <Text fontSize="2.5rem" textAlign="left">
       <Strong fontSize="2.5rem" color={textColor}>
         {props.teamName}
       </Strong>
       &nbsp;예상승률
-    </StyledText>
+    </Text>
   )
 }
 
@@ -28,7 +28,7 @@ const ExpectedWinRateBody = (props: {
   teamColor: 'red' | 'blue'
 }) => {
   return (
-    <StyledText
+    <Text
       fontSize="3rem"
       fontWeight="bold"
       color={`team-${props.teamColor}`}
@@ -37,7 +37,7 @@ const ExpectedWinRateBody = (props: {
       }}
     >
       {toPercentage(props.expectedWinRate)}
-    </StyledText>
+    </Text>
   )
 }
 
@@ -45,7 +45,7 @@ export const ChampionBanPickResult = (props: {
   teamComparison: TeamComparison
 }) => {
   return (
-    <StyledFlexBox
+    <FlexBox
       flexDirection="row"
       justify="space-between"
       width="95%"
@@ -53,10 +53,10 @@ export const ChampionBanPickResult = (props: {
       padding="1rem"
       flowColumnOnMdScreen
     >
-      <StyledFlexBox flexDirection="column" padding="1rem">
+      <FlexBox flexDirection="column" padding="1rem">
         <ExpectedWinRateHeader teamName="블루팀" />
 
-        <StyledFlexBox flexDirection="row" align="center" justify="center">
+        <FlexBox flexDirection="row" align="center" justify="center">
           <ExpectedWinRateBody
             teamColor="blue"
             expectedWinRate={props.teamComparison.blue.winRatio}
@@ -72,13 +72,13 @@ export const ChampionBanPickResult = (props: {
               height: '200',
             }}
           />
-        </StyledFlexBox>
-      </StyledFlexBox>
+        </FlexBox>
+      </FlexBox>
 
-      <StyledFlexBox flexDirection="column" padding="1rem">
+      <FlexBox flexDirection="column" padding="1rem">
         <ExpectedWinRateHeader teamName="레드팀" />
 
-        <StyledFlexBox flexDirection="row" align="center" justify="center">
+        <FlexBox flexDirection="row" align="center" justify="center">
           <ExpectedWinRateBody
             teamColor="red"
             expectedWinRate={props.teamComparison.red.winRatio}
@@ -93,8 +93,8 @@ export const ChampionBanPickResult = (props: {
               height: '200',
             }}
           />
-        </StyledFlexBox>
-      </StyledFlexBox>
-    </StyledFlexBox>
+        </FlexBox>
+      </FlexBox>
+    </FlexBox>
   )
 }

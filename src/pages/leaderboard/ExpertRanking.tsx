@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
 import {
-  StyledSelectBar,
-  StyledOption,
+  SelectBar,
+  Option,
 } from '@/components-atoms/select-bar/StyledSelectBar.style'
 
 import Container from '@/components-atoms/container/Container'
@@ -112,44 +112,44 @@ export const ExpertRanking = () => {
         </Button>
       </SearchBar>
 
-      <StyledSelectBar width="1000px" height="80px" depth={1}>
+      <SelectBar width="1000px" height="80px" depth={1}>
         {Object.values(champions).map((champion) => (
-          <StyledOption
+          <Option
             value={champion.value}
             key={champion.name}
             active={selectedChampion === champion.value}
             onClick={onChampionClick(champion.value)}
           >
             {champion.name}
-          </StyledOption>
+          </Option>
         ))}
-      </StyledSelectBar>
+      </SelectBar>
 
-      <StyledSelectBar width="1000px" height="80px" depth={0}>
+      <SelectBar width="1000px" height="80px" depth={0}>
         {Object.values(tiers).map((tier) => (
-          <StyledOption
+          <Option
             value={tier.value}
             key={tier.name}
             active={selectedTier === tier.value}
             onClick={onTierClick(tier.value)}
           >
             {tier.name}
-          </StyledOption>
+          </Option>
         ))}
-      </StyledSelectBar>
+      </SelectBar>
 
-      <StyledSelectBar width="1000px" height="80px" depth={2}>
+      <SelectBar width="1000px" height="80px" depth={2}>
         {Object.values(expertCriteria).map((criteria) => (
-          <StyledOption
+          <Option
             value={criteria.value}
             key={criteria.name}
             active={selectedExpertCriteria === criteria.value}
             onClick={onExpertCriteriaClick(criteria.value)}
           >
             {criteria.name}
-          </StyledOption>
+          </Option>
         ))}
-      </StyledSelectBar>
+      </SelectBar>
 
       <Table
         headItems={summonerRankingsTableHeadItems}
