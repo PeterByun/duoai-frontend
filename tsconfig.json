@@ -10,7 +10,7 @@
     "module": "esnext",
     "target": "es5",
     // These two jsx options are for the new JSX transform and emotion's css prop
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
     "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext"],
