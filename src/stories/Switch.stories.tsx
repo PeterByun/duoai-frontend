@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof Switch> = (args) => (
   <Switch {...args} id="1"></Switch>
 )
 
-export const Primary = Template.bind({})
-Primary.args = {
-  //   primary: true,
+export const Lager = Template.bind({})
+Lager.args = {
+  size: 'lg',
 }
