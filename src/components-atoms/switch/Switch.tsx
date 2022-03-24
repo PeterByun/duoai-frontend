@@ -4,10 +4,9 @@ import React from 'react'
 type Size = 'sm' | 'md' | 'lg'
 
 type SwitchProps = {
-  id: string
-  onChange: (event: React.ChangeEvent) => void
+  onChange: (checked: boolean) => void
   size: Size
-}
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>
 
 const switchInputCss = css`
   width: 0;
@@ -61,7 +60,9 @@ const Switch = ({ id, onChange, size }: SwitchProps) => {
   const distanceToSlide =
     cssUnitToNumber(inputWidth) - cssUnitToNumber(circleRadius) - 0.5
 
-  console.log(SWITCH_SIZE_MAP[size])
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.checked)
+  }
 
   return (
     <>
@@ -80,7 +81,7 @@ const Switch = ({ id, onChange, size }: SwitchProps) => {
             },
           },
         ]}
-        onChange={onChange}
+        onChange={handleChange}
       />
       <label htmlFor={id}>
         <span

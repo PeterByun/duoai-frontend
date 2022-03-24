@@ -7,20 +7,42 @@ export type SelectItem = {
 
 export type SelectProps = {
   items: SelectItem[]
-  onItmeChange: (selectedValue: SelectItem) => void
+  onItemChange: (selectedValue: SelectItem) => void
+  onItemsChange: (selectedValue: SelectItem[]) => void
 } & React.SelectHTMLAttributes<HTMLSelectElement>
 
-const Select = ({ id, items, onItmeChange }: SelectProps) => {
+const Select = ({
+  id,
+  items,
+  onItemChange,
+  onItemsChange,
+  multiple,
+  ...restProps
+}: SelectProps) => {
   const [selectedItemValue, setSelectedItemValue] = useState<string>(
     items[0].value
   )
+  const [selectedItemValues, setSelectedItemValues] = useState<string[]>([])
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onItmeChange({
-      name: e.target.options[e.target.selectedIndex].text,
-      value: e.target.value,
-    })
-    setSelectedItemValue(e.target.value)
+    if (multiple) {
+      const selectedItems = Array.from(e.target.selectedOptions).map(
+        (option) => {
+          return { name: option.text, value: option.value }
+        }
+      )
+
+      onItemsChange(selectedItems)
+      setSelectedItemValues(selectedItems.map((item) => item.value))
+    } else {
+      const selectedItem = {
+        name: e.target.options[e.target.selectedIndex].text,
+        value: e.target.value,
+      }
+
+      onItemChange(selectedItem)
+      setSelectedItemValue(e.target.value)
+    }
   }
 
   return (
@@ -35,7 +57,9 @@ const Select = ({ id, items, onItmeChange }: SelectProps) => {
         name={id}
         id={id}
         onChange={handleChange}
-        value={selectedItemValue}
+        value={multiple ? selectedItemValues : selectedItemValue}
+        multiple={multiple}
+        {...restProps}
         css={{
           appearance: 'none',
           outline: 'none',
@@ -47,6 +71,11 @@ const Select = ({ id, items, onItmeChange }: SelectProps) => {
           padding: '0 1rem',
           margin: '0',
           textAlign: 'center',
+          ':disabled': {
+            cursor: 'not-allowed',
+            backgroundColor: '#eee',
+            backgroundImage: 'linear-gradient(to top, #ddd, #eee 33%)',
+          },
           '::-ms-expand': {
             display: 'none',
           },

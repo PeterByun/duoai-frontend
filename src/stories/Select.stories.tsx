@@ -35,11 +35,18 @@ const items = [
   },
 ]
 
+const multiple = true
+
 const Template: ComponentStory<typeof Select> = (args) => {
   const [selectedItem, setSelectedItem] = useState<SelectItem>(items[0])
+  const [selectedItems, setSelectedItems] = useState<SelectItem[]>([])
 
   const handleItemChange = (item: SelectItem) => {
     setSelectedItem(item)
+  }
+
+  const handleItemsChange = (items: SelectItem[]) => {
+    setSelectedItems(items)
   }
 
   return (
@@ -49,13 +56,41 @@ const Template: ComponentStory<typeof Select> = (args) => {
         {...args}
         id="1"
         items={items}
-        onItmeChange={handleItemChange}
+        onItemChange={handleItemChange}
+        onItemsChange={handleItemsChange}
       ></Select>
-      <strong>You have selected {selectedItem.name} !</strong> <br />
-      <strong>Item Cose: {selectedItem.value} </strong>
+
+      {multiple ? (
+        selectedItems.map((item) => {
+          return (
+            <div key={item.name}>
+              <strong>You have selected {item.name}!</strong> <br />
+              <strong>Item Cose: {item.value} </strong>
+            </div>
+          )
+        })
+      ) : (
+        <div>
+          <strong>You have selected {selectedItem.name} !</strong> <br />
+          <strong>Item Cose: {selectedItem.value} </strong>
+        </div>
+      )}
     </>
   )
 }
 
-export const Lager = Template.bind({})
-Lager.args = {}
+export const Base = Template.bind({})
+
+Base.args = {}
+
+export const Disabled = Template.bind({})
+
+Disabled.args = {
+  disabled: true,
+}
+
+export const Multiple = Template.bind({})
+
+Multiple.args = {
+  multiple,
+}
