@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 type RadioProps = {
   id: string
   items: RadioItemWithInputProps[]
+  itemsDisabled: boolean
   onChange: (selectedItem: RadioItem) => void
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>
 
@@ -15,7 +16,13 @@ type RadioItemWithInputProps = RadioItem & {
   restProps?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
-const Radio = ({ id, items, onChange, ...restProps }: RadioProps) => {
+const Radio = ({
+  id,
+  items,
+  onChange,
+  itemsDisabled,
+  ...restProps
+}: RadioProps) => {
   const [selectedItem, setSelectedItem] = useState<RadioItem>(items[0])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +43,7 @@ const Radio = ({ id, items, onChange, ...restProps }: RadioProps) => {
             value={item.value}
             checked={item.name === selectedItem.name}
             {...item.restProps}
+            disabled={itemsDisabled}
           />
           <label htmlFor={item.name}>{item.name}</label>
         </span>

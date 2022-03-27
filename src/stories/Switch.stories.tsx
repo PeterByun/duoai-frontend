@@ -27,3 +27,8 @@ export const Lager = Template.bind({})
 Lager.args = {
   size: 'lg',
 }
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true,
+}

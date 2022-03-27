@@ -33,7 +33,7 @@ npm run start
 
 # File structure
 
-If the data scheme of API is not suitable for the client, you should process it with an adapter, so the complexity of API spreads to the components.
+If the data scheme of API is not suitable for the client, you should process it with an adapter, so the complexity of API does not affect the components.
 This is why we have a dedicated folder for APIs(/apis). Also, this will make the Front-end application testable without the backend API server, thus decreasing the operational cost by efficiently implementing E2E tests.
 
 \*files prefixed with "app" means these files belong to the app, but not specific features.
@@ -85,3 +85,5 @@ DWG Ghost님이 방에 참가했습니다.
 - <a href="https://www.flaticon.com/free-icons/bow" title="bow icons">Bow icons created by Good Ware - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/chick" title="chick icons">Chick icons created by Freepik - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/left-arrow" title="left arrow icons">Left arrow icons created by nawicon - Flaticon</a>
+- <a target="_blank" href="https://icons8.com/icon/45301/up-arrow">Up Arrow</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+  <a target="_blank" href="https://icons8.com/icon/45289/down">Down</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

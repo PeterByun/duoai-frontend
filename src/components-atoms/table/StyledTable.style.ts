@@ -12,15 +12,15 @@ export const TableStyle = styled.table<TableStyleProps>`
   table-layout: fixed;
 
   thead {
-    background: var(--dark-gray);
-    color: var(--white);
+    background: var(--light-gray);
+    color: var(--black);
 
     width: 100%;
 
-    th:nth-child(1) {
+    th:nth-of-type(1) {
       border-radius: 5px 0px 0px 5px;
     }
-    th:nth-last-child(1) {
+    th:nth-last-of-type(1) {
       border-radius: 0px 5px 5px 0px;
     }
 
@@ -43,7 +43,7 @@ export const TableStyle = styled.table<TableStyleProps>`
     td {
       text-align: center;
     }
-    td:nth-child(1) {
+    td:nth-of-type(1) {
       color: var(--blue);
       font-weight: bold;
     }

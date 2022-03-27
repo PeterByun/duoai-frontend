@@ -39,8 +39,7 @@ const Template: ComponentStory<typeof Radio> = (args) => {
         onChange={handleRadioChange}
       ></Radio>
       <h1>
-        You have checekd: {checkedItem.name}. <br />
-        The value of the item is
+        The value of {checkedItem.name} is
         {` ${checkedItem.value}`}
       </h1>
     </>
@@ -49,3 +48,8 @@ const Template: ComponentStory<typeof Radio> = (args) => {
 
 export const Base = Template.bind({})
 Base.args = {}
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  itemsDisabled: true,
+}

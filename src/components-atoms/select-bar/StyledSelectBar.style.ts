@@ -5,6 +5,11 @@ import {
   ComponentBaseStyleProps,
 } from '@/components-features/app/ComponentBaseStyle'
 
+export type SelectBarItem = {
+  name: string
+  value: string
+}
+
 type StyledSelectBarProps = {
   depth: number
 } & ComponentBaseStyleProps

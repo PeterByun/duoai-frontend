@@ -48,7 +48,7 @@ const cssUnitToNumber = (cssUnit: string) => {
   return Number(cssUnit.replace(/px|rem|em|vw|vh/gi, ''))
 }
 
-const Switch = ({ id, onChange, size }: SwitchProps) => {
+const Switch = ({ id, onChange, size, ...restProps }: SwitchProps) => {
   const SWITCH_SIZE_MAP = {
     sm: ['3rem', '2rem', '1.5rem'],
     md: ['4rem', '3rem', '2rem'],
@@ -82,6 +82,7 @@ const Switch = ({ id, onChange, size }: SwitchProps) => {
           },
         ]}
         onChange={handleChange}
+        {...restProps}
       />
       <label htmlFor={id}>
         <span
