@@ -2,8 +2,10 @@ stages:
   - build
   - deploy
 
-build-job:
+main-build-job:
   stage: build
+  only:
+    - main
   image: node:14
   script:
     - echo "Installing NPM modules..."
@@ -17,8 +19,10 @@ build-job:
     paths:
       - dist/
 
-deploy to s3:
+main-deploy-to-s3:
   stage: deploy
+  only:
+    - main
   image:
     name: amazon/aws-cli
     entrypoint: ['']
@@ -26,3 +30,32 @@ deploy to s3:
     - aws --version
     - aws s3 rm s3://$S3_BUCKET --recursive
     - aws s3 cp dist/ s3://$S3_BUCKET --recursive
+
+storybook-build-job:
+  stage: build
+  only:
+    - storybook
+  image: node:14
+  script:
+    - echo "Installing NPM modules..."
+    - npm install
+    - echo "Compiling the code..."
+    - build-storybook
+    - echo "Compile complete."
+    - echo "Copying the storybook..."
+    - mv storybook-static/* storybook-dist/
+  artifacts:
+    paths:
+      - storybook-dist/
+
+storybook-deploy-to-s3:
+  stage: deploy
+  only:
+    - storybook
+  image:
+    name: amazon/aws-cli
+    entrypoint: ['']
+  script:
+    - aws --version
+    - aws s3 rm s3://$S3_BUCKET --recursive
+    - aws s3 cp storybook-dist/ s3://$S3_BUCKET/storybook-dist --recursive
