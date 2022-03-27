@@ -43,7 +43,7 @@ storybook-build-job:
     - npm run build-storybook
     - echo "Compile complete."
     - echo "Copying the storybook..."
-    - mv storybook-static/* storybook-dist/
+    - mv storybook-static/* storybook-dist
   artifacts:
     paths:
       - storybook-dist/
