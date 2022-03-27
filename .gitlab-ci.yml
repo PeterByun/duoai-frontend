@@ -40,7 +40,7 @@ storybook-build-job:
     - echo "Installing NPM modules..."
     - npm install
     - echo "Compiling the code..."
-    - build-storybook
+    - npm run build-storybook
     - echo "Compile complete."
     - echo "Copying the storybook..."
     - mv storybook-static/* storybook-dist/
