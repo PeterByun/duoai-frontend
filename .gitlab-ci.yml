@@ -42,11 +42,9 @@ storybook-build-job:
     - echo "Compiling the code..."
     - npm run build-storybook
     - echo "Compile complete."
-    - echo "Copying the storybook..."
-    - mv storybook-static/* storybook-dist
   artifacts:
     paths:
-      - storybook-dist/
+      - storybook-static/
 
 storybook-deploy-to-s3:
   stage: deploy
@@ -58,4 +56,4 @@ storybook-deploy-to-s3:
   script:
     - aws --version
     - aws s3 rm s3://$S3_BUCKET --recursive
-    - aws s3 cp storybook-dist/ s3://$S3_BUCKET/storybook-dist --recursive
+    - aws s3 cp storybook-static/ s3://$S3_BUCKET/storybook-static --recursive
