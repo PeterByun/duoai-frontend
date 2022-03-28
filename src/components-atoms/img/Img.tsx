@@ -39,8 +39,8 @@ export const Img = (props: StyledImgProps & ImgProps) => {
       disabled={props.disabled}
       css={[
         {
-          borderRadius: props.circle ? '50%' : 'initial',
-          border: props.border ? '1px solid var(--white)' : 'initial',
+          borderRadius: props.circle ? '100%' : '',
+          border: props.border ? '1px solid var(--white)' : '',
         },
         props.css,
       ]}
@@ -48,7 +48,7 @@ export const Img = (props: StyledImgProps & ImgProps) => {
       <StyledImg
         css={[
           {
-            borderRadius: props.circle ? '50%' : 'initial',
+            borderRadius: props.circle ? '50%' : '',
           },
           props.imgCss,
         ]}

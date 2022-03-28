@@ -56,4 +56,4 @@ storybook-deploy-to-s3:
   script:
     - aws --version
     - aws s3 rm s3://$S3_BUCKET --recursive
-    - aws s3 cp storybook-static/ s3://$S3_BUCKET --recursive
+    - aws s3 cp storybook-static/ s3://$S3_BUCKET/storybook-static --recursive

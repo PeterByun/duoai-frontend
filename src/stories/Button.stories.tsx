@@ -15,3 +15,7 @@ export const Primary = Template.bind({})
 Primary.args = {
   primary: true,
 }
+export const Circle = Template.bind({})
+Circle.args = {
+  circle: true,
+}
