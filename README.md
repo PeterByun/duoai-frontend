@@ -33,7 +33,7 @@ npm run start
 
 # File structure
 
-If the data scheme of API is not suitable for the client, you should process it with an adapter, so the complexity of API spreads to the components.
+If the data scheme of API is not suitable for the client, you should process it with an adapter, so the complexity of API does not affect the components.
 This is why we have a dedicated folder for APIs(/apis). Also, this will make the Front-end application testable without the backend API server, thus decreasing the operational cost by efficiently implementing E2E tests.
 
 \*files prefixed with "app" means these files belong to the app, but not specific features.
