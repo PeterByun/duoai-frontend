@@ -9,7 +9,7 @@ import Container from '@/components-atoms/container/Container'
 import SearchBar from '@/components-atoms/search-box/SearchBox'
 import Button from '@/components-atoms/button/Button'
 import Input from '@/components-atoms/input/Input'
-import Table from '@/components-atoms/table/Table'
+import Table, { TableHeadItem } from '@/components-atoms/table/Table'
 
 import { ChampRank } from '../../types/rank-types'
 
@@ -21,14 +21,14 @@ type ChampRanksByTier = { [char: string]: ChampRank[] }
 export const ChampRanking = (): ReactElement => {
   let searchInputVal: string | null = null
 
-  const champRankingTableHeadItems = [
+  const champRankingTableHeadItems: TableHeadItem<keyof ChampRank>[] = [
     {
       name: '순위',
       key: 'rank',
     },
     {
       name: '챔피언',
-      key: 'championName',
+      key: 'name',
     },
     {
       name: '티어',
@@ -44,7 +44,7 @@ export const ChampRanking = (): ReactElement => {
     },
     {
       name: '골드획득(평균대비)',
-      key: 'goldIncom',
+      key: 'goldCollecting',
     },
     {
       name: '역할',
@@ -188,11 +188,15 @@ export const ChampRanking = (): ReactElement => {
         ))}
       </SelectBar>
 
-      <Table
-        headItems={champRankingTableHeadItems}
-        items={selectedChampRankings}
-        rowClass={getChampRankingRowClass}
-      />
+      {selectedChampRankings && (
+        <Table<ChampRank>
+          headItems={champRankingTableHeadItems}
+          setHeadItems={setChampRankingTableHeadItems}
+          rows={selectedChampRankings}
+          setRows={setSelectedChampRankings}
+          rowClass={getChampRankingRowClass}
+        />
+      )}
     </Container>
   )
 }

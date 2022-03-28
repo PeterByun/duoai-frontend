@@ -35,11 +35,13 @@ export const Img = (props: StyledImgProps & ImgProps) => {
       flexDirection="column"
       align="center"
       disabled={props.disabled}
-      css={{
-        borderRadius: props.circle ? '50%' : 'initial',
-        border: props.border ? '1px solid var(--white)' : 'initial',
-        ...props.css,
-      }}
+      css={[
+        {
+          borderRadius: props.circle ? '50%' : 'initial',
+          border: props.border ? '1px solid var(--white)' : 'initial',
+        },
+        props.css,
+      ]}
     >
       <StyledImg
         css={{

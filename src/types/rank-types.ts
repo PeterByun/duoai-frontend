@@ -2,7 +2,7 @@ export type ChampRank = {
   rank: number
   name: string
   tier: number
-  stregnth: string
+  strength: string
   winRatio: number
   goldCollecting: number
   role: string
