@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
-import { mq } from '../../components-features/app/GlobalStyle'
+import { mq } from '../../components-commons/app/GlobalStyle'
 import {
   ComponentBaseStyle,
   ComponentBaseStyleProps,
-} from '@/components-features/app/ComponentBaseStyle'
+} from '@/components-commons/app/ComponentBaseStyle'
 
 export type FlexBoxStyleProps = {
   flexDirection?: string

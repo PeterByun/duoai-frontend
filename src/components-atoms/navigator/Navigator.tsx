@@ -8,6 +8,7 @@ import { Page } from '@/types/app-types'
 
 import LogoImgSrc from '@/assets/images/logo_horizontal.svg'
 import { Img } from '@/components-atoms/img/Img'
+import { css } from '@emotion/react'
 
 type NavigationBarProps = {
   pages: Page[]
@@ -30,46 +31,42 @@ const NavigationBar = (props: NavigationBarProps) => {
     <>
       {visiblePages.length > 0 ? (
         <NavContainerStyle depth={props.depth}>
-          {props.nested ? (
-            <div></div>
-          ) : (
+          <div>
             <Img
               image={{
                 src: LogoImgSrc,
               }}
               width="6rem"
-              margin="0 0 0 3rem"
               onClick={onLogoClick}
               isNameHidden
+              imgCss={css`
+                margin: 0 0 0 1rem;
+              `}
             />
-          )}
+          </div>
 
-          {visiblePages.map((page) => (
-            <LinkStyle disabled={page.disabled} key={page.name}>
-              <NavLink
-                to={page.path}
-                style={({ isActive }) =>
-                  isActive
-                    ? {
-                        fontSize: '1.1rem',
-                        fontWeight: 'bold',
-                        borderBottom: '2px solid var(--black)',
-                      }
-                    : {}
-                }
-              >
-                {page.name} {page.disabled ? '⚒' : null}
-              </NavLink>
-            </LinkStyle>
-          ))}
+          <div>
+            {visiblePages.map((page) => (
+              <LinkStyle disabled={page.disabled} key={page.name}>
+                <NavLink
+                  to={page.path}
+                  style={({ isActive }) =>
+                    isActive
+                      ? {
+                          fontSize: '1.1rem',
+                          fontWeight: 'bold',
+                          borderBottom: '2px solid var(--black)',
+                        }
+                      : {}
+                  }
+                >
+                  {page.name} {page.disabled ? '⚒' : null}
+                </NavLink>
+              </LinkStyle>
+            ))}
+          </div>
 
-          {props.nested ? (
-            <div></div>
-          ) : (
-            <Anchor color="disabled" margin="0 3rem" cursor="not-allowed">
-              로그인 ⚒
-            </Anchor>
-          )}
+          <div></div>
         </NavContainerStyle>
       ) : null}
     </>

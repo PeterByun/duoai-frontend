@@ -1,3 +1,5 @@
+import { SerializedStyles } from '@emotion/react'
+
 import {
   StyledImg,
   StyledImgProps,
@@ -5,7 +7,6 @@ import {
 
 import { Text } from '@/components-atoms/text/Text'
 import { FlexBox } from '@/components-atoms/flex-box/StyledFlexBox.style'
-import { CSSProperties } from 'react'
 
 type ImgProps = {
   image: {
@@ -25,7 +26,8 @@ type ImgProps = {
 
   onClick?: (e: React.MouseEvent<HTMLImageElement>) => void
   children?: React.ReactNode
-  css?: CSSProperties
+  css?: SerializedStyles
+  imgCss?: SerializedStyles
 }
 
 export const Img = (props: StyledImgProps & ImgProps) => {
@@ -44,9 +46,12 @@ export const Img = (props: StyledImgProps & ImgProps) => {
       ]}
     >
       <StyledImg
-        css={{
-          borderRadius: props.circle ? '50%' : 'initial',
-        }}
+        css={[
+          {
+            borderRadius: props.circle ? '50%' : 'initial',
+          },
+          props.imgCss,
+        ]}
         onClick={props.onClick}
         src={props.image.src}
         width={props.width ? props.width : '3rem'}

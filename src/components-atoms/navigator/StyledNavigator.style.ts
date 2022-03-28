@@ -10,7 +10,7 @@ export const NavContainerStyle = styled.nav<NavContainerStyleProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 
   width: 100%;

@@ -27,6 +27,7 @@ import { CardLiveMatchSummoner } from '@/components-atoms/card/CardLiveMatchSumm
 import { Img } from '@/components-atoms/img/Img'
 
 import PrevButtonSrc from '@/assets/images/base/left-arrow.png'
+import { css } from '@emotion/react'
 
 type Summoner = {
   summonerId: string
@@ -223,10 +224,10 @@ const Stats = () => {
                         src: PrevButtonSrc,
                       }}
                       onClick={handleBackToSummonerListClick}
-                      css={{
-                        left: '5rem',
-                        position: 'absolute',
-                      }}
+                      css={css`
+                        left: 5rem;
+                        position: absolute;
+                      `}
                     />
 
                     <Heading level={1} margin="0">

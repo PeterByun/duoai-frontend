@@ -8,9 +8,9 @@ import {
   DroppableProvided,
 } from 'react-beautiful-dnd'
 
-import ChampionSpells from '@/components-features/champion-spells/ChampionSpells'
-import ChampionKda from '@/components-features/champion-kda/ChampionKda'
-import ChampionItems from '@/components-features/champion-items/ChampionItems'
+import ChampionSpells from '@/components-commons/champion-spells/ChampionSpells'
+import ChampionKda from '@/components-commons/champion-kda/ChampionKda'
+import ChampionItems from '@/components-commons/champion-items/ChampionItems'
 
 import {
   MatchSummary,

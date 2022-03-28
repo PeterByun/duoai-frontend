@@ -102,6 +102,14 @@ module.exports = (env) => {
           },
         },
         {
+          test: /\.(mp4)$/i,
+          include: path.resolve(__dirname, 'src/assets'),
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/videos/[hash][ext][query]',
+          },
+        },
+        {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           include: path.resolve(__dirname, 'src/assets'),
           type: 'asset/resource',
